@@ -43,7 +43,7 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: StandaloneLinux64
-
+          customParameters: -EnableHeadlessMode
       - uses: actions/upload-artifact@v2
         with:
           name: Build-Linux-Server
