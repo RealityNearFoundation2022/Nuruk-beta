@@ -48,3 +48,21 @@ jobs:
         with:
           name: Build-Linux-Server
           path: build/StandaloneLinux64
+      - name: connect server
+        uses: appleboy/ssh-action@master
+        env:
+          TOKEN: ${{ secrets.TOKEN_GITHUB }}
+        with:
+          host: ${{ secrets.QA_HOST_UNITY }}
+          username: ${{ secrets.QA_HOST_USERNAME }}
+          password: ${{ secrets.QA_HOST_PASSWORD }}
+          script: |
+          url=curl -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $TOKEN" -s https://api.github.com/repos/RealityNearFoundation2022/Nuruk-Unity3D/actions/artifacts\?per_page\=2 | jq '[.artifacts[] | {name: .name, archive_download_url: .archive_download_url}]' | jq -r '.[] | select (.name == "Build-Linux-Server") | .archive_download_url'
+          curl -L -H  "Accept: application/vnd.github+json" -H "Authorization: token $TOKEN" $url -o linux-server.zip
+          rm -r server* 2> /dev/null
+          mkdir server
+          mv linux-server.zip server
+          unzip server/linux-server.zip
+          chmod u+x server/StandaloneLinux64
+          cd server
+          ./StandaloneLinux64
