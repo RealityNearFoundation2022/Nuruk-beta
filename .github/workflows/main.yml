@@ -68,7 +68,7 @@ jobs:
             mkdir -p "releases/${GITHUB_SHA}"
             tar xzf artifacts/${GITHUB_SHA}.tar.gz -C "releases/${GITHUB_SHA}"
             rm -r /var/www/webgl/ 2> /dev/null
-            cp -r releases/${GITHUB_SHA}/WebGL/* /var/www/webgl/
+            cp -r releases/${GITHUB_SHA}/build/WebGL* /var/www/webgl/
   # server
   server_job:
     name: compile server unix
@@ -113,14 +113,15 @@ jobs:
       - name: connect server
         uses: appleboy/ssh-action@master
         env:
-          TOKEN: ${{ secrets.TOKEN_GITHUB }}
+          GITHUB_SHA: ${{ github.sha }}
         with:
           host: ${{ secrets.QA_HOST_UNITY }}
           username: ${{ secrets.QA_HOST_USERNAME }}
           password: ${{ secrets.QA_HOST_PASSWORD }}
+          envs: GITHUB_SHA
           script: |
             mkdir -p "releases/${GITHUB_SHA}"
             tar xzf artifacts/${GITHUB_SHA}.tar.gz -C "releases/${GITHUB_SHA}"
-            rm server 2>/dev/null
+            rm -r server 2>/dev/null
             mkdir server
             cp -r releases/${GITHUB_SHA}/StandaloneLinux64/* server
