@@ -68,7 +68,7 @@ jobs:
             mkdir -p "releases/${GITHUB_SHA}"
             tar xzf artifacts/${GITHUB_SHA}.tar.gz -C "releases/${GITHUB_SHA}"
             rm -r /var/www/webgl/ 2> /dev/null
-            cp -r releases/${GITHUB_SHA}/build/WebGL* /var/www/webgl/
+            cp -r releases/${GITHUB_SHA}/build/WebGL/WebGL/* /var/www/webgl/
   # server
   server_job:
     name: compile server unix
@@ -124,4 +124,4 @@ jobs:
             tar xzf artifacts/${GITHUB_SHA}.tar.gz -C "releases/${GITHUB_SHA}"
             rm -r server 2>/dev/null
             mkdir server
-            cp -r releases/${GITHUB_SHA}/StandaloneLinux64/* server
+            cp -r releases/${GITHUB_SHA}/build/StandaloneLinux64/StandaloneLinux64/* server
