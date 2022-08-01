@@ -82,7 +82,7 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: StandaloneLinux64
-          customParameters: -EnableHeadlessModistde
+          customParameters: -EnableHeadlessMode
         
       - name: Create deployment artifact
         env:
