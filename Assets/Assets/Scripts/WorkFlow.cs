@@ -8,7 +8,7 @@ public class WorkFlow : MonoBehaviour
 
     public void GoTologin()
     {
-        SceneManager.LoadScene("LoginNuruk");
+        SceneManagerControl.Instance.LoadScene("LoginNuruk");
     }
     public void GoToRegister()
     {

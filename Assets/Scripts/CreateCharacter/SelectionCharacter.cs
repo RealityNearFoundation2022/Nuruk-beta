@@ -1,9 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using CustomEvents;
+using Classes;
+using PlayFab;
+using PlayFab.ClientModels;
+using System.Collections.Generic;
 
 public class SelectionCharacter : MonoBehaviour
 {
@@ -128,6 +129,7 @@ public class SelectionCharacter : MonoBehaviour
 
 
    private string colorSelect;
+
    #endregion
 
    public void ChangeExtra(int positionExtra)
@@ -211,45 +213,45 @@ public class SelectionCharacter : MonoBehaviour
       currentShoesWomen = shoesObjectsWomen[indexCurrentShoesWomen].name;
    }
 
-   public void ChangeExtraMonster(int positionExtra)
-   {
-      extrasObjectsMonster[indexCurrentExtraMonster].SetActive(false);
-      extrasObjectsMonster[positionExtra].SetActive(true);
-      indexCurrentExtraMonster = positionExtra;
-      currentExtraMonster = extrasObjectsMonster[indexCurrentExtraMonster].name;
-   }
-
-   public void ChangeHeadMonster(int positionHead)
-   {
-      headObjectsMonster[indexCurrentHeadMonster].SetActive(false);
-      headObjectsMonster[positionHead].SetActive(true);
-      indexCurrentHeadMonster = positionHead;
-      currentHeadMonster = headObjectsMonster[indexCurrentHeadMonster].name;
-   }
-
-   public void ChangeShirtMonster(int positionShirt)
-   {
-      shirtObjectsMonster[indexCurrentShirtMonster].SetActive(false);
-      shirtObjectsMonster[positionShirt].SetActive(true);
-      indexCurrentShirtMonster = positionShirt;
-      currentShirtMonster = shirtObjectsMonster[indexCurrentShirtMonster].name;
-   }
-
-   public void ChangePantsMonster(int positionPants)
-   {
-      pantsObjectsMonster[indexCurrentPantsMonster].SetActive(false);
-      pantsObjectsMonster[positionPants].SetActive(true);
-      indexCurrentPantsMonster = positionPants;
-      currentPantsMonster = pantsObjectsMonster[indexCurrentPantsMonster].name;
-   }
-
-   public void ChangeShoesMonster(int positionShoes)
-   {
-      shoesObjectsMonster[indexCurrentShoesMonster].SetActive(false);
-      shoesObjectsMonster[positionShoes].SetActive(true);
-      indexCurrentShoesMonster = positionShoes;
-      currentShoesMonster = shoesObjectsMonster[indexCurrentShoesMonster].name;
-   }
+   // public void ChangeExtraMonster(int positionExtra)
+   // {
+   //    extrasObjectsMonster[indexCurrentExtraMonster].SetActive(false);
+   //    extrasObjectsMonster[positionExtra].SetActive(true);
+   //    indexCurrentExtraMonster = positionExtra;
+   //    currentExtraMonster = extrasObjectsMonster[indexCurrentExtraMonster].name;
+   // }
+   //
+   // public void ChangeHeadMonster(int positionHead)
+   // {
+   //    headObjectsMonster[indexCurrentHeadMonster].SetActive(false);
+   //    headObjectsMonster[positionHead].SetActive(true);
+   //    indexCurrentHeadMonster = positionHead;
+   //    currentHeadMonster = headObjectsMonster[indexCurrentHeadMonster].name;
+   // }
+   //
+   // public void ChangeShirtMonster(int positionShirt)
+   // {
+   //    shirtObjectsMonster[indexCurrentShirtMonster].SetActive(false);
+   //    shirtObjectsMonster[positionShirt].SetActive(true);
+   //    indexCurrentShirtMonster = positionShirt;
+   //    currentShirtMonster = shirtObjectsMonster[indexCurrentShirtMonster].name;
+   // }
+   //
+   // public void ChangePantsMonster(int positionPants)
+   // {
+   //    pantsObjectsMonster[indexCurrentPantsMonster].SetActive(false);
+   //    pantsObjectsMonster[positionPants].SetActive(true);
+   //    indexCurrentPantsMonster = positionPants;
+   //    currentPantsMonster = pantsObjectsMonster[indexCurrentPantsMonster].name;
+   // }
+   //
+   // public void ChangeShoesMonster(int positionShoes)
+   // {
+   //    shoesObjectsMonster[indexCurrentShoesMonster].SetActive(false);
+   //    shoesObjectsMonster[positionShoes].SetActive(true);
+   //    indexCurrentShoesMonster = positionShoes;
+   //    currentShoesMonster = shoesObjectsMonster[indexCurrentShoesMonster].name;
+   // }
 
 
    public void ChangeGender(string gender)
@@ -285,6 +287,7 @@ public class SelectionCharacter : MonoBehaviour
 
 
       }
+      currentGender = gender;
    }
 
    public void ChangeColor(string hexColor)
@@ -295,7 +298,65 @@ public class SelectionCharacter : MonoBehaviour
       colorSelect = hexColor;
    }
 
-   public void GoToCity(){
-      SceneManager.LoadScene("City");
+   public void SaveSetup()
+   {
+      SetCharacterData();
    }
+
+
+   #region Playfab
+
+   private void SetCharacterData()
+   {
+      string currentHead = "";
+      string currentShirt = "";
+      string currentPants = "";
+      string currentExtra = "";
+      string currentShoes = "";
+      switch (currentGender)
+      {
+         case "Male":
+            currentHead = currentHeadMen;
+            currentShirt = currentShirtMen;
+            currentPants = currentPantsMen;
+            currentExtra = currentExtraMen;
+            currentShoes = currentShoesMen;
+            break;
+         case "Female":
+            currentHead = currentHeadWomen;
+            currentShirt = currentShirtWomen;
+            currentPants = currentPantsWomen;
+            currentExtra = currentExtraWomen;
+            currentShoes = currentShoesWomen;
+            break;
+         case "Monster":
+            currentHead = "";
+            currentShirt = "";
+            currentPants = "";
+            currentExtra = "";
+            currentShoes = "";
+            break;
+      }
+
+      PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest
+      {
+         Data = new Dictionary<string, string>
+         {
+            {"CharacterSetup", JsonUtility.ToJson(new CharacterSetup{
+               head = currentHead,
+               extra = currentExtra,
+               shoes = currentShoes,
+               pants = currentPants,
+               shirt = currentShirt,
+               type = currentGender,
+               color = colorSelect
+            })},
+         }
+      }, result =>
+      {
+         SceneManagerControl.Instance.LoadScene("City");
+      }, error => { });
+   }
+
+   #endregion
 }
