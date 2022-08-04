@@ -1719,7 +1719,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1682232438}
-  - component: {fileID: 1682232440}
   - component: {fileID: 1682232441}
   - component: {fileID: 1682232439}
   - component: {fileID: 1682232442}
@@ -1841,14 +1840,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!222 &1682232440
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682232437}
-  m_CullTransparentMesh: 1
 --- !u!23 &1682232441
 MeshRenderer:
   m_ObjectHideFlags: 0
