@@ -34,7 +34,7 @@ public class LoginNuruk : MonoBehaviour
       {
          if (!_alreadyLogin)
          {
-            var request = new LoginWithCustomIDRequest { CustomId = email.text, CreateAccount = true };
+            var request = new LoginWithCustomIDRequest { CustomId = email.text };
             PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
             _alreadyLogin = true;
          }
