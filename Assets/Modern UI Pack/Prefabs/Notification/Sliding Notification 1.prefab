@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 95214273260916380}
   - component: {fileID: 114491412511070700}
   m_Layer: 5
-  m_Name: Sliding Notification
+  m_Name: Sliding Notification 1
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: adf3c8361dd31e1448483775ea241c10, type: 3}
   m_NavMeshLayer: 0
