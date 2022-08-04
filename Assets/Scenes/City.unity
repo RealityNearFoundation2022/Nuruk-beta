@@ -6989,7 +6989,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &271590880
 PrefabInstance:
@@ -21950,7 +21950,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &856597089 stripped
 GameObject:
@@ -32252,7 +32252,7 @@ RectTransform:
   m_Children:
   - {fileID: 858099740}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -44558,7 +44558,7 @@ Transform:
   - {fileID: 380702401}
   - {fileID: 62860291}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1744973523 stripped
 GameObject:
@@ -54898,7 +54898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Para una mejor experiencia inicia sesi\xF3n en la wallet de Near "
+  m_text: "Para una mejor experiencia inicia sesi\xF3n en la wallet de Near Aqu\xED"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f17e8bb3967fe14093d5fec798fffd9, type: 2}
   m_sharedMaterial: {fileID: 21700449227511232, guid: 2f17e8bb3967fe14093d5fec798fffd9, type: 2}
@@ -55061,7 +55061,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: e55e4ef66043a8747866894761ac06be, type: 3}
   title: Inicia Sesion en Near
-  description: "Para una mejor experiencia inicia sesi\xF3n en la wallet de Near "
+  description: "Para una mejor experiencia inicia sesi\xF3n en la wallet de Near
+    Aqu\xED"
   notificationAnimator: {fileID: 6846531234997022971}
   iconObj: {fileID: 6901599050646986313}
   titleObj: {fileID: 6901869098250472667}
