@@ -413,7 +413,7 @@ public class TestHelloUnityVideo
         Debug.Log("JoinChannel " + channelName + " Success: uid = " + uid);
         GameObject textVersionGameObject = GameObject.Find("VersionText");
         textVersionGameObject.GetComponent<Text>().text = "SDK Version : " + getSdkVersion();
-        ChannelNameLabel.text = channelName;
+       // ChannelNameLabel.text = channelName;
     }
 
     // When a remote user joined, this delegate will be called. Typically

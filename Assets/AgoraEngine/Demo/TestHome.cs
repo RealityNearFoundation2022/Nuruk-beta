@@ -63,6 +63,11 @@ public class TestHome : MonoBehaviour
     {
         inputField.text = ChannelName;
         CheckAppId();
+       
+        /// /////////////
+        
+        onJoinButtonClicked(false);
+
     }
 
     void Update()
@@ -166,7 +171,7 @@ public class TestHome : MonoBehaviour
         // join channel and jump to next scene
         app.join(ChannelName, enableVideo, muted);
         SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
-        SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Additive);
     }
 
     public void onLeaveButtonClicked()
