@@ -56,19 +56,19 @@ public class TestHelloUnityVideo
 
     public void SetupInitState()
     {
-        GameObject avObj = GameObject.Find("AVToggles");
-        if (avObj != null)
-        {
-            var av = avObj.GetComponent<AudioVideoStateControl>();
-            AudioVideoState.pubAudio = av.togglePubAudio.isOn;
-            AudioVideoState.pubVideo = av.togglePubVideo.isOn;
-            AudioVideoState.subAudio = av.toggleSubAudio.isOn;
-            AudioVideoState.subVideo = av.toggleSubVideo.isOn;
-        }
+       // GameObject avObj = GameObject.Find("AVToggles");
+        /* if (avObj != null)
+        { */
+        //    var av = avObj.GetComponent<AudioVideoStateControl>();
+            AudioVideoState.pubAudio = true;//av.togglePubAudio.isOn;
+            AudioVideoState.pubVideo = false;//av.togglePubVideo.isOn;
+            AudioVideoState.subAudio = true;//av.toggleSubAudio.isOn;
+            AudioVideoState.subVideo = false;//av.toggleSubVideo.isOn;
+        /* }
         else
         {
             Debug.Log("AV NULL");
-        }
+        } */
     }
 
     /// <summary>
