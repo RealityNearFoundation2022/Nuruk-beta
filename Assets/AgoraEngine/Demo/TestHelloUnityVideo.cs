@@ -276,7 +276,7 @@ public class TestHelloUnityVideo
             MessageText = text.GetComponent<Text>();
         }
 
-        SetButtons();
+      //  SetButtons();
     }
 
     private void SetButtons()
@@ -514,6 +514,8 @@ public class TestHelloUnityVideo
 
         // configure videoSurface
         VideoSurface videoSurface = go.AddComponent<VideoSurface>();
+
+        go.SetActive(false);
         return videoSurface;
     }
 
