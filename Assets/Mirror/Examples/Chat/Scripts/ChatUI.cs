@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Mirror.Examples.Chat
 {
     public class ChatUI : NetworkBehaviour
     {
         [Header("UI Elements")]
-        public InputField chatMessage;
+        public TMP_InputField chatMessage;
         public Text chatHistory;
         public Scrollbar scrollbar;
 
@@ -28,8 +29,9 @@ namespace Mirror.Examples.Chat
         public void CmdSend(string message, NetworkConnectionToClient sender = null)
         {
             if (!connNames.ContainsKey(sender))
-                connNames.Add(sender, sender.identity.GetComponent<Player>().playerName);
+                connNames.Add(sender, "Pepito");
 
+            Debug.Log(connNames[sender]);
             if (!string.IsNullOrWhiteSpace(message))
                 RpcReceive(connNames[sender], message.Trim());
         }

@@ -55,7 +55,7 @@ namespace CustomEvents
         // Call when change head 
         public static readonly Evt<int> ChangeHead = new Evt<int>();
 
-
+        public static readonly Evt<string> ChangeScene = new Evt<string>();
 
         #endregion
 
