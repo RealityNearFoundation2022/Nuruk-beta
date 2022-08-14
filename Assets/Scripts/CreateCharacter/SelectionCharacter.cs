@@ -298,4 +298,65 @@ public class SelectionCharacter : MonoBehaviour
    public void GoToCity(){
       SceneManager.LoadScene("City");
    }
+<<<<<<< HEAD
+=======
+
+
+   #region Playfab
+
+   private void SetCharacterData()
+   {
+      string currentHead = "";
+      string currentShirt = "";
+      string currentPants = "";
+      string currentExtra = "";
+      string currentShoes = "";
+      switch (currentGender)
+      {
+         case "Male":
+            currentHead = currentHeadMen;
+            currentShirt = currentShirtMen;
+            currentPants = currentPantsMen;
+            currentExtra = currentExtraMen;
+            currentShoes = currentShoesMen;
+            break;
+         case "Female":
+            currentHead = currentHeadWomen;
+            currentShirt = currentShirtWomen;
+            currentPants = currentPantsWomen;
+            currentExtra = currentExtraWomen;
+            currentShoes = currentShoesWomen;
+            break;
+         case "Monster":
+            currentHead = "";
+            currentShirt = "";
+            currentPants = "";
+            currentExtra = "";
+            currentShoes = "";
+            break;
+      }
+
+      PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest
+      {
+         Data = new Dictionary<string, string>
+         {
+            {"CharacterSetup", JsonUtility.ToJson(new CharacterSetup{
+               head = currentHead,
+               extra = currentExtra,
+               shoes = currentShoes,
+               pants = currentPants,
+               shirt = currentShirt,
+               type = currentGender,
+               color = colorSelect
+            })},
+         }
+      }, result =>
+      {
+         //SceneManagerControl.Instance.LoadScene("City");
+         Events.ChangeScene?.Invoke("City");
+      }, error => { });
+   }
+
+   #endregion
+>>>>>>> alot-fixes
 }

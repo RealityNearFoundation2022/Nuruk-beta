@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using CustomEvents;
 using UnityEngine;
 using UnityEngine.UI;
 using Proyecto26;
-using UnityEngine.SceneManagement;
-using RSG;
+using PlayFab;
+using PlayFab.ClientModels;
+using Classes;
 using TMPro;
 
 public class Register : MonoBehaviour
@@ -26,19 +28,26 @@ public class Register : MonoBehaviour
     {
         ErrorMessage.enabled = false;
 
-        if((full_name.text != "") && (email.text != "") && (password.text != "")) {
-            webNuruk.Register_Post(full_name.text, email.text, password.text).Then((res)=>{
+        ErrorMessage.enabled = false;
+
+        if ((full_name.text != "") && (email.text != "") && (password.text != ""))
+        {
+            webNuruk.Register_Post(full_name.text, email.text, password.text).Then((res) =>
+            {
                 WebNuruk.User_datos_authRes = res;
                 Debug.Log(JsonUtility.ToJson(res));
                 Log_in();
-            }).Catch((err) => {
+            }).Catch((err) =>
+            {
                 Debug.Log("err");
                 var error = err as RequestException;
                 responseErrAuth = JsonUtility.FromJson<DetailError>(error.Response);
                 ErrorMessage.enabled = true;
                 ErrorMessage.text = responseErrAuth.detail;
             });
-        }else{
+        }
+        else
+        {
             ErrorMessage.enabled = true;
             ErrorMessage.text = "Fields can't be empty";
         }
@@ -48,20 +57,65 @@ public class Register : MonoBehaviour
     {
         ErrorMessage.enabled = false;
 
-        if((email.text != "") && (password.text != "")) {
-            webNuruk.Login_Post(email.text, password.text).Then((res) => {
+        if ((email.text != "") && (password.text != ""))
+        {
+            webNuruk.Login_Post(email.text, password.text).Then((res) =>
+            {
                 WebNuruk.login_Response = res;
-                Debug.Log(JsonUtility.ToJson(res));
-                SceneManager.LoadScene("CharacterSelect");
-            }).Catch((err) => {
+                var request = new LoginWithCustomIDRequest { CustomId = email.text, CreateAccount = true };
+                PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
+            }).Catch((err) =>
+            {
                 var error = err as RequestException;
                 responseErrAuth = JsonUtility.FromJson<DetailError>(error.Response);
                 ErrorMessage.enabled = true;
                 ErrorMessage.text = responseErrAuth.detail;
             });
-        }else{
+        }
+        else
+        {
             ErrorMessage.enabled = true;
             ErrorMessage.text = "Fields can't be empty";
         }
+    }
+    
+    private void InitializeUser()
+    {
+        PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest
+        {
+            Data = new Dictionary<string, string>
+            {
+                {"CharacterSetup", "{}"},
+                {"Tutorial", JsonUtility.ToJson(new TutorialConfig{
+                    enable = true
+                })},
+                {"Configuration", "{}"}
+            }
+        }, result =>
+        {
+            Events.ChangeScene.Invoke("CharacterSelect");
+        }, error => { });
+    }
+    
+    private void OnLoginSuccess(LoginResult result)
+    {
+        webNuruk.Login_Post(email.text, password.text).Then((res) =>
+        {
+            WebNuruk.login_Response = res;
+            InitializeUser();
+        }).Catch((err) =>
+        {
+            var error = err as RequestException;
+            responseErrAuth = JsonUtility.FromJson<DetailError>(error.Response);
+            ErrorMessage.enabled = true;
+            ErrorMessage.text = responseErrAuth.detail;
+        });
+    }
+
+    private void OnLoginFailure(PlayFabError error)
+    {
+        Debug.LogWarning("Something went wrong with your first API call.  :(");
+        Debug.LogError("Here's some debug information:");
+        Debug.LogError(error.GenerateErrorReport());
     }
 }
