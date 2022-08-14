@@ -7,11 +7,13 @@ public class WorkFlow : MonoBehaviour
 
     public void GoTologin()
     {
-        Events.ChangeScene?.Invoke("LoginNuruk");
+        //Events.ChangeScene?.Invoke("LoginNuruk");
+        SceneManager.LoadScene("LoginNuruk");
+
     }
     public void GoToRegister()
     {
-        //SceneManager.LoadScene("Register");
-        Events.ChangeScene?.Invoke("Register");
+        SceneManager.LoadScene("Register");
+        //Events.ChangeScene?.Invoke("Register");
     }
 }

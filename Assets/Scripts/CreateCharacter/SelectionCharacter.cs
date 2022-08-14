@@ -1,3 +1,6 @@
+using Classes;
+using PlayFab;
+using PlayFab.ClientModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -298,8 +301,6 @@ public class SelectionCharacter : MonoBehaviour
    public void GoToCity(){
       SceneManager.LoadScene("City");
    }
-<<<<<<< HEAD
-=======
 
 
    #region Playfab
@@ -358,5 +359,4 @@ public class SelectionCharacter : MonoBehaviour
    }
 
    #endregion
->>>>>>> alot-fixes
 }
