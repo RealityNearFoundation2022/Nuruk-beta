@@ -61,6 +61,8 @@ public class VoiceChatManager : NetworkBehaviour
 	void OnJoinChannelSuccess(string channelName, uint uid, int elapsed)
 	{
 		Debug.Log("Joined channel " + channelName);
+		Debug.Log(NetworkClient.localPlayer.netId);
+
 		players.Add(NetworkClient.localPlayer.netId, uid.ToString());
 		/* Hashtable hash = new Hashtable();
 		hash.Add("agoraID", uid.ToString());
@@ -74,7 +76,6 @@ public class VoiceChatManager : NetworkBehaviour
 	public override void OnStartClient()
     {
 		rtcEngine.JoinChannel("unity3d");
-
     }
 
     public override void OnStopClient()

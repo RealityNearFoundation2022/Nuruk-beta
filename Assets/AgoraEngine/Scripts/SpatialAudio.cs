@@ -48,7 +48,8 @@ public class SpatialAudio : NetworkBehaviour
 				continue;
 
 			//if(player.CustomProperties.TryGetValue("agoraID", out object agoraID))
-			//{
+			if(VoiceChatManager.Instance.players.ContainsKey(player.Value.netId))
+			{
 				string agoraID = VoiceChatManager.Instance.players[player.Value.netId];
 				if(spatialAudioFromPlayers.ContainsKey(player.Value.netId))
 				{
@@ -63,7 +64,7 @@ public class SpatialAudio : NetworkBehaviour
 				{
 					agoraAudioEffects.SetRemoteVoicePosition(uint.Parse((string)agoraID), 0, 0);
 				}
-			//}
+			}
 		}
 	}
 
