@@ -14,6 +14,10 @@ public class VoiceChatManager : NetworkBehaviour
 
 	IRtcEngine rtcEngine;
 
+	//public Dict<string> players = new List<string>();
+	public Dictionary<uint, string> players = new Dictionary<uint, string>();
+
+
 	void Awake()
 	{
 		if(Instance)
@@ -57,7 +61,7 @@ public class VoiceChatManager : NetworkBehaviour
 	void OnJoinChannelSuccess(string channelName, uint uid, int elapsed)
 	{
 		Debug.Log("Joined channel " + channelName);
-
+		players.Add(NetworkClient.localPlayer.netId, uid.ToString());
 		/* Hashtable hash = new Hashtable();
 		hash.Add("agoraID", uid.ToString());
 		PhotonNetwork.SetPlayerCustomProperties(hash); */
@@ -70,6 +74,7 @@ public class VoiceChatManager : NetworkBehaviour
 	public override void OnStartClient()
     {
 		rtcEngine.JoinChannel("unity3d");
+
     }
 
     public override void OnStopClient()
