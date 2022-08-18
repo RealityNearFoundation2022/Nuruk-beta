@@ -411,8 +411,8 @@ public class TestHelloUnityVideo
     private void onJoinChannelSuccess(string channelName, uint uid, int elapsed)
     {
         Debug.Log("JoinChannel " + channelName + " Success: uid = " + uid);
-        GameObject textVersionGameObject = GameObject.Find("VersionText");
-        textVersionGameObject.GetComponent<Text>().text = "SDK Version : " + getSdkVersion();
+      //  GameObject textVersionGameObject = GameObject.Find("VersionText");
+//        textVersionGameObject.GetComponent<Text>().text = "SDK Version : " + getSdkVersion();
        // ChannelNameLabel.text = channelName;
     }
 
