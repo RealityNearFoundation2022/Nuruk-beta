@@ -17,6 +17,7 @@ public class StartClient : MonoBehaviour
     {
         if (!NetworkClient.isConnected && !NetworkServer.active && !_alreadyCall )
         {
+            
             manager.StartClient();
             _alreadyCall = true;
         }

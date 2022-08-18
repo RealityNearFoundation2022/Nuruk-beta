@@ -11,9 +11,13 @@ namespace PlayerMirror
 {
     public class SetupCharacter : NetworkBehaviour
     {
-        
+        private NetworkIdentity nt;
         private CharacterSetup _characterSetup;
-        
+
+        // void sadsa()
+        // {
+        //     nt.
+        // }
         // public override void OnStartClient()
         // {
         //     Debug.Log("Se conecto el personaje");

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Classes;
 using Mirror;
 using Mirror.Examples.Chat;
@@ -10,6 +11,7 @@ namespace  City
 {
     public class CityNetworkManager : NetworkManager
     {
+
         private bool _alreadyEnter = false;
         [SerializeField] private GameObject MenPlayer;
         [SerializeField] private GameObject WomenPlayer;
@@ -21,8 +23,8 @@ namespace  City
 
         private ChatAuthenticator _chatAuthenticator;
 
-       
-
+        public static List<GameObject> playersConected;
+        
         public override void OnStartServer()
         {
             base.OnStartServer();
@@ -37,6 +39,7 @@ namespace  City
         }
         public override void OnClientConnect()
         {
+            
             base.OnClientConnect();
             _chatAuthenticator = GetComponent<ChatAuthenticator>();
             CharacterSetup _characterSetup = new CharacterSetup();
