@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.70263594, g: 0.99999946, b: 0.99072236, a: 1}
+  m_IndirectSpecularColor: {r: 0.40220907, g: 0.34778407, b: 0.2811342, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9229,15 +9229,15 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 10000
   authenticator: {fileID: 328597806}
-  playerPrefab: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  playerPrefab: {fileID: 8916559602193531195, guid: 8737523c3009d774a840aaf132f5c93f, type: 3}
   autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 5974839669199461656, guid: c0cd897d5c1f9f64393ac79ada79e295, type: 3}
-  MenPlayer: {fileID: 5974839669199461656, guid: c0cd897d5c1f9f64393ac79ada79e295, type: 3}
+  MenPlayer: {fileID: 8916559602193531195, guid: 8737523c3009d774a840aaf132f5c93f, type: 3}
   WomenPlayer: {fileID: 0}
   MonsterPlayer: {fileID: 0}
-  TestPlayer: {fileID: 5974839669199461656, guid: c0cd897d5c1f9f64393ac79ada79e295, type: 3}
+  TestPlayer: {fileID: 8916559602193531195, guid: 8737523c3009d774a840aaf132f5c93f, type: 3}
   isTest: 0
   Spawners:
   - {fileID: 0}
