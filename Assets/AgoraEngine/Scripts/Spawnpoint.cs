@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Spawnpoint : MonoBehaviour
 {
-//	[SerializeField] GameObject graphics;
+	[SerializeField] GameObject graphics;
 
 	void Awake()
 	{
-		this.gameObject.SetActive(false);
+		graphics.SetActive(false);
 	}
 }
