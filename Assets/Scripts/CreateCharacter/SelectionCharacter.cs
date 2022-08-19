@@ -355,7 +355,7 @@ public class SelectionCharacter : MonoBehaviour
       }, result =>
       {
          //SceneManagerControl.Instance.LoadScene("City");
-         Events.ChangeScene?.Invoke("City");
+         Events.ChangeScene?.Invoke("Offline");
       }, error => { });
    }
 

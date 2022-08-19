@@ -53,7 +53,7 @@ public class LoginNuruk : MonoBehaviour
       {
          WebNuruk.login_Response = res;
          Debug.Log(JsonUtility.ToJson(res));
-         Events.ChangeScene.Invoke("City");
+         Events.ChangeScene.Invoke("Offline");
       }).Catch((err) =>
       {
          var error = err as RequestException;
