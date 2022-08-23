@@ -1,10 +1,11 @@
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using CustomEvents;
 using Classes;
 using PlayFab;
 using PlayFab.ClientModels;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 public class SelectionCharacter : MonoBehaviour
 {
@@ -131,7 +132,7 @@ public class SelectionCharacter : MonoBehaviour
    private string colorSelect;
 
    #endregion
-
+  
    public void ChangeExtra(int positionExtra)
    {
       extrasObjectsMen[indexCurrentExtraMen].SetActive(false);
@@ -336,6 +337,8 @@ public class SelectionCharacter : MonoBehaviour
             currentExtra = "";
             currentShoes = "";
             break;
+
+         SceneManager.LoadScene("City");
       }
 
       PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest

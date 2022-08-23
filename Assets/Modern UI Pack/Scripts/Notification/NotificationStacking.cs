@@ -25,7 +25,7 @@ namespace Michsky.UI.ModernUIPack
                     if (notifications[currentNotification].notificationAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wait"))
                     {
                         notifications[currentNotification].OpenNotification();
-                        StartCoroutine("StartNotification");
+                      //  StartCoroutine("StartNotification");
                         enableUpdating = false;
                     }
 
