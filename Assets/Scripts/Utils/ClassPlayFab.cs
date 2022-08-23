@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 namespace Classes
@@ -12,7 +13,7 @@ namespace Classes
 
 
    // Struct for character setup
-   public class CharacterSetup
+   public struct CharacterSetup : NetworkMessage
    {
       public string type;
       public string head;

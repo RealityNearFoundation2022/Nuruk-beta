@@ -1009,6 +1009,7 @@ GameObject:
   - component: {fileID: 5694561431098191453}
   - component: {fileID: 2249743548313021929}
   - component: {fileID: 3794681324621965903}
+  - component: {fileID: 2067518068925867687}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1330,6 +1331,20 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   target: {fileID: 8338988566280778637}
+--- !u!114 &2067518068925867687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 039031e534e3c904fbd12c708051e834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0

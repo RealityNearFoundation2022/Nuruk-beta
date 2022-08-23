@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using PlayFab;
 using PlayFab.ClientModels;
 using System;
+using CustomEvents;
 
 public class LoginNuruk : MonoBehaviour
 {
@@ -52,7 +53,7 @@ public class LoginNuruk : MonoBehaviour
       {
          WebNuruk.login_Response = res;
          Debug.Log(JsonUtility.ToJson(res));
-         SceneManagerControl.Instance.LoadScene("City");
+         Events.ChangeScene.Invoke("City");
       }).Catch((err) =>
       {
          var error = err as RequestException;

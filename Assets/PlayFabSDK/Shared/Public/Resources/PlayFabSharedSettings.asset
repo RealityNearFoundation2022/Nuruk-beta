@@ -15,7 +15,7 @@ MonoBehaviour:
   TitleId: 7A941
   DeveloperSecretKey: E4HQEMND6TWAU7B9MKYZ5RNO9PUT6QRCQ8O5OTE83FY6G6JRZR
   ProductionEnvironmentUrl: 
-  RequestType: 2
+  RequestType: 0
   DisableDeviceInfo: 0
   DisableFocusTimeCollection: 0
   RequestTimeout: 2000

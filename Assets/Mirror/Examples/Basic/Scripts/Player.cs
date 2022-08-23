@@ -5,6 +5,8 @@ namespace Mirror.Examples.Basic
 {
     public class Player : NetworkBehaviour
     {
+        
+        
         // Events that the PlayerUI will subscribe to
         public event System.Action<byte> OnPlayerNumberChanged;
         public event System.Action<Color32> OnPlayerColorChanged;
@@ -90,9 +92,11 @@ namespace Mirror.Examples.Basic
         [ServerCallback]
         internal static void ResetPlayerNumbers()
         {
+            
             byte playerNumber = 0;
             foreach (Player player in playersList)
                 player.playerNumber = playerNumber++;
+            
         }
 
         // This only runs on the server, called from OnStartServer via InvokeRepeating

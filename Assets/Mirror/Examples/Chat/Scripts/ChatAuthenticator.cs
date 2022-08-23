@@ -78,15 +78,15 @@ namespace Mirror.Examples.Chat
             if (connectionsPendingDisconnect.Contains(conn)) return;
 
             // check the credentials by calling your web server, database table, playfab api, or any method appropriate.
-            if (!Player.playerNames.Contains(msg.authUsername))
-            {
-                // Add the name to the HashSet
-                Player.playerNames.Add(msg.authUsername);
-
-                // Store username in authenticationData
-                // This will be read in Player.OnStartServer
-                // to set the playerName SyncVar.
-                conn.authenticationData = msg.authUsername;
+            // if (!Player.playerNames.Contains(msg.authUsername))
+            // {
+            //     // Add the name to the HashSet
+            //     Player.playerNames.Add(msg.authUsername);
+            //
+            //     // Store username in authenticationData
+            //     // This will be read in Player.OnStartServer
+            //     // to set the playerName SyncVar.
+            //     conn.authenticationData = msg.authUsername;
 
                 // create and send msg to client so it knows to proceed
                 AuthResponseMessage authResponseMessage = new AuthResponseMessage
@@ -99,26 +99,26 @@ namespace Mirror.Examples.Chat
 
                 // Accept the successful authentication
                 ServerAccept(conn);
-            }
-            else
-            {
-                connectionsPendingDisconnect.Add(conn);
-
-                // create and send msg to client so it knows to disconnect
-                AuthResponseMessage authResponseMessage = new AuthResponseMessage
-                {
-                    code = 200,
-                    message = "Username already in use...try again"
-                };
-
-                conn.Send(authResponseMessage);
-
-                // must set NetworkConnection isAuthenticated = false
-                conn.isAuthenticated = false;
-
-                // disconnect the client after 1 second so that response message gets delivered
-                StartCoroutine(DelayedDisconnect(conn, 1f));
-            }
+            //}
+            // else
+            // {
+            //     connectionsPendingDisconnect.Add(conn);
+            //
+            //     // create and send msg to client so it knows to disconnect
+            //     AuthResponseMessage authResponseMessage = new AuthResponseMessage
+            //     {
+            //         code = 200,
+            //         message = "Username already in use...try again"
+            //     };
+            //
+            //     conn.Send(authResponseMessage);
+            //
+            //     // must set NetworkConnection isAuthenticated = false
+            //     conn.isAuthenticated = false;
+            //
+            //     // disconnect the client after 1 second so that response message gets delivered
+            //     StartCoroutine(DelayedDisconnect(conn, 1f));
+            // }
         }
 
         IEnumerator DelayedDisconnect(NetworkConnectionToClient conn, float waitTime)
@@ -142,8 +142,8 @@ namespace Mirror.Examples.Chat
         public void SetPlayername(string username)
         {
             playerName = username;
-            LoginUI.instance.errorText.text = string.Empty;
-            LoginUI.instance.errorText.gameObject.SetActive(false);
+            // LoginUI.instance.errorText.text = string.Empty;
+            // LoginUI.instance.errorText.gameObject.SetActive(false);
         }
 
         /// <summary>
