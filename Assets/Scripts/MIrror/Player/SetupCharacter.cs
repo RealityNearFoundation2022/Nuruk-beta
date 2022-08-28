@@ -1,48 +1,77 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using PlayFab;
-using PlayFab.ClientModels;
 using Mirror;
 using Classes;
+using UnityEngine;
 
 namespace PlayerMirror
 {
     public class SetupCharacter : NetworkBehaviour
     {
-        private NetworkIdentity nt;
-        private CharacterSetup _characterSetup;
+        [SyncVar] public string currentHead = "";
+        [SyncVar] public string currentShirt = "";
+        [SyncVar] public string currentPants = "";
+        [SyncVar] public string currentShoes = "";
+        [SyncVar] public string currentExtra = "";
+        
+        [SerializeField] private GameObject playerGeometric;
 
-        // void sadsa()
-        // {
-        //     nt.
-        // }
-        // public override void OnStartClient()
-        // {
-        //     Debug.Log("Se conecto el personaje");
-        //     PlayFabClientAPI.GetUserData(new GetUserDataRequest() {
-        //         Keys = null
-        //     }, result => {
-        //         Debug.Log("Got user data:");
-        //         if (result.Data == null || !result.Data.ContainsKey("CharacterSetup"))
-        //             Debug.Log("No Character customs");
-        //         else _characterSetup = JsonUtility.FromJson<CharacterSetup>(result.Data["CharacterSetup"].Value);
-        //     }, (error) => {
-        //         Debug.Log("Got error retrieving user data:");
-        //         Debug.Log(error.GenerateErrorReport());
-        //     });
-        // }
-        //
-        // private void StartSetupPlayer()
-        // {
-        //     switch (_characterSetup.type)
-        //     {
-        //         case "Male":
-        //             
-        //             break;
-        //     }
-        // }
+        [SerializeField] private GameObject[] heads;
+        [SerializeField] private GameObject[] shirts;
+        [SerializeField] private GameObject[] pants;
+        [SerializeField] private GameObject[] shoes;
+        [SerializeField] private GameObject[] extras;  
+        
+        public void EnableComponent()
+        {
+            foreach (var head in heads)
+            {
+                if (currentHead == head.name)
+                {
+                    head.SetActive(true);
+                }
+            }
+            foreach (var shirt in shirts)
+            {
+                if (currentShirt == shirt.name)
+                {
+                    shirt.SetActive(true);
+                }
+            }
+            foreach (var pant in pants)
+            {
+                if (currentPants == pant.name)
+                {
+                    pant.SetActive(true);
+                }
+            }
+            foreach (var shoe in shoes)
+            {
+                if (currentShoes == shoe.name)
+                {
+                    shoe.SetActive(true);
+                }
+            }
+            foreach (var extra in extras)
+            {
+                if (currentExtra == extra.name)
+                {
+                    extra.SetActive(true);
+                }
+            }
+        }
+
+        private void OnEnable()
+        {
+            StartCoroutine(StartSetup());
+        }
+
+        IEnumerator StartSetup()
+        {
+            yield return new WaitForSeconds(1);
+            EnableComponent();
+        }
     }
 
 }

@@ -39,9 +39,7 @@ namespace Mirror.Examples.Chat
         [ClientRpc]
         public void RpcReceive(string playerName, string message)
         {
-            string prettyMessage = playerName == localPlayerName ?
-                $"<color=red>{playerName}:</color> {message}" :
-                $"<color=blue>{playerName}:</color> {message}";
+            string prettyMessage = $"<b>{playerName}:</b> {message}";
             AppendMessage(prettyMessage);
         }
 

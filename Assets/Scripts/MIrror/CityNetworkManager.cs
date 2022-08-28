@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Classes;
 using Mirror;
 using Mirror.Examples.Chat;
+using PlayerMirror;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
@@ -11,11 +12,9 @@ namespace  City
 {
     public class CityNetworkManager : NetworkManager
     {
-
-        private bool _alreadyEnter = false;
-        [SerializeField] private GameObject MenPlayer;
-        [SerializeField] private GameObject WomenPlayer;
-        [SerializeField] private GameObject MonsterPlayer;
+        public GameObject MenPlayer;
+        public GameObject WomenPlayer;
+        public GameObject MonsterPlayer;
         [SerializeField] private GameObject TestPlayer;
         [SerializeField] private bool isTest;
         // Spawners
@@ -28,9 +27,10 @@ namespace  City
         public override void OnStartServer()
         {
             base.OnStartServer();
-            NetworkClient.RegisterPrefab(MenPlayer);
+            Debug.Log("Start server");
+            //NetworkClient.RegisterPrefab(MenPlayer);
+            //NetworkClient.RegisterPrefab(WomenPlayer);
             NetworkServer.RegisterHandler<CharacterSetup>(OnCreateCharacter);
-            
         }
         
         public void SetHostname(string hostname)
@@ -39,7 +39,6 @@ namespace  City
         }
         public override void OnClientConnect()
         {
-            
             base.OnClientConnect();
             _chatAuthenticator = GetComponent<ChatAuthenticator>();
             CharacterSetup _characterSetup = new CharacterSetup();
@@ -72,24 +71,26 @@ namespace  City
         {
             // playerPrefab is the one assigned in the inspector in Network
             // Manager but you can use different prefabs per race for example
-            GameObject gameobject = Instantiate(playerPrefab);
-
+            GameObject gameobject = Instantiate(MenPlayer);
+            
             // Apply data from the message however appropriate for your game
-            // Typically Player would be a component you write with syncvars or properties
-            Debug.Log(message.type);
-
+            // Typically Player would be a component you write with syncvars or propertieslo
+           
+            Debug.Log("Setting player custome");
+            if (gameobject != null)
+            {
+                Debug.Log("Vistiendo...");
+                SetupCharacter setup = gameobject.GetComponent<SetupCharacter>();
+                setup.currentShirt = message.shirt;
+                setup.currentHead = message.head;
+                setup.currentPants = message.pants;
+                setup.currentShoes = message.shoes;
+                setup.currentExtra = message.extra;
+            }
+            Debug.Log("Spawning player");
             // call this to use this gameobject as the primary controller
             NetworkServer.AddPlayerForConnection(conn, gameobject);
-            
         }
-        
-        
-        
-        
-        
-        
-
-        
     }
 
 }
