@@ -17,17 +17,26 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/CharacterSelect.unity
     guid: 411ae0bd417e3b64cadccf64f072ce60
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/City.unity
     guid: abda565e0eff37e4594d75481c9a6416
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LoginNear.unity
     guid: 7148299fedcee1a4f95d89fc7f85ee40
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Server.unity
     guid: f102bd3ed2351e4408de50fb14947064
   - enabled: 0
     path: Assets/Scenes/Offline.unity
     guid: d33b4502c0f3bf743974f6d51166c960
+  - enabled: 0
+    path: Assets/AgoraEngine/Demo/SceneHome.unity
+    guid: 04457f7085d109e45b51dd81bae1a412
+  - enabled: 1
+    path: Assets/Scenes/CityCustomChannel.unity
+    guid: 96a208e0859854847bf268d41640056b
+  - enabled: 1
+    path: Assets/AgoraEngine/Demo/SceneHelloVideo.unity
+    guid: 5a4d72265ca2c1b4393e31ef58d0988d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
