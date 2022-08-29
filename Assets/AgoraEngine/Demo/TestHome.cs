@@ -66,7 +66,7 @@ public class TestHome : MonoBehaviour
        
         /// /////////////
         
-        onJoinButtonClicked(false);
+      //  onJoinButtonClicked(false);
 
     }
 
@@ -156,6 +156,17 @@ public class TestHome : MonoBehaviour
         SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
         SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Single);
     }
+    public void onJoinChannel(string ChannelName, bool enableVideo, bool muted = false)
+    {
+        // create app if nonexistent
+        if (ReferenceEquals(app, null))
+        {
+            app = new TestHelloUnityVideo(); // create app
+            app.loadEngine(AppID); // load engine
+        }
+        // join channel and jump to next scene
+        app.join(ChannelName, enableVideo, muted);
+    }
 
     public void onJoinButtonClicked(bool enableVideo, bool muted = false)
     {
@@ -166,12 +177,12 @@ public class TestHome : MonoBehaviour
             app.loadEngine(AppID); // load engine
         }
 
-        ChannelName = inputField.text;
+         ChannelName = inputField.text;
 
         // join channel and jump to next scene
         app.join(ChannelName, enableVideo, muted);
-      //  SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
-       // SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Additive);
+         SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
+         SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Additive);
     }
 
     public void onLeaveButtonClicked()
@@ -181,9 +192,9 @@ public class TestHome : MonoBehaviour
             app.leave(); // leave channel
             app.unloadEngine(); // delete engine
             app = null; // delete app
-            SceneManager.LoadScene(HomeSceneName, LoadSceneMode.Single);
+            //SceneManager.LoadScene(HomeSceneName, LoadSceneMode.Single);
         }
-        Destroy(gameObject);
+//        Destroy(gameObject);
     }
 
     public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)

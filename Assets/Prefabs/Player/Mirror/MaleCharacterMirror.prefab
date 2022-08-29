@@ -6279,7 +6279,7 @@ GameObject:
   - component: {fileID: 2527215293478000634}
   m_Layer: 0
   m_Name: MaleCharacterMirror
-  m_TagString: Untagged
+  m_TagString: prueba
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

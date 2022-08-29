@@ -53,7 +53,7 @@ public class LoginNuruk : MonoBehaviour
       {
          WebNuruk.login_Response = res;
          Debug.Log(JsonUtility.ToJson(res));
-         Events.ChangeScene.Invoke("CityCustomChannel");
+         Events.ChangeScene.Invoke("CityCustomChannel"/*"City"*/);
       }).Catch((err) =>
       {
          var error = err as RequestException;
