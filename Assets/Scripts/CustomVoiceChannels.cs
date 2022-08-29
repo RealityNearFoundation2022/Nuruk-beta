@@ -5,47 +5,39 @@ using UnityEngine;
 public class CustomVoiceChannels : MonoBehaviour
 {
     private TestHome testHome;
-    bool Active = true;
+    bool plaza = true, calles = true;
     void Start()
     {
         testHome = FindObjectOfType<TestHome>();
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Debug.Log(hit.gameObject.name+" entro");
-        string nameCol = CustomChannel(hit.gameObject.name);
-        string channel = "";
-        if (nameCol != "" && Active)
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+      //  Debug.Log(hit.gameObject.name+" entro");
+        if (!calles && !hit.gameObject.name.Contains("road_tile"))
         {
-           // nameCol = hit.gameObject.name;
-           testHome.onJoinChannel(nameCol,false);
-           channel = nameCol;
-           Active = false;
-           Debug.Log("conecto");
-        }
-        else if(!Active && (channel != nameCol))
-        {
-            Active = true;
+            calles = true;
             testHome.onLeaveButtonClicked();
-            Debug.Log("desconecto");
-        }
-        else
-        {
-            Debug.Log("sin conexión al canal de audio");
-        }
-    }
+            Debug.Log("desconecto canal calles");
 
-    string CustomChannel(string col)
-    {
-        if (col.Contains("Plaza_central"))
-        {
-            return "plazaCentral";
         }
-        else if(col.Contains("road_tile"))
+        if (hit.gameObject.name.Contains("Plaza_central") && plaza)
         {
-            return "calles";
+           testHome.onJoinChannel("plazaCentral",false);
+           plaza = false;
+           Debug.Log("conecto canal plaza");
         }
-        return "";
+        else if(!plaza && !hit.gameObject.name.Contains("Plaza_central"))
+        {
+            plaza = true;
+            testHome.onLeaveButtonClicked();
+            Debug.Log("desconecto canal plaza");
+            if (hit.gameObject.name.Contains("road_tile") && calles)
+            {
+                testHome.onJoinChannel("calles",false);
+                calles = false;
+                Debug.Log("conecto canal calles");
+
+            }
+        }
     }
 }
