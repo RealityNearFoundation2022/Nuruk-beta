@@ -12,125 +12,125 @@ using System.Collections;
 public class TestHome : MonoBehaviour
 {
 
-    // Use this for initialization
+   // Use this for initialization
 #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
     private ArrayList permissionList = new ArrayList();
 #endif
-    static TestHelloUnityVideo app = null;
+   static TestHelloUnityVideo app = null;
 
-    private string HomeSceneName = "SceneHome";
+   private string HomeSceneName = "SceneHome";
 
-    private string PlaySceneName = "SceneHelloVideo";
+   private string PlaySceneName = "SceneHelloVideo";
 
-    // PLEASE KEEP THIS App ID IN SAFE PLACE
-    // Get your own App ID at https://dashboard.agora.io/
-    [SerializeField]
-    private string AppID = "f63c5fd093aa498e8d0c7eb0be8c6354";
+   // PLEASE KEEP THIS App ID IN SAFE PLACE
+   // Get your own App ID at https://dashboard.agora.io/
+   [SerializeField]
+   private string AppID = "70346f776f23451f874913296b7dc82d";
 
-    private string ChannelName
-    {
-        get
-        {
-            string cached = PlayerPrefs.GetString("ChannelName");
-            if (string.IsNullOrEmpty(cached))
-            {
-                cached = inputField.text;
-            }
+   private string ChannelName
+   {
+      get
+      {
+         string cached = PlayerPrefs.GetString("ChannelName");
+         if (string.IsNullOrEmpty(cached))
+         {
+            cached = inputField.text;
+         }
 
-            return cached;
-        }
+         return cached;
+      }
 
-        set
-        {
-            PlayerPrefs.SetString("ChannelName", value);
-        }
-    }
+      set
+      {
+         PlayerPrefs.SetString("ChannelName", value);
+      }
+   }
 
-    [SerializeField]
-    private InputField inputField;
+   [SerializeField]
+   private InputField inputField;
 
-    void Awake()
-    {
+   void Awake()
+   {
 #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
 		permissionList.Add(Permission.Microphone);         
 		permissionList.Add(Permission.Camera);               
 #endif
-        // keep this alive across scenes
-        DontDestroyOnLoad(this.gameObject);
-    }
+      // keep this alive across scenes
+      DontDestroyOnLoad(this.gameObject);
+   }
 
-    void Start()
-    {
-        inputField.text = ChannelName;
-        CheckAppId();
-       
-        /// /////////////
-        
-        onJoinButtonClicked(false);
+   void Start()
+   {
+      inputField.text = ChannelName;
+      CheckAppId();
 
-    }
+      /// /////////////
 
-    void Update()
-    {
-        CheckPermissions();
-    }
+      //  onJoinButtonClicked(false);
 
-    bool _showAppIdPopup = false;
+   }
 
-    string newAppID = "";
-    private void OnGUI()
-    {
-        if (_showAppIdPopup)
-        {
-            GUI.skin.textField.fontSize = 30;
-            GUI.skin.button.fontSize = 30;
-            int ypos = Screen.height - 80;
-            newAppID = GUI.TextField(new Rect(300, ypos, 500, 50), newAppID);
-            if (GUI.Button(new Rect(10, ypos, 100, 50), "OK"))
+   void Update()
+   {
+      CheckPermissions();
+   }
+
+   bool _showAppIdPopup = false;
+
+   string newAppID = "";
+   private void OnGUI()
+   {
+      if (_showAppIdPopup)
+      {
+         GUI.skin.textField.fontSize = 30;
+         GUI.skin.button.fontSize = 30;
+         int ypos = Screen.height - 80;
+         newAppID = GUI.TextField(new Rect(300, ypos, 500, 50), newAppID);
+         if (GUI.Button(new Rect(10, ypos, 100, 50), "OK"))
+         {
+            AppID = newAppID;
+            CheckAppId();
+            _showAppIdPopup = false;
+            newAppID = "";
+         }
+         if (GUI.Button(new Rect(130, ypos, 150, 50), "Cancel"))
+         {
+            _showAppIdPopup = false;
+         }
+      }
+   }
+
+   public void NewAppIDPopup()
+   {
+      _showAppIdPopup = true;
+   }
+
+   private void CheckAppId()
+   {
+      Debug.Assert(AppID.Length > 10, "Please fill in your AppId first on Game Controller object.");
+      GameObject go = GameObject.Find("AppIDText");
+      if (go != null)
+      {
+         Text appIDText = go.GetComponent<Text>();
+         if (appIDText != null)
+         {
+            if (string.IsNullOrEmpty(AppID))
             {
-                AppID = newAppID;
-                CheckAppId();
-                _showAppIdPopup = false;
-                newAppID = "";
+               appIDText.text = "AppID: " + "UNDEFINED!";
             }
-            if (GUI.Button(new Rect(130, ypos, 150, 50), "Cancel"))
+            else
             {
-                _showAppIdPopup = false;
+               appIDText.text = "AppID: " + AppID.Substring(0, 4) + "********" + AppID.Substring(AppID.Length - 4, 4);
             }
-        }
-    }
+         }
+      }
+   }
 
-    public void NewAppIDPopup()
-    {
-        _showAppIdPopup = true;
-    }
-
-    private void CheckAppId()
-    {
-        Debug.Assert(AppID.Length > 10, "Please fill in your AppId first on Game Controller object.");
-        GameObject go = GameObject.Find("AppIDText");
-        if (go != null)
-        {
-            Text appIDText = go.GetComponent<Text>();
-            if (appIDText != null)
-            {
-                if (string.IsNullOrEmpty(AppID))
-                {
-                    appIDText.text = "AppID: " + "UNDEFINED!";
-                }
-                else
-                {
-                    appIDText.text = "AppID: " + AppID.Substring(0, 4) + "********" + AppID.Substring(AppID.Length - 4, 4);
-                }
-            }
-        }
-    }
-
-    /// <summary>
-    ///   Checks for platform dependent permissions.
-    /// </summary>
-    private void CheckPermissions()
-    {
+   /// <summary>
+   ///   Checks for platform dependent permissions.
+   /// </summary>
+   private void CheckPermissions()
+   {
 #if (UNITY_2018_3_OR_NEWER && UNITY_ANDROID)
         foreach(string permission in permissionList)
         {
@@ -140,77 +140,99 @@ public class TestHome : MonoBehaviour
 			}
         }
 #endif
-    }
+   }
 
-    public void onJoinAudience()
-    {
-        // create app if nonexistent
-        if (ReferenceEquals(app, null))
-        {
-            app = new TestHelloUnityVideo(); // create app
-            app.loadEngine(AppID); // load engine
-        }
+   public void onJoinAudience()
+   {
+      // create app if nonexistent
+      if (ReferenceEquals(app, null))
+      {
+         app = new TestHelloUnityVideo(); // create app
+         app.loadEngine(AppID); // load engine
+      }
 
-        ChannelName = inputField.text;
-        app.joinAudience(ChannelName);
-        SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
-        SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Single);
-    }
+      ChannelName = inputField.text;
+      app.joinAudience(ChannelName);
+      SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
+      SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Single);
+   }
+   public void onJoinChannel(string ChannelName, bool enableVideo, bool muted = false)
+   {
+      // create app if nonexistent
+      if (ReferenceEquals(app, null))
+      {
+         app = new TestHelloUnityVideo(); // create app
+         app.loadEngine(AppID); // load engine
+      }
+      // join channel and jump to next scene
+      app.join(ChannelName, enableVideo, muted);
+   }
 
-    public void onJoinButtonClicked(bool enableVideo, bool muted = false)
-    {
-        // create app if nonexistent
-        if (ReferenceEquals(app, null))
-        {
-            app = new TestHelloUnityVideo(); // create app
-            app.loadEngine(AppID); // load engine
-        }
+   public void onLeaveChannel()
+   {
+      if (ReferenceEquals(app, null))
+      {
+         app = new TestHelloUnityVideo(); // create app
+         app.loadEngine(AppID); // load engine
+      }
+      // join channel and jump to next scene
+      app.leave();
+   }
 
-        ChannelName = inputField.text;
+   public void onJoinButtonClicked(bool enableVideo, bool muted = false)
+   {
+      // create app if nonexistent
+      if (ReferenceEquals(app, null))
+      {
+         app = new TestHelloUnityVideo(); // create app
+         app.loadEngine(AppID); // load engine
+      }
 
-        // join channel and jump to next scene
-        app.join(ChannelName, enableVideo, muted);
-      //  SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
-       // SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Additive);
-    }
+      ChannelName = inputField.text;
 
-    public void onLeaveButtonClicked()
-    {
-        if (!ReferenceEquals(app, null))
-        {
-            app.leave(); // leave channel
-            app.unloadEngine(); // delete engine
-            app = null; // delete app
-            SceneManager.LoadScene(HomeSceneName, LoadSceneMode.Single);
-        }
-        Destroy(gameObject);
-    }
+      // join channel and jump to next scene
+      app.join(ChannelName, enableVideo, muted);
+      SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
+      SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Additive);
+   }
 
-    public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name == PlaySceneName)
-        {
-            if (!ReferenceEquals(app, null))
-            {
-                app.onSceneHelloVideoLoaded(); // call this after scene is loaded
-            }
-            SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-        }
-    }
+   public void onLeaveButtonClicked()
+   {
+      if (!ReferenceEquals(app, null))
+      {
+         app.leave(); // leave channel
+         app.unloadEngine(); // delete engine
+         app = null; // delete app
+                     //SceneManager.LoadScene(HomeSceneName, LoadSceneMode.Single);
+      }
+      //        Destroy(gameObject);
+   }
 
-    void OnApplicationPause(bool paused)
-    {
-        if (!ReferenceEquals(app, null))
-        {
-            app.EnableVideo(paused);
-        }
-    }
+   public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+   {
+      if (scene.name == PlaySceneName)
+      {
+         if (!ReferenceEquals(app, null))
+         {
+            app.onSceneHelloVideoLoaded(); // call this after scene is loaded
+         }
+         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+      }
+   }
 
-    void OnApplicationQuit()
-    {
-        if (!ReferenceEquals(app, null))
-        {
-            app.unloadEngine();
-        }
-    }
+   void OnApplicationPause(bool paused)
+   {
+      if (!ReferenceEquals(app, null))
+      {
+         app.EnableVideo(paused);
+      }
+   }
+
+   void OnApplicationQuit()
+   {
+      if (!ReferenceEquals(app, null))
+      {
+         app.unloadEngine();
+      }
+   }
 }

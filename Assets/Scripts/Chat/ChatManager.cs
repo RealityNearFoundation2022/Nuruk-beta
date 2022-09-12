@@ -1,18 +1,34 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class ChatManager : MonoBehaviour
 {
-    private bool _openChat = false;
+    public bool openChat = false;
 
     [SerializeField] private Animator _animatorChat;
+    [SerializeField] private TMP_InputField _inputField;
+    private static readonly int Open = Animator.StringToHash("open");
     
+    public UnityEvent eventsChat;
+
     public void ControlOpenChat()
     {
-        _animatorChat.SetBool("open", !_openChat);
-        _openChat = !_openChat;
+        _animatorChat.SetBool(Open, !openChat);
+        openChat = !openChat;
+        if (openChat)
+        {
+            _inputField.Select();
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+    }
+
+    public void SendMessage()
+    {
+        eventsChat.Invoke();
     }
 }

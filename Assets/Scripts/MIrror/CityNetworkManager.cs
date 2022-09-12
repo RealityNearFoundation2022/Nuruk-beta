@@ -41,7 +41,7 @@ namespace  City
         {
             base.OnClientConnect();
             _chatAuthenticator = GetComponent<ChatAuthenticator>();
-            CharacterSetup _characterSetup = new CharacterSetup();
+            CharacterSetup _characterSetup;
             Debug.Log("Se conecto el personaje");
             PlayFabClientAPI.GetUserData(new GetUserDataRequest() {
                 Keys = null
@@ -69,12 +69,8 @@ namespace  City
         
         void OnCreateCharacter(NetworkConnectionToClient conn, CharacterSetup message)
         {
-            // playerPrefab is the one assigned in the inspector in Network
-            // Manager but you can use different prefabs per race for example
-            GameObject gameobject = Instantiate(MenPlayer);
+            GameObject gameobject = Instantiate(playerPrefab);
             
-            // Apply data from the message however appropriate for your game
-            // Typically Player would be a component you write with syncvars or propertieslo
            
             Debug.Log("Setting player custome");
             if (gameobject != null)

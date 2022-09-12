@@ -8,7 +8,7 @@ using Mirror;
 
 public class VoiceChatManager : NetworkBehaviour
 {
-	string appID = "f63c5fd093aa498e8d0c7eb0be8c6354";
+	string appID = "00334a841638456ab144afcf8e2bdb83";
 
 	public static VoiceChatManager Instance;
 

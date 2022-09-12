@@ -22,14 +22,18 @@ public class WalletBalance : MonoBehaviour
 
   GameObject banner;
   string saldo;
-  int count = 0;
+  private bool flag = false;
 
   void Start() {
-    Debug.Log(WalletIsSignedIn());
+    
     StartCoroutine(startWallet());
     banner = gameObject;
     banner.SetActive(false);
-    popUp.SetActive(false);
+    if (!WalletIsSignedIn())
+    {
+      popUp.SetActive(true);
+    }
+    
 
   }
 
@@ -52,10 +56,13 @@ public class WalletBalance : MonoBehaviour
 
   void Update()
   {
-    if (!WalletIsSignedIn() && count < 1){
-      count ++;
-      popUp.SetActive(true);
+#if UNITY_WEBGL && !UNITY_EDITOR
+    if (WalletIsSignedIn() && !flag){
+      popUp.SetActive(false);
+      flag = true;
     }
+#endif    
+    
   }
   public void ClosePopUp(){
     popUp.SetActive(false);

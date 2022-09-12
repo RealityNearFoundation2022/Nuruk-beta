@@ -36,44 +36,19 @@ public class SceneManagerControl : MonoBehaviour
       animator = GetComponent<Animator>();
    }
 
-
-   // public async void LoadScene(string nameScene)
-   // {
-   //    var scene = SceneManager.LoadSceneAsync(nameScene);
-   //    scene.allowSceneActivation = false;
-   //
-   //    // TODO: Create animation
-   //    animator.SetTrigger("FadeIn");
-   //    do
-   //    {
-   //       await Task.Delay(100);
-   //
-   //       progressBar.currentPercent = scene.progress * 100;
-   //       Debug.Log(scene.progress);
-   //    } while (scene.progress < 0.9f);
-   //
-   //
-   //    await Task.Delay(1000);
-   //
-   //    scene.allowSceneActivation = true;
-   //
-   //    animator.SetTrigger("FadeOut");
-   // }
-
-
    IEnumerator LoadScene(string nameScene)
    {
+      animator.SetTrigger("FadeIn");
+      
+      yield return new WaitForSeconds(0.5f);
+      
       var scene = SceneManager.LoadSceneAsync(nameScene);
       scene.allowSceneActivation = false;
-
-      // TODO: Create animation
-      animator.SetTrigger("FadeIn");
       do
       {
          yield return new WaitForSeconds(0.1f);
 
          progressBar.currentPercent = scene.progress * 100;
-         Debug.Log(scene.progress);
       } while (scene.progress < 0.9f);
 
 

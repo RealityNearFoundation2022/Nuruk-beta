@@ -1350,7 +1350,7 @@ MonoBehaviour:
     value: {r: 1, g: 1, b: 1, a: 1}
   fastMode:
     overrideState: 1
-    value: 1
+    value: 0
   dirtTexture:
     overrideState: 0
     value: {fileID: 0}
@@ -1472,13 +1472,13 @@ MonoBehaviour:
     value: 1
   filtering:
     overrideState: 1
-    value: {x: 14.402851, y: 49.79498}
+    value: {x: 13.967297, y: 49.359425}
   minLuminance:
     overrideState: 1
     value: -1
   maxLuminance:
     overrideState: 1
-    value: 7.9
+    value: -1
   keyValue:
     overrideState: 1
     value: 1

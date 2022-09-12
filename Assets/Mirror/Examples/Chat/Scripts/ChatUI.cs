@@ -29,9 +29,8 @@ namespace Mirror.Examples.Chat
         public void CmdSend(string message, NetworkConnectionToClient sender = null)
         {
             if (!connNames.ContainsKey(sender))
-                connNames.Add(sender, "Pepito");
-
-            Debug.Log(connNames[sender]);
+                connNames.Add(sender, "Usuario");
+            
             if (!string.IsNullOrWhiteSpace(message))
                 RpcReceive(connNames[sender], message.Trim());
         }
@@ -39,7 +38,7 @@ namespace Mirror.Examples.Chat
         [ClientRpc]
         public void RpcReceive(string playerName, string message)
         {
-            string prettyMessage = $"<b>{playerName}:</b> {message}";
+            string prettyMessage = $"<b>{playerName}</b> {message}";
             AppendMessage(prettyMessage);
         }
 
