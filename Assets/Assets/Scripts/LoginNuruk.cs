@@ -10,6 +10,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 using CustomEvents;
+using Scene = UnityEditor.SearchService.Scene;
 
 public class LoginNuruk : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class LoginNuruk : MonoBehaviour
    {
       webNuruk = gameObject.GetComponent<WebNuruk>();
       ErrorMessage.enabled = false;
+   }
+
+   public void recoveryPass()
+   {
+      SceneManager.LoadScene("recoveryPass");
    }
 
    public void Log_in()

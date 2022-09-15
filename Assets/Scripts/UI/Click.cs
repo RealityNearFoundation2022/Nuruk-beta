@@ -14,7 +14,7 @@ public class Click : MonoBehaviour
     private float _timeChat;
 
     private bool _isLock = false;
-
+    
 
     private void Start()
     {
@@ -41,7 +41,7 @@ public class Click : MonoBehaviour
             if (_chatManager.openChat)
                 _chatManager.ControlOpenChat();
         }
-        
+
         // Open chat
         if (Input.GetKey(KeyCode.C) && Time.time > _timeChat && !_chatManager.openChat)
         {
