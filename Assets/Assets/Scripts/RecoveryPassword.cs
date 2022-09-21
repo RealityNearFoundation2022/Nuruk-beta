@@ -22,6 +22,11 @@ public class RecoveryPassword : MonoBehaviour
       ErrorMessage.enabled = false;
    }
 
+   public void GoToOpening()
+   {
+      Events.ChangeScene.Invoke("Opening");
+   }
+
    public void RecoveryPass()
    {
       ErrorMessage.enabled = false;
