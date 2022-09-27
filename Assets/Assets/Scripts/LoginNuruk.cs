@@ -31,6 +31,11 @@ public class LoginNuruk : MonoBehaviour
       ErrorMessage.enabled = false;
    }
 
+   public void recoveryPass()
+   {
+      SceneManager.LoadScene("recoveryPass");
+   }
+
    public void Log_in()
    {
       ErrorMessage.enabled = false;

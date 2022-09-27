@@ -63,6 +63,11 @@ public class BugReport_Data
    public int status;
    public string image;
 }
+[System.Serializable]
+public class RecoveryPass_Response
+{
+   public string msg;
+}
 
 public class WebNuruk : MonoBehaviour
 {
@@ -71,9 +76,11 @@ public class WebNuruk : MonoBehaviour
    public static BugReport_Response bug_response = new BugReport_Response();
    public static UserData_login_Response login_Response = new UserData_login_Response();
    public static UserData_authResponse User_datos_authRes = new UserData_authResponse();
+   public static RecoveryPass_Response RecoveryPass_Res = new RecoveryPass_Response();
 
 #if UNITY_EDITOR
-   private readonly string baseUri = "http://216.128.138.227/";
+  // private readonly string baseUri = "http://216.128.138.227/";
+   private readonly string baseUri = "https://api.realitynear.org/";
 #endif
 #if UNITY_WEBGL && !UNITY_EDITOR
     private readonly string baseUri = "https://api.realitynear.org/";
@@ -137,5 +144,18 @@ public class WebNuruk : MonoBehaviour
          BodyString = jsonString,
       };
       return RestClient.Post<BugReport_Response>(currentRequest);
+   }
+   
+   public RSG.IPromise<RecoveryPass_Response> RecoveryPass_Post(string email)
+   {
+      string jsonString;
+     
+      jsonString = JsonUtility.ToJson(email);
+      currentRequest = new RequestHelper
+      {
+         Uri = baseUri + $"api/v1/password-recovery/{email}",
+         BodyString = jsonString,
+      };
+      return RestClient.Post<RecoveryPass_Response>(currentRequest);
    }
 }
