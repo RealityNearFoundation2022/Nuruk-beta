@@ -22,7 +22,11 @@ namespace Classes
       public string pants;
       public string extra;
       public string color;
+   }
 
+   public class Username
+   {
+      public string value;
    }
 
 

@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using Mirror;
 using Classes;
 using UnityEngine;
@@ -21,7 +21,11 @@ namespace PlayerMirror
         [SerializeField] private GameObject[] shirts;
         [SerializeField] private GameObject[] pants;
         [SerializeField] private GameObject[] shoes;
-        [SerializeField] private GameObject[] extras;  
+        [SerializeField] private GameObject[] extras;
+
+        // username
+        public TMP_Text userTitle; 
+
         
         public void EnableComponent()
         {
@@ -71,6 +75,12 @@ namespace PlayerMirror
         {
             yield return new WaitForSeconds(1);
             EnableComponent();
+            SetPlayerName(Player.PlayerData.username);
+        }
+
+        public void SetPlayerName(string username)
+        {
+            userTitle.text = username;
         }
     }
 

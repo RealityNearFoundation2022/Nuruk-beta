@@ -6,6 +6,11 @@ public class LookCamera : MonoBehaviour
 {
    public Camera ownCamera;
 
+   void Start()
+   {
+      ownCamera = Camera.main;
+   }
+
    // Update is called once per frame
    void Update()
    {

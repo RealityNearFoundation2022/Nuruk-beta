@@ -6,15 +6,13 @@ using PlayerMirror;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using Player;
 
 namespace  City
 {
     public class CityNetworkManager : NetworkManager
     {
         public GameObject MenPlayer;
-        public GameObject WomenPlayer;
-        public GameObject MonsterPlayer;
         [SerializeField] private GameObject TestPlayer;
         [SerializeField] private bool isTest;
         // Spawners
@@ -51,10 +49,15 @@ namespace  City
                     Debug.Log("No Character customs");
                 else
                 {
-                    _chatAuthenticator.SetPlayername("pepitorestrtpo");
                     _characterSetup = JsonUtility.FromJson<CharacterSetup>(result.Data["CharacterSetup"].Value);
                     NetworkClient.Send(_characterSetup);
                     Debug.Log(_characterSetup.type);
+                }
+
+                if (result.Data.ContainsKey("Username"))
+                {
+                    Debug.Log(JsonUtility.FromJson<Username>(result.Data["Username"].Value).value);
+                    PlayerData.username = JsonUtility.FromJson<Username>(result.Data["Username"].Value).value;
                 }
             }, (error) => {
                 Debug.Log("Got error retrieving user data:");
@@ -75,16 +78,19 @@ namespace  City
             Debug.Log("Setting player custome");
             if (gameobject != null)
             {
-                Debug.Log("Vistiendo...");
                 SetupCharacter setup = gameobject.GetComponent<SetupCharacter>();
                 setup.currentShirt = message.shirt;
                 setup.currentHead = message.head;
                 setup.currentPants = message.pants;
                 setup.currentShoes = message.shoes;
                 setup.currentExtra = message.extra;
+                setup.SetPlayerName(PlayerData.username);
+                PlayerData.playerCustom = setup;
+                
             }
             Debug.Log("Spawning player");
             // call this to use this gameobject as the primary controller
+            
             NetworkServer.AddPlayerForConnection(conn, gameobject);
         }
     }

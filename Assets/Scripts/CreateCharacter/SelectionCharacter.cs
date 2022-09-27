@@ -1,6 +1,7 @@
 using UnityEngine;
 using CustomEvents;
 using Classes;
+using TMPro;
 using PlayFab;
 using PlayFab.ClientModels;
 using System.Collections.Generic;
@@ -128,6 +129,7 @@ public class SelectionCharacter : MonoBehaviour
 
    public Material materialSkin;
 
+   public TMP_InputField username;
 
    private string colorSelect;
 
@@ -337,8 +339,6 @@ public class SelectionCharacter : MonoBehaviour
             currentExtra = "";
             currentShoes = "";
             break;
-
-         SceneManager.LoadScene("City");
       }
 
       PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest
@@ -354,6 +354,7 @@ public class SelectionCharacter : MonoBehaviour
                type = currentGender,
                color = colorSelect
             })},
+            {"Username", string.Format("{{ \"value\": \"{0}\" }}", username.text)},
          }
       }, result =>
       {
@@ -361,6 +362,5 @@ public class SelectionCharacter : MonoBehaviour
          Events.ChangeScene?.Invoke("City");
       }, error => { });
    }
-
    #endregion
 }

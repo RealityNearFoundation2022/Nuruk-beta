@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
   gradingMode:
-    overrideState: 1
+    overrideState: 0
     value: 0
   externalLut:
     overrideState: 0
@@ -103,14 +103,14 @@ MonoBehaviour:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 1
+    overrideState: 0
     value: {x: 0.96330374, y: 0.99731076, z: 1, w: -0.16424511}
   gamma:
     overrideState: 0
-    value: {x: 0.9295813, y: 0.99731183, z: 1, w: 0}
+    value: {x: 1, y: 0.5871462, z: 0.53258467, w: 0}
   gain:
-    overrideState: 1
-    value: {x: 0.7869823, y: 0.72664297, z: 1, w: -0.094756976}
+    overrideState: 0
+    value: {x: 0.291798, y: 1, z: 0, w: -0.094756976}
   masterCurve:
     overrideState: 0
     value:
@@ -1329,18 +1329,18 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 5.13
+    value: 3
   threshold:
     overrideState: 1
     value: 1
   softKnee:
-    overrideState: 1
+    overrideState: 0
     value: 0.5
   clamp:
-    overrideState: 1
+    overrideState: 0
     value: 65472
   diffusion:
-    overrideState: 1
+    overrideState: 0
     value: 8.61
   anamorphicRatio:
     overrideState: 0
@@ -1350,7 +1350,7 @@ MonoBehaviour:
     value: {r: 1, g: 1, b: 1, a: 1}
   fastMode:
     overrideState: 1
-    value: 0
+    value: 1
   dirtTexture:
     overrideState: 0
     value: {fileID: 0}
@@ -1466,19 +1466,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f6f3f7c722b4544b97e3c75840aa33, type: 3}
   m_Name: AutoExposure
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   filtering:
     overrideState: 1
-    value: {x: 13.967297, y: 49.359425}
+    value: {x: 24.407867, y: 99}
   minLuminance:
     overrideState: 1
-    value: -1
+    value: -0.4
   maxLuminance:
     overrideState: 1
-    value: -1
+    value: 0.9
   keyValue:
     overrideState: 1
     value: 1

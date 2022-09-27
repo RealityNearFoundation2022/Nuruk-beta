@@ -6,7 +6,7 @@ namespace Mirror.Examples.Benchmark
     {
         [Header("Spawns")]
         public GameObject spawnPrefab;
-        public int spawnAmount = 5000;
+        public int spawnAmount = 10;
         public float interleave = 1;
 
         void SpawnAll()

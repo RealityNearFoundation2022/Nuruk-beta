@@ -586,8 +586,8 @@ MonoBehaviour:
   eventsChat:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5907428801947331491}
-        m_TargetAssemblyTypeName: Mirror.Examples.Chat.ChatUI, Mirror.Examples
+      - m_Target: {fileID: 6232465925332866977}
+        m_TargetAssemblyTypeName: Chat.ChatUI, Assembly-CSharp
         m_MethodName: SendMessage
         m_Mode: 1
         m_Arguments:
@@ -663,7 +663,7 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5907428801947331491}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Mirror.Examples.Chat.ChatUI, Mirror.Examples
         m_MethodName: SendMessage
         m_Mode: 1
@@ -916,7 +916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5907428801947331490}
   - component: {fileID: 5907428801947331488}
-  - component: {fileID: 5907428801947331491}
+  - component: {fileID: 6232465925332866977}
   m_Layer: 5
   m_Name: Chat
   m_TagString: Untagged
@@ -961,7 +961,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: c5b53341a729bdb4c864b63ae5466544
   hasSpawned: 0
---- !u!114 &5907428801947331491
+--- !u!114 &6232465925332866977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -970,7 +970,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5907428801947331493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c102f62d739545269250f48327d4429, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e6205137ed55f24580d5f9b08c55a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
@@ -978,7 +978,7 @@ MonoBehaviour:
   chatMessage: {fileID: 5907428802300630954}
   chatHistory: {fileID: 5907428800736657865}
   scrollbar: {fileID: 5124860417227993791}
-  localPlayerName: Carlitos
+  localPlayerName: 
 --- !u!1 &5907428802012105292
 GameObject:
   m_ObjectHideFlags: 0
