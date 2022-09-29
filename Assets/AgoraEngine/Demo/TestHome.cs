@@ -142,7 +142,7 @@ public class TestHome : MonoBehaviour
 #endif
    }
 
-   public void onJoinAudience()
+   public void onJoinAudience(string ChannelName)
    {
       // create app if nonexistent
       if (ReferenceEquals(app, null))
@@ -151,10 +151,10 @@ public class TestHome : MonoBehaviour
          app.loadEngine(AppID); // load engine
       }
 
-      ChannelName = inputField.text;
+     // ChannelName = inputField.text;
       app.joinAudience(ChannelName);
-      SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
-      SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Single);
+  //    SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
+    //  SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Single);
    }
    public void onJoinChannel(string ChannelName, bool enableVideo, bool muted = false)
    {

@@ -15,7 +15,14 @@ public class ColliderChannelAgora : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Player") || PlayerPrefs.GetString("CurrentChannel") == channelName) return;
-        _testHome.onJoinChannel(channelName,false);
+        if (channelName == "teatro")
+        {
+            _testHome.onJoinAudience( "teatro");
+        }
+        else
+        {
+            _testHome.onJoinChannel(channelName,false);
+        }
         PlayerPrefs.SetString("CurrentChannel", channelName);
     }
 
