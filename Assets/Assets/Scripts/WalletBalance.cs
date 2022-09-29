@@ -25,7 +25,7 @@ public class WalletBalance : MonoBehaviour
   private bool flag = false;
 
   void Start() {
-    
+#if UNITY_WEBGL && !UNITY_EDITOR
     StartCoroutine(startWallet());
     banner = gameObject;
     banner.SetActive(false);
@@ -33,6 +33,7 @@ public class WalletBalance : MonoBehaviour
     {
       popUp.SetActive(true);
     }
+#endif
     
 
   }
