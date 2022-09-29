@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 using agora_gaming_rtc;
 using agora_utilities;
+using UnityEngine.Networking.Types;
 
 
 // this is an example of using Agora Unity SDK
@@ -16,7 +17,7 @@ public class TestHelloUnityVideo
 {
 
    // instance of agora engine
-   private IRtcEngine mRtcEngine { get; set; }
+   public IRtcEngine mRtcEngine { get; set; }
    private Text MessageText { get; set; }
 
    private AudioVideoStates AudioVideoState = new AudioVideoStates();
@@ -25,7 +26,7 @@ public class TestHelloUnityVideo
 
    private string mChannelName { get; set; }
    private Text ChannelNameLabel { get; set; }
-   private CLIENT_ROLE_TYPE ClientRole { get; set; }
+   public CLIENT_ROLE_TYPE ClientRole { get; set; }
 
    private ToggleStateButton MuteAudioButton { get; set; }
    private ToggleStateButton MuteVideoButton { get; set; }
@@ -196,6 +197,19 @@ public class TestHelloUnityVideo
       ClientRole = CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER;
    }
 
+   public void Audience()
+   {
+      mRtcEngine.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE);
+   }
+   public void Host()
+   {
+      if (mRtcEngine == null)
+      {
+         loadEngine("70346f776f23451f874913296b7dc82d");
+      }
+      mRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
+      mRtcEngine.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
+   }
    public string getSdkVersion()
    {
       string ver = IRtcEngine.GetSdkVersion();
@@ -337,7 +351,7 @@ public class TestHelloUnityVideo
       ChannelButton.GetComponent<Button>().interactable = ClientRole == CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE;
    }
 
-   private void SetupRoleButton(bool isHost)
+   public void SetupRoleButton(bool isHost)
    {
       if (RoleButton != null)
       {

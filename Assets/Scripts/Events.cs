@@ -56,6 +56,11 @@ namespace CustomEvents
         public static readonly Evt<int> ChangeHead = new Evt<int>();
 
         public static readonly Evt<string> ChangeScene = new Evt<string>();
+        #endregion
+
+        #region Skills
+
+        public static readonly Evt<Sit> SitPlayer = new Evt<Sit>();
 
         #endregion
 
