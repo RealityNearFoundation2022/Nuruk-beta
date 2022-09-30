@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class AgoraSettings : MonoBehaviour
 {
     private TestHome _testHome;
-    [SerializeField] GameObject RoleButton;
     TestHelloUnityVideo app;
    
     private void Start()
@@ -19,14 +18,13 @@ public class AgoraSettings : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        RoleButton.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Host();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        RoleButton.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Audience();
@@ -40,6 +38,5 @@ public class AgoraSettings : MonoBehaviour
     public void Audience()
     {
         app.Audience();
-        //mRtcEngine.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE);
     }
 }
