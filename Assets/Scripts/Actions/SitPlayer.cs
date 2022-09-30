@@ -12,6 +12,7 @@ public class Sit
 public class SitPlayer : MonoBehaviour
 {
     public Sit sitData = new Sit();
+    public GameObject fx;
 
     private bool _canSit = false;
     private bool _alreadySit = false;
@@ -28,14 +29,14 @@ public class SitPlayer : MonoBehaviour
 
             // SitPlayer sitPlayer = other.gameObject.GetComponent<SitPlayer>();
             // Debug.Log(sitPlayer.sitPosition);
-            Debug.Log("Entro");
-            
+            fx.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         _canSit = false;
+        fx.SetActive(false);
     }
 
     private void Update()
