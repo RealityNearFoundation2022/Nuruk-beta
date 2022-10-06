@@ -9,7 +9,6 @@ public class UtilsControl : MonoBehaviour
     public Button[] buttonsUtils;
 
     void Awake(){
-        // buttonsUtils = GetComponentsInChildren<Button>();
         foreach(Button btn in buttonsUtils)
         {
             if (btn.name == "Bugs")
@@ -22,7 +21,7 @@ public class UtilsControl : MonoBehaviour
     
     public void ReportBugs()
     {
-        Debug.Log("llego bug");
-       // Events.ChangeScene.Invoke("Bugs");
+       // Debug.Log("llego bug");
+        Events.ChangeScene.Invoke("Bugs");
     }
 }
