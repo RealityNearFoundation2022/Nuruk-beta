@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Proyecto26;
+using CustomEvents;
 using RSG;
 
 public class BugReport : MonoBehaviour
@@ -49,6 +50,7 @@ public class BugReport : MonoBehaviour
                 SuccessMessage.enabled = true;
                 ErrorMessage.text = "Successfully sent";
                 Debug.Log(JsonUtility.ToJson(res));
+                Events.ChangeScene.Invoke("City");
             }).Catch((err) => {
                 var error = err as RequestException;
                 responseErr = JsonUtility.FromJson<DetailError>(error.Response);

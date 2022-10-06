@@ -59,7 +59,6 @@ public class LoginNuruk : MonoBehaviour
 
    private void OnLoginSuccess(LoginResult result)
    {
-      
       webNuruk.Login_Post(email.text, password.text).Then((res) =>
       {
          WebNuruk.login_Response = res;
@@ -96,9 +95,7 @@ public class LoginNuruk : MonoBehaviour
       Debug.LogError("Here's some debug information:");
       Debug.LogError(error.GenerateErrorReport());
    }
-
-
-
+   
    public void SetUsername()
    {
       //PlayFabClientAPI.UpdateUserTitleDisplayName(new UpdateUserTitleDisplayNameRequest())

@@ -1591,7 +1591,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2001335943}
         m_TargetAssemblyTypeName: RecoveryPassword, Assembly-CSharp
-        m_MethodName: GoToOpening
+        m_MethodName: GoBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
