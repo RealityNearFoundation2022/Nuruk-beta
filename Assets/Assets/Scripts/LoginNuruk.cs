@@ -33,7 +33,8 @@ public class LoginNuruk : MonoBehaviour
 
    public void recoveryPass()
    {
-      SceneManager.LoadScene("recoveryPass");
+      //SceneManager.LoadScene("recoveryPass");
+      Events.ChangeScene.Invoke("recoveryPass");
    }
 
    public void Log_in()
