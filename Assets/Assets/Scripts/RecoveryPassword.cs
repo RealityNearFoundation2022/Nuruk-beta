@@ -22,9 +22,9 @@ public class RecoveryPassword : MonoBehaviour
       ErrorMessage.enabled = false;
    }
 
-   public void GoToOpening()
+   public void GoBack()
    {
-      Events.ChangeScene.Invoke("Opening");
+      Events.ChangeScene.Invoke("LoginNuruk");
    }
 
    public void RecoveryPass()

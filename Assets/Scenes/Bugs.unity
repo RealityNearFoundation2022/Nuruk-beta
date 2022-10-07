@@ -486,6 +486,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1972045206}
     m_Modifications:
+    - target: {fileID: 3235845421837548470, guid: f9900d600674bb6488d3655c35c89d7b, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3841135779284058448, guid: f9900d600674bb6488d3655c35c89d7b, type: 3}
       propertyPath: m_Name
       value: Bugs

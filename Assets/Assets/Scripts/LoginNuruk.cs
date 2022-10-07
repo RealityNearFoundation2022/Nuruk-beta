@@ -33,7 +33,8 @@ public class LoginNuruk : MonoBehaviour
 
    public void recoveryPass()
    {
-      SceneManager.LoadScene("recoveryPass");
+      //SceneManager.LoadScene("recoveryPass");
+      Events.ChangeScene.Invoke("recoveryPass");
    }
 
    public void Log_in()
@@ -98,9 +99,7 @@ public class LoginNuruk : MonoBehaviour
       Debug.LogError("Here's some debug information:");
       Debug.LogError(error.GenerateErrorReport());
    }
-
-
-
+   
    public void SetUsername()
    {
       //PlayFabClientAPI.UpdateUserTitleDisplayName(new UpdateUserTitleDisplayNameRequest())

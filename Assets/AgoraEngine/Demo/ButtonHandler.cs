@@ -38,7 +38,7 @@ public class ButtonHandler : MonoBehaviour
             }
             else if (button.name == "JoinButton4")
             {
-                gameController.onJoinAudience();
+                gameController.onJoinAudience("teatro");
             }
         }
     }
