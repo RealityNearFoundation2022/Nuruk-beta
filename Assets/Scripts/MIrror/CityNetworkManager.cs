@@ -13,7 +13,7 @@ namespace  City
     public class CityNetworkManager : NetworkManager
     {
         public GameObject MenPlayer;
-        [SerializeField] private GameObject TestPlayer;
+        public GameObject WomenPlayer;
         [SerializeField] private bool isTest;
         // Spawners
         [SerializeField] private Transform[] Spawners;
@@ -58,6 +58,7 @@ namespace  City
                 {
                     Debug.Log(JsonUtility.FromJson<Username>(result.Data["Username"].Value).value);
                     PlayerData.username = JsonUtility.FromJson<Username>(result.Data["Username"].Value).value;
+                    
                 }
             }, (error) => {
                 Debug.Log("Got error retrieving user data:");
@@ -72,26 +73,53 @@ namespace  City
         
         void OnCreateCharacter(NetworkConnectionToClient conn, CharacterSetup message)
         {
-            GameObject gameobject = Instantiate(playerPrefab);
+            if (message.type == "Male")
+            {
+                GameObject gameobject = Instantiate(MenPlayer);
             
            
-            Debug.Log("Setting player custome");
-            if (gameobject != null)
-            {
-                SetupCharacter setup = gameobject.GetComponent<SetupCharacter>();
-                setup.currentShirt = message.shirt;
-                setup.currentHead = message.head;
-                setup.currentPants = message.pants;
-                setup.currentShoes = message.shoes;
-                setup.currentExtra = message.extra;
-                setup.SetPlayerName(PlayerData.username);
-                PlayerData.playerCustom = setup;
-                
-            }
-            Debug.Log("Spawning player");
-            // call this to use this gameobject as the primary controller
+                Debug.Log("Setting player custome");
+                if (gameobject != null)
+                {
+                    SetupCharacter setup = gameobject.GetComponent<SetupCharacter>();
+                    setup.currentShirt = message.shirt;
+                    setup.currentHead = message.head;
+                    setup.currentPants = message.pants;
+                    setup.currentShoes = message.shoes;
+                    setup.currentExtra = message.extra;
+                    PlayerData.playerCustom = setup;
+                    //setup.playerUsername = PlayerData.username;
+
+                }
+                Debug.Log("Spawning player");
+                // call this to use this gameobject as the primary controller
             
-            NetworkServer.AddPlayerForConnection(conn, gameobject);
+                NetworkServer.AddPlayerForConnection(conn, gameobject);
+            } else if (message.type == "Female")
+            {
+                GameObject gameobject = Instantiate(WomenPlayer);
+            
+           
+                Debug.Log("Setting player custome");
+                if (gameobject != null)
+                {
+                    SetupCharacter setup = gameobject.GetComponent<SetupCharacter>();
+                    setup.currentShirt = message.shirt;
+                    setup.currentHead = message.head;
+                    setup.currentPants = message.pants;
+                    setup.currentShoes = message.shoes;
+                    setup.currentExtra = message.extra;
+                    PlayerData.playerCustom = setup;
+                    //setup.playerUsername = PlayerData.username;
+
+                }
+                Debug.Log("Spawning player");
+                // call this to use this gameobject as the primary controller
+            
+                NetworkServer.AddPlayerForConnection(conn, gameobject);
+            }
+            
+            
         }
     }
 

@@ -149,6 +149,7 @@ public class TestHome : MonoBehaviour
       {
          app = new TestHelloUnityVideo(); // create app
          app.loadEngine(AppID); // load engine
+         
       }
 
       ChannelName = inputField.text;

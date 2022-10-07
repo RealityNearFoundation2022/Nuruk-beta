@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class PresentationWithHelpers : NetworkBehaviour
 {
@@ -10,8 +11,8 @@ public class PresentationWithHelpers : NetworkBehaviour
 
     [SerializeField] private SpriteRenderer spriteRendererPresentation;
 
-    [SerializeField] private SpriteRenderer spriteRendererNext;
-    [SerializeField] private SpriteRenderer spriteRendererPrev;
+    [SerializeField] private Image spriteRendererNext;
+    [SerializeField] private Image spriteRendererPrev;
     // Start is called before the first frame update
 
     [SyncVar]

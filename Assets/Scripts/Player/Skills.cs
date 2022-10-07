@@ -5,11 +5,14 @@ using Cinemachine;
 using UnityEngine;
 using CustomEvents;
 using StarterAssets;
+using Mirror;
 
-public class Skills : MonoBehaviour
+public class Skills : NetworkBehaviour
 {
     [SerializeField] private GameObject player;
     private static readonly int Sit = Animator.StringToHash("Sit");
+
+    [SerializeField] private Collider collider;
 
     #region Sit Variables
 
@@ -18,11 +21,14 @@ public class Skills : MonoBehaviour
     private GameObject _cameraPlayer;
 
     #endregion
-
+    
+    
     #region Sit
     private void SitPlayerEvent(Sit sitData)
     {
-        Debug.Log("Evento de sentarse");
+        
+        if (!isLocalPlayer)
+            return;
         if (sitData.sitPlayer)
         {
             player.GetComponent<ThirdPersonController>().enabled = false;

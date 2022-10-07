@@ -50,6 +50,7 @@ public class TestHelloUnityVideo
 
       // init engine
       mRtcEngine = IRtcEngine.GetEngine(appId);
+      mRtcEngine.SetMultiChannelWant(true);
 
       // enable log
       mRtcEngine.SetLogFilter(LOG_FILTER.DEBUG | LOG_FILTER.INFO | LOG_FILTER.WARNING | LOG_FILTER.ERROR | LOG_FILTER.CRITICAL);

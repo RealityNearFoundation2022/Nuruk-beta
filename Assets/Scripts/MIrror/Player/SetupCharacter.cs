@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using Mirror;
 using Classes;
+using Player;
 using UnityEngine;
 
 namespace PlayerMirror
@@ -22,6 +23,7 @@ namespace PlayerMirror
         [SerializeField] private GameObject[] pants;
         [SerializeField] private GameObject[] shoes;
         [SerializeField] private GameObject[] extras;
+        [SyncVar(hook = "DisplayPlayerName")] public string playerUsername;
 
         // username
         public TMP_Text userTitle; 
@@ -75,12 +77,23 @@ namespace PlayerMirror
         {
             yield return new WaitForSeconds(1);
             EnableComponent();
-            SetPlayerName(Player.PlayerData.username);
+            if (isLocalPlayer) { CmdSendName(PlayerData.username); }
         }
-
-        public void SetPlayerName(string username)
+        
+ 
+        
+        [Command]
+        void CmdSendName(string playerName)
         {
-            userTitle.text = username;
+            playerUsername = playerName;
+            userTitle.text = playerUsername;
+        }
+        
+        public void DisplayPlayerName(string oldName, string newName)
+        {
+            Debug.Log("Player changed name from " + oldName + " to " + newName);
+ 
+            userTitle.text = newName;
         }
     }
 

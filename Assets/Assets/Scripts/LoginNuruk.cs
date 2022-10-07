@@ -58,7 +58,6 @@ public class LoginNuruk : MonoBehaviour
 
    private void OnLoginSuccess(LoginResult result)
    {
-      
       webNuruk.Login_Post(email.text, password.text).Then((res) =>
       {
          WebNuruk.login_Response = res;
@@ -71,9 +70,13 @@ public class LoginNuruk : MonoBehaviour
                {
                   modalUsername.OpenWindow();
                }
+               if (result.Data == null || !result.Data.ContainsKey("Username"))
+               {
+                  modalUsername.OpenWindow();
+               }
                else
                {
-               Events.ChangeScene.Invoke("City");
+                  Events.ChangeScene.Invoke("City");
                }
             }, (error) => {
                Debug.Log("Got error retrieving user data:");
