@@ -2,6 +2,8 @@
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
+using Player;
+
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -156,14 +158,17 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
+            
             JumpAndGravity();
             GroundedCheck();
-            Move();
+            if (!PlayerData.InChat)
+                Move();
         }
 
         private void LateUpdate()
         {
-            CameraRotation();
+            if (!PlayerData.InMenus)
+                CameraRotation();
         }
 
         private void AssignAnimationIDs()

@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 6469799920004294147}
   - component: {fileID: 8239480544333586853}
   - component: {fileID: 6503380187686595917}
+  - component: {fileID: 3731358637062978048}
   m_Layer: 8
   m_Name: PlayerMen
   m_TagString: Player
@@ -334,7 +335,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 64dce48905ffd9b4293e595fa6941544
+  m_AssetId: 8737523c3009d774a840aaf132f5c93f
   hasSpawned: 0
 --- !u!114 &717985605126399415
 MonoBehaviour:
@@ -408,13 +409,41 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8916559602193531195}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 039031e534e3c904fbd12c708051e834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  currentHead: 
+  currentShirt: 
+  currentPants: 
+  currentShoes: 
+  currentExtra: 
+  playerGeometric: {fileID: 0}
+  heads: []
+  shirts: []
+  pants: []
+  shoes: []
+  extras: []
+  playerUsername: 
+  userTitle: {fileID: 0}
+--- !u!114 &3731358637062978048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916559602193531195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d96fa1f3959284ebcb3f96a955d492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  radius: 10
 --- !u!1001 &3735808423354938779
 PrefabInstance:
   m_ObjectHideFlags: 0

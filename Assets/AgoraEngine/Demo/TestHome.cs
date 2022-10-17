@@ -204,7 +204,7 @@ public class TestHome : MonoBehaviour
          app.leave(); // leave channel
          app.unloadEngine(); // delete engine
          app = null; // delete app
-                     //SceneManager.LoadScene(HomeSceneName, LoadSceneMode.Single);
+                     // //SceneManager.LoadScene(HomeSceneName, LoadSceneMode.Single);
       }
       //        Destroy(gameObject);
    }
@@ -234,6 +234,14 @@ public class TestHome : MonoBehaviour
       if (!ReferenceEquals(app, null))
       {
          app.unloadEngine();
+      }
+   }
+
+   public void MuteAudio(bool muted)
+   {
+      if (!ReferenceEquals(app, null))
+      {
+         app.mRtcEngine.MuteLocalAudioStream(muted);
       }
    }
 }

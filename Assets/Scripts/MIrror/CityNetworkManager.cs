@@ -14,6 +14,7 @@ namespace  City
     {
         public GameObject MenPlayer;
         public GameObject WomenPlayer;
+        public GameObject MonsterPlayer;
         [SerializeField] private bool isTest;
         // Spawners
         [SerializeField] private Transform[] Spawners;
@@ -109,6 +110,28 @@ namespace  City
                     setup.currentPants = message.pants;
                     setup.currentShoes = message.shoes;
                     setup.currentExtra = message.extra;
+                    PlayerData.playerCustom = setup;
+                    //setup.playerUsername = PlayerData.username;
+
+                }
+                Debug.Log("Spawning player");
+                // call this to use this gameobject as the primary controller
+            
+                NetworkServer.AddPlayerForConnection(conn, gameobject);
+            } else if (message.type == "Monster")
+            {
+                GameObject gameobject = Instantiate(MonsterPlayer);
+            
+           
+                Debug.Log("Setting player custome");
+                if (gameobject != null)
+                {
+                    SetupCharacter setup = gameobject.GetComponent<SetupCharacter>();
+                    // setup.currentShirt = message.shirt;
+                    // setup.currentHead = message.head;
+                    // setup.currentPants = message.pants;
+                    // setup.currentShoes = message.shoes;
+                    // setup.currentExtra = message.extra;
                     PlayerData.playerCustom = setup;
                     //setup.playerUsername = PlayerData.username;
 

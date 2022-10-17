@@ -11,8 +11,8 @@ public class PresentationWithHelpers : NetworkBehaviour
 
     [SerializeField] private SpriteRenderer spriteRendererPresentation;
 
-    [SerializeField] private Image spriteRendererNext;
-    [SerializeField] private Image spriteRendererPrev;
+    [SerializeField] private SpriteRenderer spriteRendererNext;
+    [SerializeField] private SpriteRenderer spriteRendererPrev;
     // Start is called before the first frame update
 
     [SyncVar]
@@ -74,13 +74,6 @@ public class PresentationWithHelpers : NetworkBehaviour
 
     private void SetPreHelper()
     {
-        if (currentDiapositive - 1 >= 0)
-        {
-            spriteRendererPrev.sprite = _diapositive[currentDiapositive - 1];
-        }
-        else
-        {
-            spriteRendererPrev.sprite = null;
-        }
+        spriteRendererPrev.sprite = _diapositive[currentDiapositive];
     }
 }

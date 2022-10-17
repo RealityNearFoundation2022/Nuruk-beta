@@ -8,6 +8,10 @@ namespace Player
         public static string username;
 
         public static SetupCharacter playerCustom;
+
+        public static bool InChat = false;
+        
+        public static bool InMenus = false;
     }
 
 }

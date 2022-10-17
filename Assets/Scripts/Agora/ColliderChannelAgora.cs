@@ -7,6 +7,8 @@ public class ColliderChannelAgora : MonoBehaviour
 {
     private TestHome _testHome;
     [SerializeField] private string channelName;
+
+    public bool entryMuted = false;
     
     void Start()
     {
@@ -21,7 +23,7 @@ public class ColliderChannelAgora : MonoBehaviour
         }
         else
         {
-            _testHome.onJoinChannel(channelName,false);
+            _testHome.onJoinChannel(channelName,false, entryMuted);
         }
         PlayerPrefs.SetString("CurrentChannel", channelName);
     }

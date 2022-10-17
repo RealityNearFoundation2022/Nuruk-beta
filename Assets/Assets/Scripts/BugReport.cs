@@ -20,6 +20,7 @@ public class BugReport : MonoBehaviour
     DetailError responseErr = new DetailError();
     [SerializeField] Text ErrorMessage;
     [SerializeField] Text SuccessMessage;
+    [SerializeField] private GameObject report;
 
     int index;
     string category;
@@ -27,7 +28,7 @@ public class BugReport : MonoBehaviour
     {
         dropdown_category = Dropdown.GetComponent<Michsky.UI.ModernUIPack.CustomDropdown>();
         items = Dropdown.GetComponent<Michsky.UI.ModernUIPack.CustomDropdown>();
-        webNuruk = GetComponent<WebNuruk>();
+        webNuruk = FindObjectOfType<WebNuruk>();
         ErrorMessage.enabled = false;
         SuccessMessage.enabled = false;
     }
@@ -50,7 +51,7 @@ public class BugReport : MonoBehaviour
                 SuccessMessage.enabled = true;
                 ErrorMessage.text = "Successfully sent";
                 Debug.Log(JsonUtility.ToJson(res));
-                Events.ChangeScene.Invoke("City");
+                report.SetActive(false);
             }).Catch((err) => {
                 var error = err as RequestException;
                 responseErr = JsonUtility.FromJson<DetailError>(error.Response);

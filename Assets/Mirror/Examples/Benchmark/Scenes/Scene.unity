@@ -384,7 +384,7 @@ MonoBehaviour:
   offlineScene: 
   onlineScene: 
   transport: {fileID: 1282001521}
-  networkAddress: server.devsgio.tech
+  networkAddress: 34.125.53.79
   maxConnections: 1000
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 449802645721213856, guid: e1299008405d14b17b1ca459a6cd44a2, type: 3}
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0110f245bfcfc7d459681f7bd9ebc590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 7778
+  port: 7777
   maxMessageSize: 16384
   handshakeMaxSize: 3000
   noDelay: 1
@@ -417,8 +417,8 @@ MonoBehaviour:
   clientMaxMessagesPerTick: 1000
   batchSend: 1
   waitBeforeSend: 0
-  clientUseWss: 1
-  sslEnabled: 1
+  clientUseWss: 0
+  sslEnabled: 0
   sslCertJson: ./cert.json
   sslProtocols: 3072
   _logLevels: 1
