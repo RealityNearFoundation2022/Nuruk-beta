@@ -36,6 +36,7 @@ public class CycleSkyBoxes : MonoBehaviour
             prev = hour;
            setSkybox();
         }).Catch(er => {
+            setSky(SkyBoxes[4]);
             Debug.Log(er.Message);
         });
     }
