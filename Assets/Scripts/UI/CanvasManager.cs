@@ -50,13 +50,13 @@ public class CanvasManager : MonoBehaviour
     void Update()
     {
         #region Mouse
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             ShowCursor();
             PlayerData.InMenus = true;
         }
         
-        if (Input.GetKeyUp(KeyCode.LeftAlt))
+        if (Input.GetKeyUp(KeyCode.T))
         {
             HideCursor();
             PlayerData.InMenus = false;
