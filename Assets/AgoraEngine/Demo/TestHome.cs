@@ -25,7 +25,9 @@ public class TestHome : MonoBehaviour
    // PLEASE KEEP THIS App ID IN SAFE PLACE
    // Get your own App ID at https://dashboard.agora.io/
    [SerializeField]
-   private string AppID = "70346f776f23451f874913296b7dc82d";
+   //private string AppID = "70346f776f23451f874913296b7dc82d";
+   // agora nuruk
+    private string AppID = "3547b652b43e4b27b66bb5a076167e9f";
 
    private string ChannelName
    {
