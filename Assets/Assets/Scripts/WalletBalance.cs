@@ -2,7 +2,8 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement;
+using CustomEvents;
+//using UnityEngine.SceneManagement;
 
 
 public class WalletBalance : MonoBehaviour
@@ -69,6 +70,8 @@ public class WalletBalance : MonoBehaviour
     popUp.SetActive(false);
   }
   public void GoToLoginNear(){
-    SceneManager.LoadScene("LoginNear");
-  }
+        //SceneManager.LoadScene("LoginNear");
+        Debug.Log("here");
+        Events.ChangeScene.Invoke("LoginNear");
+    }
 }
