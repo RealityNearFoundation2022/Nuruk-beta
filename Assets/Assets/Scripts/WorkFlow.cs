@@ -12,7 +12,10 @@ public class WorkFlow : MonoBehaviour
     }
     public void GoToRegister()
     {
-        //SceneManager.LoadScene("Register");
         Events.ChangeScene?.Invoke("Register");
+    }
+    public void GoToLoginNear()
+    {
+        Events.ChangeScene?.Invoke("LoginNear");
     }
 }
