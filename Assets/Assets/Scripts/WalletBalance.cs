@@ -70,8 +70,6 @@ public class WalletBalance : MonoBehaviour
     popUp.SetActive(false);
   }
   public void GoToLoginNear(){
-        //SceneManager.LoadScene("LoginNear");
-        Debug.Log("here");
         Events.ChangeScene.Invoke("LoginNear");
-    }
+  }
 }

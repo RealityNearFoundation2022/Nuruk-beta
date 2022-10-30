@@ -721,7 +721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WHITE
+  m_text: Registrate
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
   m_sharedMaterial: {fileID: 21261991626553910, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
@@ -1685,7 +1685,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1112294450805340, guid: 70df46f1664a25d4b9ed9f150dbe5715, type: 3}
       propertyPath: m_Name
-      value: login-button (1)
+      value: login-near-button
       objectReference: {fileID: 0}
     - target: {fileID: 114507049738588534, guid: 70df46f1664a25d4b9ed9f150dbe5715, type: 3}
       propertyPath: buttonText
