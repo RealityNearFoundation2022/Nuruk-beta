@@ -22,15 +22,15 @@ public class WalletBalance : MonoBehaviour
   [DllImport("__Internal")]
   private static extern bool WalletIsSignedIn();
 
-  GameObject banner;
+  [SerializeField] GameObject banner;
   string saldo;
   private bool flag = false;
 
   void Start() {
 //#if UNITY_WEBGL  && !UNITY_EDITOR
-    StartCoroutine(startWallet());
-    banner = gameObject;
     banner.SetActive(false);
+    StartCoroutine("startWallet");
+//    banner = gameObject;
    /* if (!WalletIsSignedIn())
     {
       popUp.SetActive(true);
