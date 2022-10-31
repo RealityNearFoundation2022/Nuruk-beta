@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using CustomEvents;
+using UnityEngine.SceneManagement;
 //using UnityEngine.SceneManagement;
 
 
@@ -70,6 +71,9 @@ public class WalletBalance : MonoBehaviour
     popUp.SetActive(false);
   }
   public void GoToLoginNear(){
-        Events.ChangeScene.Invoke("LoginNear");
-  }
+        PlayerPrefs.SetString("City", "true");
+        // Events.ChangeScene.Invoke("LoginNear");
+      //  SceneManager.LoadScene
+        SceneManager.LoadSceneAsync("LoginNear", LoadSceneMode.Additive);
+    }
 }

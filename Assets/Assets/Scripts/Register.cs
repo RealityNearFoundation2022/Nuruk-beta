@@ -36,6 +36,7 @@ public class Register : MonoBehaviour
             {
                 WebNuruk.User_datos_authRes = res;
                 Debug.Log(JsonUtility.ToJson(res));
+                PlayerPrefs.SetString("MiniTutorial", "true");
                 Log_in();
             }).Catch((err) =>
             {
