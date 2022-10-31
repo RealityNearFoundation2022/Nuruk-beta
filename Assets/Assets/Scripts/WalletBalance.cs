@@ -42,6 +42,8 @@ public class WalletBalance : MonoBehaviour
 
   IEnumerator startWallet(){
     yield return new WaitForSeconds(3f);
+    Debug.Log("startWallet");
+
     Balance();
   }
 
