@@ -1,14 +1,26 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
 using CustomEvents;
 
 public class WorkFlow : MonoBehaviour
 {
-
+    [DllImport("__Internal")]
+    public static extern bool WalletIsSignedIn();
+    private void Start()
+    {
+//#if UNITY_WEBGL
+        if (WalletIsSignedIn())
+        {
+            GoTologin();
+        }
+//#endif
+    }
     public void GoTologin()
     {
-        //SceneManager.LoadScene("LoginNuruk");
-        Events.ChangeScene?.Invoke("LoginNuruk");
+        SceneManager.LoadScene("LoginNuruk");
+        Debug.Log("login opening");
+       // Events.ChangeScene?.Invoke("LoginNuruk");
     }
     public void GoToRegister()
     {

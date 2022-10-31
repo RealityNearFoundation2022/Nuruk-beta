@@ -26,5 +26,9 @@ namespace Flow
         {
             SceneManager.UnloadSceneAsync("LoginNear");
         }
+        public void GoToOpen()
+        {
+            Events.ChangeScene.Invoke("Opening");
+        }
     }
 }

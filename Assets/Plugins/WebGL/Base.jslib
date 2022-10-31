@@ -27,6 +27,10 @@ mergeInto(LibraryManager.library, {
 
   WalletIsSignedIn: function () {
     return WalletSignIn();
-  }
+  }, 
+  
+  AccountIdText: function (str) {
+    userIDNear(UTF8ToString(str));
+  },
 
 });

@@ -2089,7 +2089,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2114346896}
         m_TargetAssemblyTypeName: Flow.FlowController, Assembly-CSharp
-        m_MethodName: GoToOpening
+        m_MethodName: GoToOpen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2360,7 +2360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3766919344726562306, guid: 5e9bb219d59e5bc448e700ffbf583ba1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 406.11145
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3766919344726562306, guid: 5e9bb219d59e5bc448e700ffbf583ba1, type: 3}
       propertyPath: m_AnchoredPosition.y
