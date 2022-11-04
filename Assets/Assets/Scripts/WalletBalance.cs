@@ -27,17 +27,15 @@ public class WalletBalance : MonoBehaviour
   private bool flag = false;
 
   void Start() {
-//#if UNITY_WEBGL  && !UNITY_EDITOR
     banner.SetActive(false);
+#if UNITY_WEBGL  && !UNITY_EDITOR
     StartCoroutine("startWallet");
-//    banner = gameObject;
+
    /* if (!WalletIsSignedIn())
     {
       popUp.SetActive(true);
     }*/
-//#endif
-    
-
+#endif
   }
 
   IEnumerator startWallet(){
@@ -75,7 +73,7 @@ public class WalletBalance : MonoBehaviour
     popUp.SetActive(false);
   } */
   public void GoToLoginNear(){
-        PlayerPrefs.SetString("City", "true");
-        SceneManager.LoadSceneAsync("LoginNear", LoadSceneMode.Additive);
-    }
+    PlayerPrefs.SetString("City", "true");
+    SceneManager.LoadSceneAsync("LoginNear", LoadSceneMode.Additive);
+  }
 }
