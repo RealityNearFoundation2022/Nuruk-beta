@@ -8,11 +8,7 @@ public class InputTab : MonoBehaviour
     public TMP_InputField username;
     public TMP_InputField password;
     public int inputSelected;
-    void Start()
-    {
-        
-    }
-
+   
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))
