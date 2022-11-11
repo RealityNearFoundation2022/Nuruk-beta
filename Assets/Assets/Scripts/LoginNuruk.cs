@@ -24,6 +24,7 @@ public class LoginNuruk : MonoBehaviour
 
    WebNuruk webNuruk;
    bool _alreadyLogin = false;
+    bool flag = true;
 
    void Start()
    {
@@ -89,6 +90,7 @@ public class LoginNuruk : MonoBehaviour
             responseErrAuth = JsonUtility.FromJson<DetailError>(error.Response);
             ErrorMessage.enabled = true;
             ErrorMessage.text = responseErrAuth.detail;
+             flag = true;
          });
       
    }
@@ -114,4 +116,16 @@ public class LoginNuruk : MonoBehaviour
          Events.ChangeScene?.Invoke("City");
       }, error => { });
    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Return) && flag)
+        {
+            if ((email.text != "") && (password.text != ""))
+            {
+                Log_in();
+                flag = false;
+            }
+        }
+    }
 }

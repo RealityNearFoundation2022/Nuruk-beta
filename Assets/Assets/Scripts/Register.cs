@@ -17,7 +17,7 @@ public class Register : MonoBehaviour
     WebNuruk webNuruk;
     DetailError responseErrAuth = new DetailError();
     [SerializeField] Text ErrorMessage;
-
+    bool flag = true;
     void Start()
     {
         webNuruk = gameObject.GetComponent<WebNuruk>();
@@ -26,8 +26,6 @@ public class Register : MonoBehaviour
 
     public void RegisterNuruk()
     {
-        ErrorMessage.enabled = false;
-
         ErrorMessage.enabled = false;
 
         if ((full_name.text != "") && (email.text != "") && (password.text != ""))
@@ -45,6 +43,10 @@ public class Register : MonoBehaviour
                 responseErrAuth = JsonUtility.FromJson<DetailError>(error.Response);
                 ErrorMessage.enabled = true;
                 ErrorMessage.text = responseErrAuth.detail;
+                flag = true;
+                full_name.text = "";
+                email.text = "";
+                password.text = "";
             });
         }
         else
@@ -118,5 +120,16 @@ public class Register : MonoBehaviour
         Debug.LogWarning("Something went wrong with your first API call.  :(");
         Debug.LogError("Here's some debug information:");
         Debug.LogError(error.GenerateErrorReport());
+    }
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Return) && flag)
+        {
+            if ((email.text != "") && (password.text != "") && (full_name.text != ""))
+            {
+                 RegisterNuruk();
+                flag = false;
+            }
+        }
     }
 }
