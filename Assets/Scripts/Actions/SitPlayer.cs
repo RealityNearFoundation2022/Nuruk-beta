@@ -44,7 +44,7 @@ public class SitPlayer : MonoBehaviour
         if (Input.GetKey(KeyCode.E) && _canSit && !_alreadySit && (_timeStamp <= Time.time))
         {
             sitData.sitPlayer = true;
-            Debug.Log("Se sienta");
+         //   Debug.Log("Se sienta");
             Events.SitPlayer.Invoke(sitData);
             _alreadySit = true;
             _timeStamp = Time.time + coolDownSecondsSit;
@@ -53,7 +53,7 @@ public class SitPlayer : MonoBehaviour
         if (Input.GetKey(KeyCode.E) && _canSit && _alreadySit && (_timeStamp <= Time.time))
         {
             sitData.sitPlayer = false;
-            Debug.Log("Se levanta");
+       //     Debug.Log("Se levanta");
             Events.SitPlayer.Invoke(sitData);
             _alreadySit = false;
             _timeStamp = Time.time + coolDownSecondsSit;
