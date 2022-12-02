@@ -16,10 +16,11 @@ public class ColliderChannelAgora : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(channelName);
         if (!other.gameObject.CompareTag("Player") || PlayerPrefs.GetString("CurrentChannel") == channelName) return;
         if (channelName == "teatro")
         {
-            _testHome.onJoinAudience( "teatro");
+            _testHome.onJoinAudience("teatro");
         }
         else
         {
