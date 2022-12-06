@@ -18,15 +18,11 @@ public class AgoraSettings : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         Host();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         Audience();
     }
 
