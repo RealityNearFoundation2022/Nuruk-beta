@@ -74,9 +74,13 @@ public class CanvasManager : MonoBehaviour
             }
             else
             {
-                menuObject.SetActive(true);
-                PlayerData.InMenus = true;
-                ShowCursor();
+                if (menuObject.activeSelf && !_chatManager.openChat ){
+                    menuObject.SetActive(false);
+                }else{
+                    menuObject.SetActive(true);
+                    PlayerData.InMenus = true;
+                    ShowCursor();
+                }
             }
             
             
