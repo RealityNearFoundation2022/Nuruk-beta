@@ -26,7 +26,6 @@ public class Skills : NetworkBehaviour
     #region Sit
     private void SitPlayerEvent(Sit sitData)
     {
-        
         if (!isLocalPlayer)
             return;
         if (sitData.sitPlayer)

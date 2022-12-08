@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3856014460400063532}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.194, z: -0.269}
+  m_LocalPosition: {x: 0, y: -0.244, z: -0.218}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3856014460815880973}
@@ -89,8 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460f9eadb402ad04d8135b5dab914d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sitData:
+  sitDataStadium:
     sitPosition: {fileID: 3856014460400063533}
+    cameraToLook: {fileID: 0}
     sitPlayer: 0
   fx: {fileID: 3015199514678166711}
   coolDownSecondsSit: 1

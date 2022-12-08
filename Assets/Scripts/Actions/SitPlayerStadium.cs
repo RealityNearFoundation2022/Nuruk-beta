@@ -1,17 +1,17 @@
 using UnityEngine;
 using CustomEvents;
 
-[System.Serializable]
-public class SitStadium
-{
-    public Transform sitPosition;
- //   public GameObject cameraToLook;
-    public bool sitPlayer;
+//[System.Serializable]
+//public class SitStadium
+//{
+//    public Transform sitPosition;
+//    public GameObject cameraToLook;
+//    public bool sitPlayer;
 
-}
+//}
 public class SitPlayerStadium : MonoBehaviour
 {
-    public SitStadium sitData = new SitStadium();
+    public Sit sitDataStadium = new Sit();
     public GameObject fx;
 
     private bool _canSit = false;
@@ -29,7 +29,7 @@ public class SitPlayerStadium : MonoBehaviour
 
             // SitPlayer sitPlayer = other.gameObject.GetComponent<SitPlayer>();
             // Debug.Log(sitPlayer.sitPosition);
-            fx.SetActive(true);
+             fx.SetActive(true);
         }
     }
 
@@ -43,18 +43,19 @@ public class SitPlayerStadium : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E) && _canSit && !_alreadySit && (_timeStamp <= Time.time))
         {
-            sitData.sitPlayer = true;
+            sitDataStadium.sitPlayer = true;
             Debug.Log("Se sienta");
-            Events.SitStadium.Invoke(sitData);
+            fx.SetActive(false);
+            Events.SitPlayer.Invoke(sitDataStadium);
             _alreadySit = true;
             _timeStamp = Time.time + coolDownSecondsSit;
         }
         
         if (Input.GetKey(KeyCode.E) && _canSit && _alreadySit && (_timeStamp <= Time.time))
         {
-            sitData.sitPlayer = false;
+            sitDataStadium.sitPlayer = false;
             Debug.Log("Se levanta");
-            Events.SitStadium.Invoke(sitData);
+            Events.SitPlayer.Invoke(sitDataStadium);
             _alreadySit = false;
             _timeStamp = Time.time + coolDownSecondsSit;
         }

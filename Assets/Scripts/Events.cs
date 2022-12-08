@@ -62,7 +62,7 @@ namespace CustomEvents
 
         public static readonly Evt<Sit> SitPlayer = new Evt<Sit>();
 
-        public static readonly Evt<SitStadium> SitStadium = new Evt<SitStadium>();
+       // public static readonly Evt<SitStadium> SitStadium = new Evt<SitStadium>();
 
         #endregion
 
