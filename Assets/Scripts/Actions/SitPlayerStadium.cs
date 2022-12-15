@@ -1,6 +1,14 @@
 using UnityEngine;
 using CustomEvents;
 
+//[System.Serializable]
+//public class SitStadium
+//{
+//    public Transform sitPosition;
+//    public GameObject cameraToLook;
+//    public bool sitPlayer;
+
+//}
 public class SitPlayerStadium : MonoBehaviour
 {
     public Sit sitDataStadium = new Sit();
@@ -17,8 +25,11 @@ public class SitPlayerStadium : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             _canSit = true;
-           
-             fx.SetActive(true);
+            // TODO: manager actions
+
+            // SitPlayer sitPlayer = other.gameObject.GetComponent<SitPlayer>();
+            // Debug.Log(sitPlayer.sitPosition);
+            fx.SetActive(true);
         }
     }
 
@@ -34,7 +45,6 @@ public class SitPlayerStadium : MonoBehaviour
         {
             sitDataStadium.sitPlayer = true;
             Debug.Log("Se sienta");
-            fx.SetActive(false);
             Events.SitPlayer.Invoke(sitDataStadium);
             _alreadySit = true;
             _timeStamp = Time.time + coolDownSecondsSit;
