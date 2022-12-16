@@ -9,15 +9,13 @@ using UnityEngine.UI;
 public class PresentationWithHelpers : NetworkBehaviour
 {
     [SerializeField] private GameObject Video;
-    [SerializeField] private GameObject ControlsVideo;
     [SerializeField] private Sprite[] _diapositive;
 
     [SerializeField] private SpriteRenderer spriteRendererPresentation;
 
     [SerializeField] private SpriteRenderer spriteRendererNext;
     [SerializeField] private SpriteRenderer spriteRendererPrev;
-    // Start is called before the first frame update
-    VideoPlayer videoPlayer;
+    [SerializeField] private VideoPlayer videoPlayer;
 
     [SyncVar]
     public int currentDiapositive;
@@ -32,15 +30,14 @@ public class PresentationWithHelpers : NetworkBehaviour
 
     public void EnableVideoPlayer()
     {
-         Video.SetActive(true);
-        ControlsVideo.SetActive(true);
+        Video.GetComponent<MeshRenderer>().enabled = true;
+        videoPlayer.Play();
     }
     public void DesableVideoPlayer()
     {
-        Video.SetActive(false);
-        ControlsVideo.SetActive(false);
+        Video.GetComponent<MeshRenderer>().enabled = false;
+        videoPlayer.Stop();
     }
-
 
 
     [ClientRpc]

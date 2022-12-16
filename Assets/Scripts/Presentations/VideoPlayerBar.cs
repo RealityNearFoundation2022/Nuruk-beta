@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class VideoPlayerBar : NetworkBehaviour
 {
     [SerializeField] private GameObject Video;
-    [SerializeField] private GameObject ControlsVideo;
+   // [SerializeField] private GameObject ControlsVideo;
     [SerializeField] private Sprite[] _diapositive;
 
     [SerializeField] private SpriteRenderer spriteRendererPresentation;
@@ -33,12 +33,12 @@ public class VideoPlayerBar : NetworkBehaviour
     public void EnableVideoPlayer()
     {
          Video.SetActive(true);
-         ControlsVideo.SetActive(true);
+//         ControlsVideo.SetActive(true);
     }
     public void DesableVideoPlayer()
     {
         Video.SetActive(false);
-        ControlsVideo.SetActive(false);
+//        ControlsVideo.SetActive(false);
     }
 
     [ClientRpc]
