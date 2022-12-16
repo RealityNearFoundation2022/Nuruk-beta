@@ -32,13 +32,13 @@ public class VideoPlayerBar : NetworkBehaviour
 
     public void EnableVideoPlayer()
     {
-         Video.SetActive(true);
-//         ControlsVideo.SetActive(true);
+        Video.GetComponent<MeshRenderer>().enabled = true;
+        videoPlayer.Play();
     }
     public void DesableVideoPlayer()
     {
-        Video.SetActive(false);
-//        ControlsVideo.SetActive(false);
+        Video.GetComponent<MeshRenderer>().enabled = false;
+        videoPlayer.Stop();
     }
 
     [ClientRpc]
@@ -67,6 +67,7 @@ public class VideoPlayerBar : NetworkBehaviour
     [ClientRpc]
     public void PrevDiapositive()
     {
+        //Debug.Log(currentDiapositive);
         if (currentDiapositive != _maxDiapositive - 1)
         {
             DesableVideoPlayer();

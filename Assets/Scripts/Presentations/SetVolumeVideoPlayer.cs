@@ -15,7 +15,7 @@ public class SetVolumeVideoPlayer : MonoBehaviour
         if (video.isActiveAndEnabled)
         {
             video.SetDirectAudioMute(0, playAudio);
-            Debug.Log("entro");
+        //    Debug.Log("entro");
         }
     }
 }
