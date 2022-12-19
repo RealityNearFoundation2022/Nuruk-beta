@@ -145,7 +145,6 @@ public class CanvasManager : MonoBehaviour
 
     public void CloseMenuTutorial()
     {
-      //  menuObject.SetActive(false);
         PlayerData.InMenus = false;
         PlayerData.InChat = false;
     }
