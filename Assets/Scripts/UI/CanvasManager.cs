@@ -13,6 +13,8 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private Sprite onStateMic;
     [SerializeField] private Sprite offStateMic;
     [SerializeField] private Image micImage;
+    [SerializeField] private GameObject tutorial;
+    [SerializeField] private GameObject bug;
 
     private TestHome _testHome;
     private bool _currentStateAudio = false;
@@ -67,6 +69,8 @@ public class CanvasManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape) && Time.time > _timeActions)
         {
+            if (tutorial.activeSelf || bug.activeSelf) return;
+
             if (_chatManager.openChat)
             {
                 _chatManager.ControlOpenChat();
