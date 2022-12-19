@@ -45,7 +45,7 @@ Community chat: [https://near.chat](https://near.chat)
 ## How to start 
 
 - First, you must download the repository
-- Then open the scene called Login and then start it and that's it! the magic begins
+- Then open the scene called Opening and then start it and that's it! the magic begins
 
 ## Contributing
 
