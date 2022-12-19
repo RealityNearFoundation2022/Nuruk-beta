@@ -74,10 +74,14 @@ public class CanvasManager : MonoBehaviour
             }
             else
             {
-                if (menuObject.activeSelf && !_chatManager.openChat ){
-                    menuObject.SetActive(false);
-                }else{
+                if (menuObject.activeSelf && !_chatManager.openChat && Time.time > _timeActions){
+                    CloseMenu();
+                    HideCursor();
+                }
+                else
+                {
                     menuObject.SetActive(true);
+                    PlayerData.InChat = true;
                     PlayerData.InMenus = true;
                     ShowCursor();
                 }
@@ -136,5 +140,13 @@ public class CanvasManager : MonoBehaviour
     {
         menuObject.SetActive(false);
         PlayerData.InMenus = false;
+        PlayerData.InChat = false;
+    }
+
+    public void CloseMenuTutorial()
+    {
+      //  menuObject.SetActive(false);
+        PlayerData.InMenus = false;
+        PlayerData.InChat = false;
     }
 }

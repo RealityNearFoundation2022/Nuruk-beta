@@ -63,4 +63,10 @@ public class BugReport : MonoBehaviour
             ErrorMessage.text = "Fields can't be empty";
         }
     }
+
+    public void CloseBugReport()
+    {
+           Player.PlayerData.InMenus = false;
+           Player.PlayerData.InChat = false;
+    }
 }

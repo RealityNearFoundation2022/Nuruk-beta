@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Action
+  - BugMenu
   layers:
   - Default
   - TransparentFX
