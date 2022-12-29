@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PresentationWithHelpers : NetworkBehaviour
 {
     [SerializeField] private GameObject Video;
+    [SerializeField] private GameObject playPause;
     [SerializeField] private Sprite[] _diapositive;
 
     [SerializeField] private SpriteRenderer spriteRendererPresentation;
@@ -45,10 +46,12 @@ public class PresentationWithHelpers : NetworkBehaviour
     {
         if (currentDiapositive == _maxDiapositive - 1)
         {
+            if (playPause != null) playPause.SetActive(true);
             EnableVideoPlayer();
         }
         else
         {
+            if (playPause != null) playPause.SetActive(false);
             DesableVideoPlayer();
         }
        
@@ -68,6 +71,7 @@ public class PresentationWithHelpers : NetworkBehaviour
     {
         if (currentDiapositive != _maxDiapositive - 1)
         {
+            if (playPause != null) playPause.SetActive(false);
             DesableVideoPlayer();
         }
 

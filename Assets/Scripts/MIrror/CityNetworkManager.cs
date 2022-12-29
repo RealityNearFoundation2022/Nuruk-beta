@@ -92,7 +92,7 @@ namespace  City
                     //setup.playerUsername = PlayerData.username;
 
                 }
-                Debug.Log("Spawning player");
+                Debug.Log("Spawning player Male");
                 // call this to use this gameobject as the primary controller
             
                 NetworkServer.AddPlayerForConnection(conn, gameobject);
@@ -114,7 +114,7 @@ namespace  City
                     //setup.playerUsername = PlayerData.username;
 
                 }
-                Debug.Log("Spawning player");
+                Debug.Log("Spawning player Female");
                 // call this to use this gameobject as the primary controller
             
                 NetworkServer.AddPlayerForConnection(conn, gameobject);
@@ -136,7 +136,7 @@ namespace  City
                     //setup.playerUsername = PlayerData.username;
 
                 }
-                Debug.Log("Spawning player");
+                Debug.Log("Spawning player Monster");
                 // call this to use this gameobject as the primary controller
             
                 NetworkServer.AddPlayerForConnection(conn, gameobject);
