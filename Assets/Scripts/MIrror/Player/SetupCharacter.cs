@@ -1,20 +1,22 @@
 using System;
 using System.Collections;
 using TMPro;
-using Mirror;
+//using Mirror;
+using Normal.Realtime;
 using Classes;
 using Player;
 using UnityEngine;
 
 namespace PlayerMirror
 {
-    public class SetupCharacter : NetworkBehaviour
+    public class SetupCharacter : MonoBehaviour
     {
-        [SyncVar] public string currentHead = "";
-        [SyncVar] public string currentShirt = "";
-        [SyncVar] public string currentPants = "";
-        [SyncVar] public string currentShoes = "";
-        [SyncVar] public string currentExtra = "";
+        private RealtimeView _realtimeView;
+       /* [SyncVar]*/ public string currentHead = "";
+       /* [SyncVar]*/ public string currentShirt = "";
+       /* [SyncVar]*/ public string currentPants = "";
+       /* [SyncVar]*/ public string currentShoes = "";
+       /* [SyncVar]*/ public string currentExtra = "";
         
         [SerializeField] private GameObject playerGeometric;
 
@@ -23,12 +25,15 @@ namespace PlayerMirror
         [SerializeField] private GameObject[] pants;
         [SerializeField] private GameObject[] shoes;
         [SerializeField] private GameObject[] extras;
-        [SyncVar(hook = "DisplayPlayerName")] public string playerUsername;
+      /*  [SyncVar(hook = "DisplayPlayerName")]*/ public string playerUsername;
 
         // username
-        public TMP_Text userTitle; 
+        public TMP_Text userTitle;
 
-        
+        private void Start()
+        {
+            _realtimeView = GetComponent<RealtimeView>();
+        }
         public void EnableComponent()
         {
             foreach (var head in heads)
@@ -70,6 +75,7 @@ namespace PlayerMirror
 
         private void OnEnable()
         {
+           
             StartCoroutine(StartSetup());
         }
 
@@ -77,12 +83,12 @@ namespace PlayerMirror
         {
             yield return new WaitForSeconds(1);
             EnableComponent();
-            if (isLocalPlayer) { CmdSendName(PlayerData.username); }
+            if (_realtimeView.isOwnedLocallyInHierarchy) { CmdSendName(PlayerData.username); }
         }
         
  
         
-        [Command]
+       // [Command]
         void CmdSendName(string playerName)
         {
             playerUsername = playerName;

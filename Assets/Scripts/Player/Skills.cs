@@ -5,10 +5,12 @@ using Cinemachine;
 using UnityEngine;
 using CustomEvents;
 using StarterAssets;
-using Mirror;
+using Normal.Realtime;  
+//using Mirror;
 
-public class Skills : NetworkBehaviour
+public class Skills : MonoBehaviour
 {
+    private RealtimeView _realtimeView;
     [SerializeField] private GameObject player;
     private static readonly int Sit = Animator.StringToHash("Sit");
 
@@ -21,12 +23,27 @@ public class Skills : NetworkBehaviour
     private GameObject _cameraPlayer;
 
     #endregion
+
     
     
+    private void Start()
+    {
+        _realtimeView = GetComponent<RealtimeView>();
+    }
+    private void OnEnable()
+    {
+        Events.SitPlayer.AddListener(SitPlayerEvent);
+    }
+
+    private void OnDisable()
+    {
+        Events.SitPlayer.RemoveListener(SitPlayerEvent);
+    }
+
     #region Sit
     private void SitPlayerEvent(Sit sitData)
     {
-        if (!isLocalPlayer)
+        if (_realtimeView.isOwnedLocallyInHierarchy)
             return;
         if (sitData.sitPlayer)
         {
@@ -47,21 +64,8 @@ public class Skills : NetworkBehaviour
             sitData.cameraToLook.SetActive(false);
             player.GetComponent<Animator>().SetBool(Sit, false);
         }
-        
+
     }
 
     #endregion
-
-
-    private void OnEnable()
-    {
-        Events.SitPlayer.AddListener(SitPlayerEvent);
-    }
-
-    private void OnDisable()
-    {
-        Events.SitPlayer.RemoveListener(SitPlayerEvent);
-    }
-
-    
 }
