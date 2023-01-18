@@ -75,20 +75,16 @@ namespace PlayerMirror
 
         private void OnEnable()
         {
-           
             StartCoroutine(StartSetup());
         }
 
-        IEnumerator StartSetup()
+       public IEnumerator StartSetup()
         {
             yield return new WaitForSeconds(1);
             EnableComponent();
             if (_realtimeView.isOwnedLocallyInHierarchy) { CmdSendName(PlayerData.username); }
         }
         
- 
-        
-       // [Command]
         void CmdSendName(string playerName)
         {
             playerUsername = playerName;
@@ -98,9 +94,7 @@ namespace PlayerMirror
         public void DisplayPlayerName(string oldName, string newName)
         {
             Debug.Log("Player changed name from " + oldName + " to " + newName);
- 
             userTitle.text = newName;
         }
     }
-
 }

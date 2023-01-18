@@ -2,8 +2,8 @@ using UnityEngine;
 using CustomEvents;
 using Classes;
 using TMPro;
-using PlayFab;
-using PlayFab.ClientModels;
+//using PlayFab;
+//using PlayFab.ClientModels;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -303,11 +303,12 @@ public class SelectionCharacter : MonoBehaviour
 
    public void SaveSetup()
    {
-      SetCharacterData();
-   }
+        Events.ChangeScene?.Invoke("City");
+        //SetCharacterData();
+    }
 
 
-   #region Playfab
+   /*#region Playfab
 
    private void SetCharacterData()
    {
@@ -362,5 +363,5 @@ public class SelectionCharacter : MonoBehaviour
          Events.ChangeScene?.Invoke("City");
       }, error => { });
    }
-   #endregion
+   #endregion*/
 }

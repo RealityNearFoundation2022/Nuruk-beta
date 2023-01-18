@@ -42,29 +42,29 @@ namespace  City
             _chatAuthenticator = GetComponent<ChatAuthenticator>();
             CharacterSetup _characterSetup;
             Debug.Log("Se conecto el personaje");
-            PlayFabClientAPI.GetUserData(new GetUserDataRequest() {
-                Keys = null
-            }, result => {
-                Debug.Log("Got user data:");
-                if (result.Data == null || !result.Data.ContainsKey("CharacterSetup"))
-                    Debug.Log("No Character customs");
-                else
-                {
-                    _characterSetup = JsonUtility.FromJson<CharacterSetup>(result.Data["CharacterSetup"].Value);
-                    NetworkClient.Send(_characterSetup);
-                    Debug.Log(_characterSetup.type);
-                }
+            //PlayFabClientAPI.GetUserData(new GetUserDataRequest() {
+            //    Keys = null
+            //}, result => {
+            //    Debug.Log("Got user data:");
+            //    if (result.Data == null || !result.Data.ContainsKey("CharacterSetup"))
+            //        Debug.Log("No Character customs");
+            //    else
+            //    {
+            //        _characterSetup = JsonUtility.FromJson<CharacterSetup>(result.Data["CharacterSetup"].Value);
+            //        NetworkClient.Send(_characterSetup);
+            //        Debug.Log(_characterSetup.type);
+            //    }
 
-                if (result.Data.ContainsKey("Username"))
-                {
-                    Debug.Log(JsonUtility.FromJson<Username>(result.Data["Username"].Value).value);
-                    PlayerData.username = JsonUtility.FromJson<Username>(result.Data["Username"].Value).value;
+            //    if (result.Data.ContainsKey("Username"))
+            //    {
+            //        Debug.Log(JsonUtility.FromJson<Username>(result.Data["Username"].Value).value);
+            //        PlayerData.username = JsonUtility.FromJson<Username>(result.Data["Username"].Value).value;
                     
-                }
-            }, (error) => {
-                Debug.Log("Got error retrieving user data:");
-                Debug.Log(error.GenerateErrorReport());
-            });
+            //    }
+            //}, (error) => {
+            //    Debug.Log("Got error retrieving user data:");
+            //    Debug.Log(error.GenerateErrorReport());
+            //});
         }
 
         public override void OnServerDisconnect(NetworkConnectionToClient conn)
