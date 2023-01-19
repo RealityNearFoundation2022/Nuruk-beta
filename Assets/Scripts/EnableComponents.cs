@@ -28,7 +28,7 @@ namespace StarterAssets
         private void LocalStart()
         {
             // Request ownership of the Player and the character RealtimeTransforms
-            GetComponent<RealtimeTransform>().RequestOwnership();
+       //     GetComponent<RealtimeTransform>().RequestOwnership();
          //   _character.GetComponent<RealtimeTransform>().RequestOwnership();
 
 
@@ -45,8 +45,8 @@ namespace StarterAssets
             virtualCamera.LookAt = target;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
-                    Cursor.lockState = CursorLockMode.Locked;
-                     Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
 #endif
         }
 

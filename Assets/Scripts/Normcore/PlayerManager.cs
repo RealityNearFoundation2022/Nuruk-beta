@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using Normal.Realtime;
 using Normal;
@@ -7,12 +8,14 @@ using PlayFab;
 using PlayFab.ClientModels;
 using Classes;
 using Player;
+using StarterAssets;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private GameObject _camera = default;
 
-   // private PuzzleSetupNetworked _puzzleSetupNetworked;
+    // private PuzzleSetupNetworked _puzzleSetupNetworked;
     private Realtime _realtime;
     [SerializeField] private Transform spawnTransform = default;
 
@@ -26,7 +29,7 @@ public class PlayerManager : MonoBehaviour
         _realtime.didConnectToRoom += DidConnectToRoom;
 
         // Set puzzle networked
-       // _puzzleSetupNetworked = GetComponent<PuzzleSetupNetworked>();
+        // _puzzleSetupNetworked = GetComponent<PuzzleSetupNetworked>();
     }
 
     private void DidConnectToRoom(Realtime realtime)
@@ -38,14 +41,7 @@ public class PlayerManager : MonoBehaviour
             preventOwnershipTakeover: true,      // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
             useInstance: realtime); // Use the instance of Realtime that fired the didConnectToRoom event.
 
-        //// Get child objects
-        //Transform childTransformCamera = playerGameObject.transform.GetChild(1);
-        //childTransformCamera.GetChild(0).GetComponent<CameraDistanceRaycaster>().cameraTransform = _camera.transform;
-        //_camera.transform.SetParent(childTransformCamera.GetChild(0).GetChild(0).transform);
-
-        //// Setting puzzle
-        //_puzzleSetupNetworked.SetupNetworked(playerGameObject.GetComponent<AdvancedWalkerController>(),
-        //    childTransformCamera.GetChild(0).GetComponent<ThirdPersonCameraController>(), _camera.GetComponent<AdventureKitRaycast>());
+        // Enabling ropa
 
         PlayFabClientAPI.GetUserData(new GetUserDataRequest()
         {
@@ -58,7 +54,7 @@ public class PlayerManager : MonoBehaviour
             else
             {
                 CharacterSetup _characterSetup = JsonUtility.FromJson<CharacterSetup>(result.Data["CharacterSetup"].Value);
-               
+
                 playerGameObject.GetComponent<SetupCharacter>().currentShirt = _characterSetup.shirt;
                 playerGameObject.GetComponent<SetupCharacter>().currentHead = _characterSetup.head;
                 playerGameObject.GetComponent<SetupCharacter>().currentPants = _characterSetup.pants;
@@ -81,6 +77,18 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Got error retrieving user data:");
             Debug.Log(error.GenerateErrorReport());
         });
+
+        CharacterController characterController = playerGameObject.GetComponent<CharacterController>();
+        characterController.enabled = true;
+        ThirdPersonController thirdPersonController = playerGameObject.GetComponent<ThirdPersonController>();
+        thirdPersonController.enabled = true;
+        PlayerInput playerInput = playerGameObject.GetComponent<PlayerInput>();
+        playerInput.enabled = true;
+        GameObject platerFollow = GameObject.Find("PlayerFollowCamera");
+        CinemachineVirtualCamera virtualCamera = platerFollow.GetComponent<CinemachineVirtualCamera>();
+        //Transform childTransformCamera = playerGameObject.transform.GetChild(1);
+        virtualCamera.Follow = playerGameObject.transform.GetChild(0);
+        virtualCamera.LookAt = playerGameObject.transform.GetChild(0);
 
     }
 }

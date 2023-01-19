@@ -3,6 +3,7 @@
 using UnityEngine.InputSystem;
 #endif
 using Player;
+using Normal.Realtime;
 
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -110,6 +111,8 @@ namespace StarterAssets
 
         private const float _threshold = 0.01f;
 
+        private RealtimeView _realtimeView;
+
         private bool _hasAnimator;
 
         private bool IsCurrentDeviceMouse
@@ -137,7 +140,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -152,24 +155,33 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            _realtimeView = GetComponent<RealtimeView>();
         }
 
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
+            if (_realtimeView.isOwnedLocallyInHierarchy)
+            {
+                _hasAnimator = TryGetComponent(out _animator);
 
-            JumpAndGravity();
-            GroundedCheck();
-            if (!PlayerData.InChat)
-                Move();
-            
-           
+                JumpAndGravity();
+                GroundedCheck();
+                if (!PlayerData.InChat)
+                    Move();
+            }
+
+
+
         }
 
         private void LateUpdate()
         {
-            if (!PlayerData.InMenus)
-                CameraRotation();
+            if (_realtimeView.isOwnedLocallyInHierarchy)
+            {
+                if (!PlayerData.InMenus)
+                    CameraRotation();
+            }
+
         }
 
         private void AssignAnimationIDs()
@@ -308,10 +320,10 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f && !PlayerData.InChat)
                 {
-                    
-                        // the square root of H * -2 * G = how much velocity needed to reach desired height
-                        _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-                    
+
+                    // the square root of H * -2 * G = how much velocity needed to reach desired height
+                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+
                     // update animator if using character
                     if (_hasAnimator)
                     {

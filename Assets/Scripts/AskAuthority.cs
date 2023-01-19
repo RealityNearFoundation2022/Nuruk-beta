@@ -11,7 +11,7 @@ public class AskAuthority : MonoBehaviour
     private void Start()
     {
         internalComponents.GetComponent<RealtimeTransform>().RequestOwnership();
-        rsg.GetComponent<RealtimeTransform>().RequestOwnership();
+    //    rsg.GetComponent<RealtimeTransform>().RequestOwnership();
         
     }
 }
