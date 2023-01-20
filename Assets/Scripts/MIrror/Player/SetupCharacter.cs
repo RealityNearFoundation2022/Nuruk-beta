@@ -137,7 +137,7 @@ namespace PlayerMirror
             StartCoroutine(StartSetup());
         }
 
-       public IEnumerator StartSetup()
+        public IEnumerator StartSetup()
         {
             yield return new WaitForSeconds(1);
             EnableComponent();

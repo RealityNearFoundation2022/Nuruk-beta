@@ -18,7 +18,8 @@ public class PlayerManager : MonoBehaviour
     // private PuzzleSetupNetworked _puzzleSetupNetworked;
     private Realtime _realtime;
     [SerializeField] private Transform spawnTransform = default;
-
+    string prefabName= "";
+    GameObject playerGameObject;
 
     private void Awake()
     {
@@ -34,13 +35,6 @@ public class PlayerManager : MonoBehaviour
 
     private void DidConnectToRoom(Realtime realtime)
     {
-        GameObject playerGameObject = Realtime.Instantiate(prefabName: "PlayerNetworkedNormcore",  // Prefab name
-            spawnTransform.position,
-            transform.rotation,
-            ownedByClient: true,      // Make sure the RealtimeView on this prefab is owned by this client
-            preventOwnershipTakeover: true,      // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
-            useInstance: realtime); // Use the instance of Realtime that fired the didConnectToRoom event.
-
         // Enabling ropa
 
         PlayFabClientAPI.GetUserData(new GetUserDataRequest()
@@ -54,6 +48,26 @@ public class PlayerManager : MonoBehaviour
             else
             {
                 CharacterSetup _characterSetup = JsonUtility.FromJson<CharacterSetup>(result.Data["CharacterSetup"].Value);
+
+                if(_characterSetup.type == "Male")
+                {
+                    prefabName = "PlayerMenNetworkedNormcore";
+                }else if (_characterSetup.type == "Female")
+                {
+                    prefabName = "PlayerWomenNetworkedNormcore";
+                }else if (_characterSetup.type == "Monster")
+                {
+                    prefabName = "PlayerMonsterNetworkedNormcore";
+                }
+
+                /* "PlayerNetworkedNormcore"*/
+                playerGameObject = Realtime.Instantiate(prefabName: prefabName,  // Prefab name
+                      spawnTransform.position,
+                      transform.rotation,
+                      ownedByClient: true,      // Make sure the RealtimeView on this prefab is owned by this client
+                      preventOwnershipTakeover: true,      // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
+                      useInstance: realtime); // Use the instance of Realtime that fired the didConnectToRoom event.
+
 
                 playerGameObject.GetComponent<SetupCharacter>().currentShirt = _characterSetup.shirt;
                 playerGameObject.GetComponent<SetupCharacter>().currentHead = _characterSetup.head;
@@ -72,23 +86,26 @@ public class PlayerManager : MonoBehaviour
                 PlayerData.username = JsonUtility.FromJson<Username>(result.Data["Username"].Value).value;
 
             }
+
+            CharacterController characterController = playerGameObject.GetComponent<CharacterController>();
+            characterController.enabled = true;
+            ThirdPersonController thirdPersonController = playerGameObject.GetComponent<ThirdPersonController>();
+            thirdPersonController.enabled = true;
+            PlayerInput playerInput = playerGameObject.GetComponent<PlayerInput>();
+            playerInput.enabled = true;
+            GameObject platerFollow = GameObject.Find("PlayerFollowCamera");
+            CinemachineVirtualCamera virtualCamera = platerFollow.GetComponent<CinemachineVirtualCamera>();
+            //Transform childTransformCamera = playerGameObject.transform.GetChild(1);
+            virtualCamera.Follow = playerGameObject.transform.GetChild(0);
+            virtualCamera.LookAt = playerGameObject.transform.GetChild(0);
+
         }, (error) =>
         {
             Debug.Log("Got error retrieving user data:");
             Debug.Log(error.GenerateErrorReport());
         });
 
-        CharacterController characterController = playerGameObject.GetComponent<CharacterController>();
-        characterController.enabled = true;
-        ThirdPersonController thirdPersonController = playerGameObject.GetComponent<ThirdPersonController>();
-        thirdPersonController.enabled = true;
-        PlayerInput playerInput = playerGameObject.GetComponent<PlayerInput>();
-        playerInput.enabled = true;
-        GameObject platerFollow = GameObject.Find("PlayerFollowCamera");
-        CinemachineVirtualCamera virtualCamera = platerFollow.GetComponent<CinemachineVirtualCamera>();
-        //Transform childTransformCamera = playerGameObject.transform.GetChild(1);
-        virtualCamera.Follow = playerGameObject.transform.GetChild(0);
-        virtualCamera.LookAt = playerGameObject.transform.GetChild(0);
+        
 
     }
 }
