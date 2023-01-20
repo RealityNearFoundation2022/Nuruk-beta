@@ -166,7 +166,7 @@ namespace StarterAssets
 
                 JumpAndGravity();
                 GroundedCheck();
-                if (!PlayerData.InChat)
+             //   if (!PlayerData.InChat)
                     Move();
             }
         }

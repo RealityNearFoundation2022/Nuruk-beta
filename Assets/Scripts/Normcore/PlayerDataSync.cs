@@ -44,6 +44,10 @@ public class PlayerDataSync : RealtimeComponent<ModelSync>
                 currentModel.extras = "";
             }
             UpdateShirt();
+            UpdateHead();
+            UpdatePant();
+            UpdateShoes();
+            UpdateExtras();
 
             currentModel.shirtsDidChange += ShirtDidChange;
             currentModel.headsDidChange += HeadsDidChange;
