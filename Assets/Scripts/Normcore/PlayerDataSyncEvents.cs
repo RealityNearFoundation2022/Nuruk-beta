@@ -18,4 +18,16 @@ public class PlayerDataSyncEvents : MonoBehaviour
     {
         playerDataSync.ChangeHead(headName);
     }
+    public void ChangePants(string headName)
+    {
+        playerDataSync.ChangePants(headName);
+    }
+    public void ChangeShoes(string shoes)
+    {
+        playerDataSync.ChangeShoes(shoes);
+    }
+    public void ChangeExtras(string extras)
+    {
+        playerDataSync.ChangeExtras(extras);
+    }
 }

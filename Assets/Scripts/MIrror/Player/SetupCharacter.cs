@@ -45,7 +45,6 @@ namespace PlayerMirror
                 {
                     head.SetActive(true);
                     playerDataSyncEvents.ChangeHead(currentHead);
-
                 }
             }
             foreach (var shirt in shirts)
@@ -61,6 +60,7 @@ namespace PlayerMirror
                 if (currentPants == pant.name)
                 {
                     pant.SetActive(true);
+                    playerDataSyncEvents.ChangePants(currentPants);
                 }
             }
             foreach (var shoe in shoes)
@@ -68,6 +68,7 @@ namespace PlayerMirror
                 if (currentShoes == shoe.name)
                 {
                     shoe.SetActive(true);
+                    playerDataSyncEvents.ChangeShoes(currentShoes);
                 }
             }
             foreach (var extra in extras)
@@ -75,6 +76,7 @@ namespace PlayerMirror
                 if (currentExtra == extra.name)
                 {
                     extra.SetActive(true);
+                    playerDataSyncEvents.ChangeExtras(currentExtra);
                 }
             }
         }
@@ -96,6 +98,36 @@ namespace PlayerMirror
                 if (headName == head.name)
                 {
                     head.SetActive(true);
+                }
+            }
+        }
+        public void PantsUpdate(string pantName)
+        {
+            foreach (var pant in pants)
+            {
+                if (pantName == pant.name)
+                {
+                    pant.SetActive(true);
+                }
+            }
+        }
+        public void ShoesUpdate(string shoesName)
+        {
+            foreach (var shoe in shoes)
+            {
+                if (shoesName == shoe.name)
+                {
+                    shoe.SetActive(true);
+                }
+            }
+        }
+        public void ExtrasUpdate(string extraName)
+        {
+            foreach (var extra in extras)
+            {
+                if (extraName == extra.name)
+                {
+                    extra.SetActive(true);
                 }
             }
         }
