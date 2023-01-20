@@ -11,9 +11,16 @@ public class PlayerDataSync  : RealtimeComponent<ModelSync>
     private RealtimeView _realtimeView;
 
     // Player
-    public Animator _playerAnimator;
+    private Animator _playerAnimator;
 
-    public SetupCharacter playerSetupCharacter;
+    private SetupCharacter playerSetupCharacter;
+    private void Awake()
+    {
+        // Get a reference to the mesh renderer
+        _playerAnimator = GetComponent<Animator>();
+        _realtimeView = GetComponent<RealtimeView>();
+        playerSetupCharacter = GetComponent<SetupCharacter>();
+    }
     protected override void OnRealtimeModelReplaced(ModelSync previousModel, ModelSync currentModel)
     {
         if (previousModel != null)
