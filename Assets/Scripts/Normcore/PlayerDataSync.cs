@@ -5,7 +5,7 @@ using Normal.Realtime;
 using System;
 using PlayerMirror;
 
-public class PlayerDataSync  : RealtimeComponent<ModelSync>
+public class PlayerDataSync : RealtimeComponent<ModelSync>
 {
 
     private RealtimeView _realtimeView;
@@ -26,6 +26,8 @@ public class PlayerDataSync  : RealtimeComponent<ModelSync>
         if (previousModel != null)
         {
             previousModel.shirtsDidChange -= ShirtDidChange;
+            previousModel.headsDidChange -= HeadsDidChange;
+           
         }
         if (currentModel != null)
         {
@@ -33,11 +35,18 @@ public class PlayerDataSync  : RealtimeComponent<ModelSync>
             if (currentModel.isFreshModel)
             {
                 currentModel.shirts = "";
+                currentModel.heads = "";
             }
             UpdateShirt();
 
             currentModel.shirtsDidChange += ShirtDidChange;
+            currentModel.headsDidChange += HeadsDidChange;
         }
+    }
+
+    private void HeadsDidChange(ModelSync model, string value)
+    {
+        UpdateHead();
     }
 
     private void ShirtDidChange(ModelSync model, string value)
@@ -51,8 +60,19 @@ public class PlayerDataSync  : RealtimeComponent<ModelSync>
             playerSetupCharacter.ShirtUpdate(model.shirts);
         }
     }
+    public void UpdateHead()
+    {
+        if (!_realtimeView.isOwnedLocallyInHierarchy)
+        {
+            playerSetupCharacter.HeadUpdate(model.heads);
+        }
+    }
     public void ChangeShirt(string shirt)
     {
         model.shirts = shirt;
+    }
+    public void ChangeHead(string head)
+    {
+        model.heads = head;
     }
 }

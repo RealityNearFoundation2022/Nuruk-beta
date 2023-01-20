@@ -169,9 +169,6 @@ namespace StarterAssets
                 if (!PlayerData.InChat)
                     Move();
             }
-
-
-
         }
 
         private void LateUpdate()

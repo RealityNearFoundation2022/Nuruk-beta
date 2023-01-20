@@ -14,5 +14,8 @@ public class PlayerDataSyncEvents : MonoBehaviour
     {
         playerDataSync.ChangeShirt(shirtName);
     }
-
+    public void ChangeHead(string headName)
+    {
+        playerDataSync.ChangeHead(headName);
+    }
 }

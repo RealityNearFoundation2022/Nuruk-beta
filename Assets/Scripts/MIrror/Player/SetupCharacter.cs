@@ -44,6 +44,8 @@ namespace PlayerMirror
                 if (currentHead == head.name)
                 {
                     head.SetActive(true);
+                    playerDataSyncEvents.ChangeHead(currentHead);
+
                 }
             }
             foreach (var shirt in shirts)
@@ -84,6 +86,16 @@ namespace PlayerMirror
                 if (shirtName == shirt.name)
                 {
                     shirt.SetActive(true);
+                }
+            }
+        }
+        public void HeadUpdate(string headName)
+        {
+            foreach (var head in heads)
+            {
+                if (headName == head.name)
+                {
+                    head.SetActive(true);
                 }
             }
         }

@@ -525,7 +525,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7084465607846026912}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b05dc555e11da014ca38fedfc74fabea, type: 3}
   m_Name: 
@@ -660,6 +660,8 @@ MonoBehaviour:
   - componentID: 1
     component: {fileID: 1089536752338450231}
   - componentID: 2
+    component: {fileID: 0}
+  - componentID: 3
     component: {fileID: 3381404154152066412}
   _childViews:
   - componentID: 1
@@ -716,8 +718,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b405b67d47da04282c392d25f1015c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAnimator: {fileID: 4610260602348101216}
-  playerSetupCharacter: {fileID: 4876357756839604950}
 --- !u!114 &4569761171201462859
 MonoBehaviour:
   m_ObjectHideFlags: 0
