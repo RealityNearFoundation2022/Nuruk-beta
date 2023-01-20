@@ -11,6 +11,7 @@ namespace PlayerMirror
 {
     public class SetupCharacter : MonoBehaviour
     {
+
         private RealtimeView _realtimeView;
        /* [SyncVar]*/ public string currentHead = "";
        /* [SyncVar]*/ public string currentShirt = "";
@@ -29,10 +30,12 @@ namespace PlayerMirror
 
         // username
         public TMP_Text userTitle;
+        PlayerDataSyncEvents playerDataSyncEvents;
 
         private void Start()
         {
             _realtimeView = GetComponent<RealtimeView>();
+            playerDataSyncEvents = GetComponent<PlayerDataSyncEvents>();
         }
         public void EnableComponent()
         {
@@ -48,6 +51,7 @@ namespace PlayerMirror
                 if (currentShirt == shirt.name)
                 {
                     shirt.SetActive(true);
+                    playerDataSyncEvents.ChangeShirt(currentShirt);
                 }
             }
             foreach (var pant in pants)
@@ -69,6 +73,17 @@ namespace PlayerMirror
                 if (currentExtra == extra.name)
                 {
                     extra.SetActive(true);
+                }
+            }
+        }
+
+        public void ShirtUpdate(string shirtName)
+        {
+            foreach (var shirt in shirts)
+            {
+                if (shirtName == shirt.name)
+                {
+                    shirt.SetActive(true);
                 }
             }
         }
