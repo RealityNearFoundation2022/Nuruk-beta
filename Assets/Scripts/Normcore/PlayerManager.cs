@@ -13,9 +13,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _camera = default;
+   [SerializeField] private GameObject _camera = default;
 
-    // private PuzzleSetupNetworked _puzzleSetupNetworked;
     private Realtime _realtime;
     [SerializeField] private Transform spawnTransform = default;
     string prefabName= "";
@@ -29,8 +28,6 @@ public class PlayerManager : MonoBehaviour
         // Notify us when Realtime successfully connects to the room
         _realtime.didConnectToRoom += DidConnectToRoom;
 
-        // Set puzzle networked
-        // _puzzleSetupNetworked = GetComponent<PuzzleSetupNetworked>();
     }
 
     private void DidConnectToRoom(Realtime realtime)
@@ -42,7 +39,7 @@ public class PlayerManager : MonoBehaviour
             Keys = null
         }, result =>
         {
-            Debug.Log("Got user data:");
+          //  Debug.Log("Got user data:");
             if (result.Data == null || !result.Data.ContainsKey("CharacterSetup"))
                 Debug.Log("No Character customs");
             else
@@ -59,15 +56,15 @@ public class PlayerManager : MonoBehaviour
                 {
                     prefabName = "PlayerMonsterNetworkedNormcore";
                 }
+                Debug.Log(_characterSetup.type);
+                Debug.Log(prefabName);
 
-                /* "PlayerNetworkedNormcore"*/
                 playerGameObject = Realtime.Instantiate(prefabName: prefabName,  // Prefab name
                       spawnTransform.position,
                       transform.rotation,
                       ownedByClient: true,      // Make sure the RealtimeView on this prefab is owned by this client
                       preventOwnershipTakeover: true,      // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
                       useInstance: realtime); // Use the instance of Realtime that fired the didConnectToRoom event.
-
 
                 playerGameObject.GetComponent<SetupCharacter>().currentShirt = _characterSetup.shirt;
                 playerGameObject.GetComponent<SetupCharacter>().currentHead = _characterSetup.head;
@@ -76,15 +73,12 @@ public class PlayerManager : MonoBehaviour
                 playerGameObject.GetComponent<SetupCharacter>().currentExtra = _characterSetup.extra;
 
                 StartCoroutine(playerGameObject.GetComponent<SetupCharacter>().StartSetup());
-
-                Debug.Log(_characterSetup.type);
             }
 
             if (result.Data.ContainsKey("Username"))
             {
                 Debug.Log(JsonUtility.FromJson<Username>(result.Data["Username"].Value).value);
                 PlayerData.username = JsonUtility.FromJson<Username>(result.Data["Username"].Value).value;
-
             }
 
             CharacterController characterController = playerGameObject.GetComponent<CharacterController>();
@@ -104,8 +98,5 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Got error retrieving user data:");
             Debug.Log(error.GenerateErrorReport());
         });
-
-        
-
     }
 }

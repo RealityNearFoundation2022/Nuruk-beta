@@ -13,11 +13,11 @@ namespace PlayerMirror
     {
 
         private RealtimeView _realtimeView;
-       /* [SyncVar]*/ public string currentHead = "";
-       /* [SyncVar]*/ public string currentShirt = "";
-       /* [SyncVar]*/ public string currentPants = "";
-       /* [SyncVar]*/ public string currentShoes = "";
-       /* [SyncVar]*/ public string currentExtra = "";
+        public string currentHead = "";
+        public string currentShirt = "";
+        public string currentPants = "";
+        public string currentShoes = "";
+        public string currentExtra = "";
         
         [SerializeField] private GameObject playerGeometric;
 
@@ -26,7 +26,7 @@ namespace PlayerMirror
         [SerializeField] private GameObject[] pants;
         [SerializeField] private GameObject[] shoes;
         [SerializeField] private GameObject[] extras;
-      /*  [SyncVar(hook = "DisplayPlayerName")]*/ public string playerUsername;
+      public string playerUsername;
 
         // username
         public TMP_Text userTitle;

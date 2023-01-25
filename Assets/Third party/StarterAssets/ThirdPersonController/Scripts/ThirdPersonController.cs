@@ -95,11 +95,11 @@ namespace StarterAssets
         private float _fallTimeoutDelta;
 
         // animation IDs
-        private int _animIDSpeed;
-        private int _animIDGrounded;
-        private int _animIDJump;
-        private int _animIDFreeFall;
-        private int _animIDMotionSpeed;
+        public int _animIDSpeed;
+        public int _animIDGrounded;
+        public int _animIDJump;
+        public int _animIDFreeFall;
+        public int _animIDMotionSpeed;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -112,6 +112,8 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private RealtimeView _realtimeView;
+        PlayerDataSyncEvents playerDataSyncEvents;
+
 
         private bool _hasAnimator;
 
@@ -156,6 +158,8 @@ namespace StarterAssets
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
             _realtimeView = GetComponent<RealtimeView>();
+            playerDataSyncEvents = GetComponent<PlayerDataSyncEvents>();
+
         }
 
         private void Update()
@@ -166,7 +170,7 @@ namespace StarterAssets
 
                 JumpAndGravity();
                 GroundedCheck();
-             //   if (!PlayerData.InChat)
+                if (!PlayerData.InChat)
                     Move();
             }
         }
@@ -178,16 +182,20 @@ namespace StarterAssets
                 if (!PlayerData.InMenus)
                     CameraRotation();
             }
-
         }
 
         private void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
+            Debug.Log(_animIDSpeed+ " _animIDSpeed");
             _animIDGrounded = Animator.StringToHash("Grounded");
+            Debug.Log(_animIDGrounded + " _animIDGrounded");
             _animIDJump = Animator.StringToHash("Jump");
+            Debug.Log(_animIDJump + " _animIDJump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
+            Debug.Log(_animIDFreeFall + " _animIDFreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            Debug.Log(_animIDMotionSpeed + " _animIDMotionSpeed");
         }
 
         private void GroundedCheck()
@@ -202,6 +210,8 @@ namespace StarterAssets
             if (_hasAnimator)
             {
                 _animator.SetBool(_animIDGrounded, Grounded);
+                playerDataSyncEvents.ChangeGrounded(Grounded);
+
             }
         }
 
@@ -290,7 +300,11 @@ namespace StarterAssets
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
+                playerDataSyncEvents.ChangeSpeed(_animationBlend);
+
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                playerDataSyncEvents.ChangeMotionSpeed(inputMagnitude);
+
             }
         }
 
@@ -305,7 +319,11 @@ namespace StarterAssets
                 if (_hasAnimator)
                 {
                     _animator.SetBool(_animIDJump, false);
+                    playerDataSyncEvents.ChangeJump(false);
+
                     _animator.SetBool(_animIDFreeFall, false);
+                    playerDataSyncEvents.ChangeFreeFall(false);
+
                 }
 
                 // stop our velocity dropping infinitely when grounded
@@ -325,6 +343,8 @@ namespace StarterAssets
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDJump, true);
+                        playerDataSyncEvents.ChangeJump(true);
+
                     }
                 }
 
@@ -350,6 +370,7 @@ namespace StarterAssets
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDFreeFall, true);
+                        playerDataSyncEvents.ChangeFreeFall(true);
                     }
                 }
 
