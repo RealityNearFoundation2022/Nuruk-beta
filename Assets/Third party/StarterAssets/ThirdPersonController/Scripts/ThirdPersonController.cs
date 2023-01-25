@@ -187,15 +187,10 @@ namespace StarterAssets
         private void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
-            Debug.Log(_animIDSpeed+ " _animIDSpeed");
             _animIDGrounded = Animator.StringToHash("Grounded");
-            Debug.Log(_animIDGrounded + " _animIDGrounded");
             _animIDJump = Animator.StringToHash("Jump");
-            Debug.Log(_animIDJump + " _animIDJump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
-            Debug.Log(_animIDFreeFall + " _animIDFreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-            Debug.Log(_animIDMotionSpeed + " _animIDMotionSpeed");
         }
 
         private void GroundedCheck()
@@ -211,7 +206,6 @@ namespace StarterAssets
             {
                 _animator.SetBool(_animIDGrounded, Grounded);
                 playerDataSyncEvents.ChangeGrounded(Grounded);
-
             }
         }
 
