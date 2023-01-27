@@ -1,0 +1,1 @@
+'/c/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Unity.exe'  -stackTraceLogType -projectPath . -buildPath "build/NurukJS" -executeMethod BuildManager.BuildWebGl
