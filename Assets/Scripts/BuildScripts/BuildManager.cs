@@ -6,13 +6,14 @@ using Mirror;
 using Mirror.SimpleWeb;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
     
-    static string buildPathWebGl = Path.Combine(Application.dataPath, "builds", "NurukJS");
-    static string buildPathServer = Path.Combine(Application.dataPath, "builds", "server");
+    static string buildPathWebGl = Path.Combine("builds", "web", "NurukJS");
+    static string buildPathServer = Path.Combine("builds", "server", "server");
     
     // WebGL
     private static string hostServer = "servernuruk.devsgio.tech";
@@ -20,6 +21,7 @@ public class BuildManager : MonoBehaviour
     [MenuItem("Builds/Build Server")]
     public static void BuildServerLinux()
     {
+        // Getting arguments from command line
         var args = Environment.GetCommandLineArgs();
         for (var i = 0; i < args.Length; i++)
         {
@@ -30,32 +32,29 @@ public class BuildManager : MonoBehaviour
                     break;
             }
         }
-
-        // if the output folder doesn't exist create it now
-        if (!Directory.Exists(buildPathServer))
-        {
-            Directory.CreateDirectory(buildPathServer);
-        }
         
-        EditorApplication.OpenScene("Assets/Scenes/City.unity");
+        // Opening scene
+        var scene = EditorSceneManager.OpenScene("Assets/Scenes/City.unity");
         // Setting transport config
         GameObject gameObjectNetwork = GameObject.Find("Network");
         // Getting transport
         SimpleWebTransport simpleWebTransport = gameObjectNetwork.GetComponent<SimpleWebTransport>();
-        Debug.Log(simpleWebTransport);
-        UnityEngine.Debug.Log(simpleWebTransport);
+        // Setting port
         simpleWebTransport.port = 443;
+        // Setting ssl
         simpleWebTransport.sslEnabled = true;
+        // Setting wss
         simpleWebTransport.clientUseWss = true;
 
+        // Setting HUD
         NetworkManagerHUD hub = gameObjectNetwork.GetComponent<NetworkManagerHUD>();
+        // Disabling HUD
         hub.enabled = false;
         
-        
         // save
-        EditorApplication.SaveScene("Assets/Scenes/City.unity");
+        EditorSceneManager.SaveScene(scene);
 
-
+        // Building
         UnityEditor.PlayerSettings.runInBackground = false;
         var buildPlayerOptions = new BuildPlayerOptions()
         {
@@ -63,15 +62,16 @@ public class BuildManager : MonoBehaviour
             subtarget = (int) StandaloneBuildSubtarget.Server,
             target = BuildTarget.StandaloneLinux64,
             locationPathName = buildPathServer,
-            options = BuildOptions.EnableHeadlessMode | BuildOptions.StrictMode
+            options = BuildOptions.StrictMode
         };
+        // Building
         BuildReport buildReport = BuildPipeline.BuildPlayer(buildPlayerOptions );
-        UnityEngine.Debug.Log(buildReport.summary);
     }
     
     [MenuItem("Builds/Build Server Windows Dev")]
     public static void BuildServerWindows()
     {
+        // Getting arguments from command line
         var args = Environment.GetCommandLineArgs();
         for (var i = 0; i < args.Length; i++)
         {
@@ -82,31 +82,26 @@ public class BuildManager : MonoBehaviour
                     break;
             }
         }
-
-        // if the output folder doesn't exist create it now
-        if (!Directory.Exists(buildPathServer))
-        {
-            Directory.CreateDirectory(buildPathServer);
-        }
         
-        EditorApplication.OpenScene("Assets/Scenes/City.unity");
+        var scene = EditorSceneManager.OpenScene("Assets/Scenes/City.unity");
         // Getting network gameObjectNetwork
         GameObject gameObjectNetwork = GameObject.Find("Network");
         // Setting transport config
         SimpleWebTransport simpleWebTransport = gameObjectNetwork.GetComponent<SimpleWebTransport>();
-        Debug.Log(simpleWebTransport);
-        UnityEngine.Debug.Log(simpleWebTransport);
+        // Setting port
         simpleWebTransport.port = 443;
+        // Setting ssl
         simpleWebTransport.sslEnabled = false;
+        // Setting wss
         simpleWebTransport.clientUseWss = false;
 
+        // Setting HUD
         NetworkManagerHUD hub = gameObjectNetwork.GetComponent<NetworkManagerHUD>();
+        // Disabling HUD
         hub.enabled = false;
-        
-        
-        // save
-        EditorApplication.SaveScene("Assets/Scenes/City.unity");
 
+        // save
+        EditorSceneManager.SaveScene(scene);
 
         UnityEditor.PlayerSettings.runInBackground = false;
         var buildPlayerOptions = new BuildPlayerOptions()
@@ -115,15 +110,18 @@ public class BuildManager : MonoBehaviour
             subtarget = (int) StandaloneBuildSubtarget.Server,
             target = BuildTarget.StandaloneWindows64,
             locationPathName = "../builds/windowServer",
-            options = BuildOptions.EnableHeadlessMode | BuildOptions.StrictMode
+            options = BuildOptions.StrictMode
         };
+        // Building
         BuildReport buildReport = BuildPipeline.BuildPlayer(buildPlayerOptions );
-        UnityEngine.Debug.Log(buildReport.summary);
     }
 
+
+    // WebGL build script
     [MenuItem("Builds/Build WebGL")]
     public static void BuildWebGl()
     {
+        // Getting arguments from command line
         var args = Environment.GetCommandLineArgs();
         for (var i = 0; i < args.Length; i++)
         {
@@ -138,27 +136,27 @@ public class BuildManager : MonoBehaviour
             }
         }
         
-        // if the output folder doesn't exist create it now
-        if (!Directory.Exists(buildPathWebGl))
-        {
-            Directory.CreateDirectory(buildPathWebGl);
-        }
-        
         # region Setting Scene
-        EditorApplication.OpenScene("Assets/Scenes/City.unity");
+        // Opening scene
+        var scene = EditorSceneManager.OpenScene("Assets/Scenes/City.unity");
         // Getting network gameObjectNetwork
         GameObject gameObjectNetwork = GameObject.Find("Network");
         // Setting transport config
         SimpleWebTransport simpleWebTransport = gameObjectNetwork.GetComponent<SimpleWebTransport>();
+        // Setting port
         simpleWebTransport.port = 443;
+        // Setting ssl
         simpleWebTransport.sslEnabled = true;
+        // Setting wss
         simpleWebTransport.clientUseWss = true;
         // Setting network manager
         CityNetworkManager cityNetworkManager = gameObjectNetwork.GetComponent<CityNetworkManager>();
+        // Setting host
         cityNetworkManager.SetHostname(hostServer);
         
-
+        // Setting HUD
         NetworkManagerHUD hub = gameObjectNetwork.GetComponent<NetworkManagerHUD>();
+        // Disabling HUD
         hub.enabled = false;
         
         // WebGL configuration
@@ -166,9 +164,10 @@ public class BuildManager : MonoBehaviour
         PlayerSettings.WebGL.template = "";
         PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Gzip;
         PlayerSettings.runInBackground = false;
-        EditorApplication.SaveScene("Assets/Scenes/City.unity");
+        EditorSceneManager.SaveScene(scene);
         
         # endregion
+        // Building WebGL
         var buildPlayerOptions = new BuildPlayerOptions()
         {
             scenes = new []
@@ -183,10 +182,10 @@ public class BuildManager : MonoBehaviour
             },
             target = BuildTarget.WebGL,
             locationPathName = buildPathWebGl,
-            options = BuildOptions.EnableHeadlessMode | BuildOptions.StrictMode 
+            options = BuildOptions.StrictMode 
         };
-        BuildReport buildReport = BuildPipeline.BuildPlayer(buildPlayerOptions );
-        UnityEngine.Debug.Log(buildReport.summary);
+        // Building
+        BuildReport buildReport = BuildPipeline.BuildPlayer(buildPlayerOptions);
     }
 }
 #endif
