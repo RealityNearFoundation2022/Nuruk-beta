@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/names
 
 jobs:
   # front
@@ -39,6 +40,7 @@ jobs:
         with:
           name: Build-WebGL
           path: ${{ github.sha }}.tar.gz
+
   prepare-release-on-servers_webgl:
     name: Prepare release webgl
     runs-on: ubuntu-latest
@@ -67,8 +69,7 @@ jobs:
           script: |
             mkdir -p "releases/${GITHUB_SHA}"
             tar xzf artifacts/${GITHUB_SHA}.tar.gz -C "releases/${GITHUB_SHA}"
-            rm -r /var/www/webgl/* 2> /dev/null
-            cp -r releases/${GITHUB_SHA}/build/WebGL/WebGL/* /var/www/webgl/
+
   # server
   server_job:
     name: compile server unix
