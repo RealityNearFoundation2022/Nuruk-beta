@@ -27,6 +27,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
+          customImage: 'unityci/editor:2020.1.14f1-base-0'
           targetPlatform: WebGL
           customParameters: -quit -projectPath . -batchmode -executeMethod BuildManager.BuildWebGl
 
