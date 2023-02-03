@@ -28,6 +28,7 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: WebGL
+          customParameters: -quit -projectPath . -batchmode -executeMethod BuildManager.BuildWebGl
 
       - name: Create deployment artifact
         env:
@@ -83,7 +84,7 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: StandaloneLinux64
-          customParameters: -EnableHeadlessMode
+          customParameters: -EnableHeadlessMode -quit -projectPath . -batchmode -executeMethod BuildManager.BuildServerLinux
         
       - name: Create deployment artifact
         env:
