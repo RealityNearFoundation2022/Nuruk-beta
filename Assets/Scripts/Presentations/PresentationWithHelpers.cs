@@ -22,6 +22,11 @@ public class PresentationWithHelpers : NetworkBehaviour
     public int currentDiapositive;
     private int _maxDiapositive = 0;
 
+    [SyncVar]
+    public bool isPlaying;
+    [SyncVar]
+    public double currentTime;
+
     void Start()
     {
         videoPlayer = Video.GetComponent<VideoPlayer>();
@@ -33,6 +38,7 @@ public class PresentationWithHelpers : NetworkBehaviour
     {
         Video.GetComponent<MeshRenderer>().enabled = true;
         videoPlayer.Play();
+        isPlaying = true;
     }
     public void DesableVideoPlayer()
     {
@@ -107,5 +113,37 @@ public class PresentationWithHelpers : NetworkBehaviour
     private void SetPreHelper()
     {
         spriteRendererPrev.sprite = _diapositive[currentDiapositive];
+    }
+
+    void Update()
+    {
+        if (isServer)
+        {
+            if (isPlaying)
+            {
+                currentTime = videoPlayer.time;
+            }
+        }
+        // if (isClient && !isServer)
+        // {
+        //     if (isPlaying)
+        //     {
+        //         videoPlayer.time = currentTime;
+        //     }
+        // }
+    }
+
+    public void PlaySyncVideo()
+    {
+        if (isPlaying)
+        {
+            videoPlayer.time = currentTime;
+            videoPlayer.Play();
+        }
+    }
+
+    public void PauseSyncVideo()
+    {
+        videoPlayer.Pause();
     }
 }
