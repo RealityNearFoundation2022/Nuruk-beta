@@ -90,7 +90,7 @@ public class WebNuruk : MonoBehaviour
 #endif
    
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
-    private readonly string baseUri = "http://216.128.138.227/";
+    private readonly string baseUri = "https://api.realitynear.org/";
 #endif
 
 

@@ -22,9 +22,9 @@ public class PresentationWithHelpers : NetworkBehaviour
     public int currentDiapositive;
     private int _maxDiapositive = 0;
 
-    [SyncVar]
+    [SyncVar(hook = nameof(SyncVideo))]
     public bool isPlaying;
-    [SyncVar]
+    [SyncVar(hook = nameof(SyncTime))]
     public double currentTime;
 
     void Start()
@@ -34,16 +34,18 @@ public class PresentationWithHelpers : NetworkBehaviour
         _maxDiapositive = _diapositive.Length;
     }
 
+    [Command(requiresAuthority = false)]
     public void EnableVideoPlayer()
     {
-        Video.GetComponent<MeshRenderer>().enabled = true;
-        videoPlayer.Play();
         isPlaying = true;
     }
+
+    [Command(requiresAuthority = false)]
     public void DesableVideoPlayer()
     {
         Video.GetComponent<MeshRenderer>().enabled = false;
         videoPlayer.Stop();
+        isPlaying = true;
     }
 
 
@@ -117,20 +119,18 @@ public class PresentationWithHelpers : NetworkBehaviour
 
     void Update()
     {
-        if (isServer)
+        if (isPlaying)
         {
-            if (isPlaying)
-            {
-                currentTime = videoPlayer.time;
-            }
+            SyncTimeClient(videoPlayer.time);
         }
-        // if (isClient && !isServer)
-        // {
-        //     if (isPlaying)
-        //     {
-        //         videoPlayer.time = currentTime;
-        //     }
-        // }
+    }
+
+    // Update the video time on the server
+    [ServerCallback]
+    public void CmdUpdateTime(double time)
+    {
+       SyncTimeClient(time);
+        Debug.Log("Time: " + time);
     }
 
     public void PlaySyncVideo()
@@ -140,6 +140,27 @@ public class PresentationWithHelpers : NetworkBehaviour
             videoPlayer.time = currentTime;
             videoPlayer.Play();
         }
+    }
+    
+    [ClientRpc]
+    public void SyncTimeClient(double time)
+    {
+        Debug.Log("Time: " + time);
+    }
+
+    void SyncVideo(bool oldState, bool newState)
+    {
+        if (newState)
+        {
+            Video.GetComponent<MeshRenderer>().enabled = true;
+            videoPlayer.Play();
+        }
+    }
+
+    // Sync time on the client
+    public void SyncTime(double oldState, double newState)
+    {
+        videoPlayer.time = newState;
     }
 
     public void PauseSyncVideo()
