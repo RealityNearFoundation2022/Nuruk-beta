@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-public class VoiceSpatialPlayer : NetworkBehaviour
+public class VoiceSpatialPlayer : NetworkBehaviour  
 {
     [SerializeField] private float radius;
     static Dictionary<NetworkConnection, VoiceSpatialPlayer> spatialFromPlayer = new Dictionary<NetworkConnection, VoiceSpatialPlayer>();
