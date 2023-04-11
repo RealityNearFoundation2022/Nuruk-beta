@@ -9,39 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Opening.unity
     guid: 63c887d330261704aae3b01599d1ec45
   - enabled: 1
-    path: Assets/Scenes/OpeningCentrum.unity
-    guid: d7d2e758b3cbf644980eaee480362134
-  - enabled: 1
     path: Assets/Scenes/LoginNuruk.unity
     guid: f2ff7f2435201c64ea4d3e5c37c5e67e
   - enabled: 1
     path: Assets/Scenes/Register.unity
     guid: ec6b268d7da738240be97292a6fb3962
   - enabled: 1
-    path: Assets/Scenes/CharacterSelect.unity
-    guid: 411ae0bd417e3b64cadccf64f072ce60
-  - enabled: 1
     path: Assets/Scenes/City.unity
     guid: abda565e0eff37e4594d75481c9a6416
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LoginNear.unity
     guid: 7148299fedcee1a4f95d89fc7f85ee40
-  - enabled: 0
-    path: Assets/Scenes/Server.unity
-    guid: f102bd3ed2351e4408de50fb14947064
-  - enabled: 0
-    path: Assets/Scenes/Offline.unity
-    guid: d33b4502c0f3bf743974f6d51166c960
-  - enabled: 0
-    path: Assets/Scenes/UserLoginNear.unity
-    guid: ee7be7c4324e5c34791542fea67df7d3
-  - enabled: 0
-    path: Assets/Mirror/Examples/Benchmark/Scenes/Scene.unity
-    guid: 3b956c7d68b6144dd8e6c36636e25b52
-  - enabled: 0
-    path: Assets/Scenes/SpatialAudio.unity
-    guid: 81f5d90ee421be2408d46602bbca35c0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/recoveryPass.unity
     guid: 580dac0b149382a42bbc2edaf7c21b79
   m_configObjects:

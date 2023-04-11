@@ -16,7 +16,7 @@ public class BuildManager : MonoBehaviour
     static string buildPathServer = Path.Combine("builds", "server", "server");
     
     // WebGL
-    private static string hostServer = "servernuruk.devsgio.tech";
+    private static string hostServer = "servicenuruk.realitynear.org";
     
     [MenuItem("Builds/Build Server")]
     public static void BuildServerLinux()
@@ -40,11 +40,11 @@ public class BuildManager : MonoBehaviour
         // Getting transport
         SimpleWebTransport simpleWebTransport = gameObjectNetwork.GetComponent<SimpleWebTransport>();
         // Setting port
-        simpleWebTransport.port = 443;
+        simpleWebTransport.port = 7777;
         // Setting ssl
-        simpleWebTransport.sslEnabled = true;
+        simpleWebTransport.sslEnabled = false;
         // Setting wss
-        simpleWebTransport.clientUseWss = true;
+        simpleWebTransport.clientUseWss = false;
 
         // Setting HUD
         NetworkManagerHUD hub = gameObjectNetwork.GetComponent<NetworkManagerHUD>();
@@ -89,7 +89,7 @@ public class BuildManager : MonoBehaviour
         // Setting transport config
         SimpleWebTransport simpleWebTransport = gameObjectNetwork.GetComponent<SimpleWebTransport>();
         // Setting port
-        simpleWebTransport.port = 443;
+        simpleWebTransport.port = 7778;
         // Setting ssl
         simpleWebTransport.sslEnabled = false;
         // Setting wss
@@ -118,7 +118,7 @@ public class BuildManager : MonoBehaviour
 
 
     // WebGL build script
-    [MenuItem("Builds/Build WebGL")]
+    [MenuItem("Builds/Build WebGL (Client)")]
     public static void BuildWebGl()
     {
         // Getting arguments from command line
@@ -144,9 +144,9 @@ public class BuildManager : MonoBehaviour
         // Setting transport config
         SimpleWebTransport simpleWebTransport = gameObjectNetwork.GetComponent<SimpleWebTransport>();
         // Setting port
-        simpleWebTransport.port = 443;
+        simpleWebTransport.port = 7777;
         // Setting ssl
-        simpleWebTransport.sslEnabled = true;
+        simpleWebTransport.sslEnabled = false;
         // Setting wss
         simpleWebTransport.clientUseWss = true;
         // Setting network manager

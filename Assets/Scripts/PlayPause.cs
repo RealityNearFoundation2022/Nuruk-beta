@@ -21,6 +21,7 @@ public class PlayPause : MonoBehaviour
         play.gameObject.SetActive(true);
         videoPlayer.Pause();
     }
+
     public void PlayVideo()
     {
         pause.gameObject.SetActive(true);
