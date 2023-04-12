@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Register.unity
     guid: ec6b268d7da738240be97292a6fb3962
   - enabled: 1
-    path: Assets/Scenes/City.unity
+    path: Assets/Scenes/City/City.unity
     guid: abda565e0eff37e4594d75481c9a6416
   - enabled: 1
     path: Assets/Scenes/LoginNear.unity
