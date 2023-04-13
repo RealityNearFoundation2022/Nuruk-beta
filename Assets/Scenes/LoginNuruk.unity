@@ -996,13 +996,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092775234}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 954.2991, y: 397.5666, z: 0.001373291}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.7009277, y: -142.43341, z: 0.001373291}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1482153449}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1092775236
 MonoBehaviour:
@@ -1328,6 +1328,7 @@ RectTransform:
   - {fileID: 465557421}
   - {fileID: 1391025070}
   - {fileID: 290531090}
+  - {fileID: 1092775235}
   - {fileID: 2089712159}
   - {fileID: 711394158}
   - {fileID: 231516678}
@@ -1960,7 +1961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114936604899277876, guid: 8ba55e993cc65394ca6b37b09d6e28ff, type: 3}
       propertyPath: m_text
-      value: LOGIN
+      value: "Iniciar Sesi\xF3n"
       objectReference: {fileID: 0}
     - target: {fileID: 114936604899277876, guid: 8ba55e993cc65394ca6b37b09d6e28ff, type: 3}
       propertyPath: m_textAlignment
@@ -2512,7 +2513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3766919344726562306, guid: 5e9bb219d59e5bc448e700ffbf583ba1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 406.11145
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3766919344726562306, guid: 5e9bb219d59e5bc448e700ffbf583ba1, type: 3}
       propertyPath: m_AnchoredPosition.y

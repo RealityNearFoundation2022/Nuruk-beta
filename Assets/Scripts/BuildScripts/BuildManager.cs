@@ -178,7 +178,7 @@ public class BuildManager : MonoBehaviour
                 "Assets/Scenes/CharacterSelect.unity",
                 "Assets/Scenes/City.unity",
                 "Assets/Scenes/LoginNear.unity",
-                "Assets/Scenes/recoveryPass.unity",
+                "Assets/Scenes/RecoveryPass.unity",
             },
             target = BuildTarget.WebGL,
             locationPathName = buildPathWebGl,
