@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class AgoraSettings : MonoBehaviour
 {
-    private TestHome _testHome;
     TestHelloUnityVideo app;
    
     private void Start()

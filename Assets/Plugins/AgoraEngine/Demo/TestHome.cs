@@ -82,6 +82,12 @@ public class TestHome : MonoBehaviour
    string newAppID = "";
    private void OnGUI()
    {
+
+      if(GUI.Button(new Rect(130,130,150,50), "Connect"))
+      {
+         onJoinChannel("unity3d", false, false);
+      }
+
       if (_showAppIdPopup)
       {
          GUI.skin.textField.fontSize = 30;

@@ -9,14 +9,17 @@ public class VoiceChatObserver : NetworkBehaviour
 
     private string appID = "3547b652b43e4b27b66bb5a076167e9f";
 
-    // private VoiceChatObserver Instance;
+    private VoiceChatObserver Instance;
 
-    // private void Awake()
-    // {
-    //     #if Instance == null
-    //         Instance = this;
-    //     #endif
-    // }
+    private void Awake()
+    {
+
+        if(!Instance)
+            Instance = this;
+        else
+            Destroy(this);
+
+    }
 
     private void Start()
     {
