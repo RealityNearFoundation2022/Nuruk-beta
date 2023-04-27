@@ -31,7 +31,7 @@ public class VoiceChatManager : NetworkBehaviour
 		}
 	}
 
-	void Start()
+	private void Start()
 	{
 		if(string.IsNullOrEmpty(appID))
 		{

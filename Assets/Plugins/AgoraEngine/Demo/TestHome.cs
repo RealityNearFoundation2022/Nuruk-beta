@@ -29,6 +29,7 @@ public class TestHome : MonoBehaviour
    // agora nuruk
     private string AppID = "3547b652b43e4b27b66bb5a076167e9f";
 
+
    private string ChannelName
    {
       get
@@ -82,11 +83,6 @@ public class TestHome : MonoBehaviour
    string newAppID = "";
    private void OnGUI()
    {
-
-      if(GUI.Button(new Rect(130,130,150,50), "Connect"))
-      {
-         onJoinChannel("unity3d", false, false);
-      }
 
       if (_showAppIdPopup)
       {

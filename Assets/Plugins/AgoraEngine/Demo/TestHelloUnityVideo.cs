@@ -17,6 +17,9 @@ public class TestHelloUnityVideo
     public IRtcEngine mRtcEngine { get; set; }
     private Text MessageText { get; set; }
 
+    public string userName;
+
+
     private AudioVideoStates AudioVideoState = new AudioVideoStates();
 
     private List<GameObject> remoteUserDisplays = new List<GameObject>();
@@ -49,6 +52,9 @@ public class TestHelloUnityVideo
         // init engine
         mRtcEngine = IRtcEngine.GetEngine(appId);
         mRtcEngine.SetMultiChannelWant(false);
+
+        // Spatial Audio.
+        mRtcEngine.EnableSoundPositionIndication(true);
 
         // enable log
         mRtcEngine.SetLogFilter(
@@ -476,7 +482,11 @@ public class TestHelloUnityVideo
     // implement engine callbacks
     private void onJoinChannelSuccess(string channelName, uint uid, int elapsed)
     {
-        Debug.Log("JoinChannel " + channelName + " Success: uid = " + uid);
+
+        Debug.Log($"User {userName} "+ "JoinChannel " + channelName + " Success: uid = " + uid);
+
+
+
         //  GameObject textVersionGameObject = GameObject.Find("VersionText");
         //        textVersionGameObject.GetComponent<Text>().text = "SDK Version : " + getSdkVersion();
         // ChannelNameLabel.text = channelName;
