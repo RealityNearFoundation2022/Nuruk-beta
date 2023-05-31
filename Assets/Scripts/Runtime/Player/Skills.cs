@@ -8,11 +8,9 @@ public class Skills : NetworkBehaviour
     [SerializeField] private GameObject player;
     private static readonly int Sit = Animator.StringToHash("Sit");
 
-    [SerializeField] private Collider collider;
 
     #region Sit Variables
 
-    private bool _isSit = false;
     private Transform sitPosition;
     private GameObject _cameraPlayer;
 

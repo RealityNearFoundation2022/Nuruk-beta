@@ -11,7 +11,6 @@ public class SpatialSound : MonoBehaviour
 
     private IRtcEngine rtcNgin;
 
-    private float radious = 3f;
 
     ///<summary>
     /// Every frame cycles through all the players

@@ -26,7 +26,6 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] private GameObject menuObject;
     private ChatManager _chatManager;
-    private bool _isLock = false;
 
     
     #endregion
@@ -129,14 +128,12 @@ public class CanvasManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        _isLock = true;
     }
     
     private void HideCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        _isLock = false;
     }
 
 

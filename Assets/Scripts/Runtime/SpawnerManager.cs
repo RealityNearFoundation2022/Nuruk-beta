@@ -9,8 +9,6 @@ public class SpawnerManager : MonoBehaviour
     public GameObject[] spawnPoint;
     [SerializeField]
     GameObject mapa;
-    //private bool flag = true;
-    private bool _isMap = false;
 
 
 

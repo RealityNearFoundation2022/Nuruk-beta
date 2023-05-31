@@ -3,7 +3,6 @@ using agora_gaming_rtc;
 
 public class AgoraLayer
 {
-    private uint uid = 0;
 
     private IRtcEngine rtcNgin;
 

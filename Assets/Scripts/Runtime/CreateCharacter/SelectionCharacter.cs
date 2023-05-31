@@ -82,32 +82,27 @@ public class SelectionCharacter : MonoBehaviour
    #region Extra control Monster
    public GameObject[] extrasObjectsMonster;
    public string currentExtraMonster;
-   int indexCurrentExtraMonster = 0;
    #endregion
 
    #region Head control Monster
    public GameObject[] headObjectsMonster;
    public string currentHeadMonster;
-   int indexCurrentHeadMonster = 0;
    #endregion
 
    #region Shirt control Monster
    public GameObject[] shirtObjectsMonster;
    public string currentShirtMonster;
-   int indexCurrentShirtMonster = 0;
    #endregion
 
    #region Pants control Monster
    public GameObject[] pantsObjectsMonster;
    public string currentPantsMonster;
-   int indexCurrentPantsMonster = 0;
 
    #endregion
 
    #region Shoes control
    public GameObject[] shoesObjectsMonster;
    public string currentShoesMonster;
-   int indexCurrentShoesMonster = 0;
    #endregion
 
 
