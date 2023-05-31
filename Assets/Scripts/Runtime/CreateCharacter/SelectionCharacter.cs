@@ -1,11 +1,12 @@
+
+using Nuruk;
+using TMPro;
+using Classes;
+using PlayFab;
 using UnityEngine;
 using CustomEvents;
-using Classes;
-using TMPro;
-using PlayFab;
 using PlayFab.ClientModels;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 
 public class SelectionCharacter : MonoBehaviour
@@ -358,7 +359,8 @@ public class SelectionCharacter : MonoBehaviour
          }
       }, result =>
       {
-         //SceneManagerControl.Instance.LoadScene("City");
+         GameObject agoraVoiceChat = new GameObject();
+         agoraVoiceChat.AddComponent<AgoraVoiceChat>();
          Events.ChangeScene?.Invoke("City");
       }, error => { });
    }

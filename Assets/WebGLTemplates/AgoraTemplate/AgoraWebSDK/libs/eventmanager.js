@@ -60,6 +60,30 @@ class EventManager {
     );
   }
 
+  raiseOnCameraChanged(info){
+    unityInstance.SendMessage(
+      "AgoraEventHandler",
+      "onCameraChanged",
+      info.state +  ' | ' + info.device
+    );
+  }
+
+  raiseOnMicrophoneChanged(info){
+    unityInstance.SendMessage(
+      "AgoraEventHandler",
+      "onMicrophoneChanged",
+      info.state +  ' | ' + info.device
+    );
+  }
+
+  raiseOnPlaybackDeviceChanged(info){
+    unityInstance.SendMessage(
+      "AgoraEventHandler",
+      "onPlaybackChanged",
+      info.state +  ' | ' + info.device
+    );
+  }
+
   isNumber(n) { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); } 
 
   raiseJoinChannelSuccess(userId, channel) {
@@ -294,6 +318,51 @@ class EventManager {
       "AgoraEventHandler",
       "OnVolumeIndication",
       volumeInfo + "|" + speakers + "|" + total
+    );
+  }
+
+  raiseVolumeIndicator(volumeInfo, speakers, total)
+  {
+    unityInstance.SendMessage(
+      "AgoraEventHandler",
+      "OnVolumeIndication",
+      volumeInfo + "|" + speakers + "|" + total
+    );
+  }
+
+  raiseOnTokenPrivilegeWillExpire(token)
+  {
+    unityInstance.SendMessage(
+      "AgoraEventHandler",
+      "tokenPrivilegeWillExpire",
+      token
+    );
+  }
+
+  raiseOnTokenPrivilegeDidExpire(token)
+  {
+    unityInstance.SendMessage(
+      "AgoraEventHandler",
+      "tokenPrivilegeDidExpire",
+      token
+    );
+  }
+
+  raiseChannelOnTokenPrivilegeWillExpire(channelID, token)
+  {
+    unityInstance.SendMessage(
+      "AgoraEventHandler",
+      "channelTokenPrivilegeWillExpire",
+      channelID + "|" + token
+    );
+  }
+
+  raiseChannelOnTokenPrivilegeDidExpire(channelID, token)
+  {
+    unityInstance.SendMessage(
+      "AgoraEventHandler",
+      "channelTokenPrivilegeDidExpire",
+      channelID + "|" + token
     );
   }
 }

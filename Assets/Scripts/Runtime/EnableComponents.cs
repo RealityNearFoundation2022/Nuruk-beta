@@ -26,10 +26,6 @@ namespace StarterAssets
             virtualCamera.Follow = target;
             virtualCamera.LookAt = target;
 
-#if UNITY_WEBGL && !UNITY_EDITOR
-        Cursor.lockState = CursorLockMode.Locked;
-         Cursor.visible = false;
-#endif
          }
       }
    }

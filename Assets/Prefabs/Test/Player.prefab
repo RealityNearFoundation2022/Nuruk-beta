@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: -8711875392262137756}
   - component: {fileID: 6873822550783718050}
   - component: {fileID: 6132746512430590213}
-  - component: {fileID: -1969135318875585788}
+  - component: {fileID: -7074750948816058051}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -304,7 +304,7 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
---- !u!114 &-1969135318875585788
+--- !u!114 &-7074750948816058051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,9 +313,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5192487636920359170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b028111239b33214982aa0bf729bcee9, type: 3}
+  m_Script: {fileID: 11500000, guid: f181f92aed94e7545ae4a4a3adcb1a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  channelUID: 0

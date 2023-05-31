@@ -1,31 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class PlayPause : MonoBehaviour
+namespace Nuruk.Video
 {
-    [SerializeField] VideoPlayer videoPlayer;
-    [SerializeField] Button pause, play;
-
-    private void Start()
+    public class PlayPause : MonoBehaviour
     {
-        pause.onClick.AddListener(() => PauseVideo());
-        play.onClick.AddListener(() => PlayVideo());
-    }
 
-    public void PauseVideo()
-    {
-        pause.gameObject.SetActive(false);
-        play.gameObject.SetActive(true);
-        videoPlayer.Pause();
-    }
+        [SerializeField]
+        private VideoPlayer videoPlayer;
 
-    public void PlayVideo()
-    {
-        pause.gameObject.SetActive(true);
-        play.gameObject.SetActive(false);
-        videoPlayer.Play();
+        [SerializeField] 
+        private Button pause;
+        
+        [SerializeField]
+        private Button play;
+
+
+        public void PauseVideo()
+        {
+
+            pause.gameObject.SetActive(false);
+            play.gameObject.SetActive(true);
+
+        }
+
+        public void PlayVideo()
+        {
+
+            pause.gameObject.SetActive(true);
+            play.gameObject.SetActive(false);
+
+            // Play the thing
+
+        }
     }
 }

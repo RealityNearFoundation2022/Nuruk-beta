@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cinemachine;
-using UnityEngine;
-using CustomEvents;
-using StarterAssets;
 using Mirror;
+using UnityEngine;
+using StarterAssets;
+using CustomEvents;
 
 public class Skills : NetworkBehaviour
 {
@@ -28,26 +24,34 @@ public class Skills : NetworkBehaviour
     {
         if (!isLocalPlayer)
             return;
+
         if (sitData.sitPlayer)
         {
+
             player.GetComponent<ThirdPersonController>().enabled = false;
             player.transform.position = sitData.sitPosition.position;
-            //player.GetComponent<ThirdPersonController>().enabled = true;
+
             player.GetComponent<Animator>().SetBool(Sit, true);
+
             player.transform.rotation = sitData.sitPosition.rotation;
+
             if (!_cameraPlayer)
                 _cameraPlayer = GameObject.Find("PlayerFollowCamera");
+
             _cameraPlayer.SetActive(false);
             sitData.cameraToLook.SetActive(true);
+
         }
         else
         {
+
             player.GetComponent<ThirdPersonController>().enabled = true;
             _cameraPlayer.SetActive(true);
+
             sitData.cameraToLook.SetActive(false);
             player.GetComponent<Animator>().SetBool(Sit, false);
+
         }
-        
     }
 
     #endregion
@@ -62,6 +66,4 @@ public class Skills : NetworkBehaviour
     {
         Events.SitPlayer.RemoveListener(SitPlayerEvent);
     }
-
-    
 }

@@ -8,11 +8,12 @@ using UnityEngine.UI;
 
 public class AgoraSettings : MonoBehaviour
 {
-    TestHelloUnityVideo app;
-   
+
+    // TestHelloUnityVideo app;
+
     private void Start()
     {
-        app = new TestHelloUnityVideo(); 
+        // app = new TestHelloUnityVideo(); 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,11 +28,11 @@ public class AgoraSettings : MonoBehaviour
 
     public void Host()
     {
-        app.Host();
+        // app.Host();
     }
 
     public void Audience()
     {
-        app.Audience();
+        // app.Audience();
     }
 }

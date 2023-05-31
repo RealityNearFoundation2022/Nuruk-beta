@@ -6,11 +6,19 @@ using Mirror;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+
 public class PresentationWithHelpers : NetworkBehaviour
 {
-    [SerializeField] private GameObject Video;
-    [SerializeField] private GameObject playPause;
-    [SerializeField] private Sprite[] _diapositive;
+
+    [SerializeField]
+    private GameObject Video;
+
+    // UI Button
+    [SerializeField]
+    private GameObject playPause;
+
+    [SerializeField] 
+    private Sprite[] _diapositive;
 
     [SerializeField] private SpriteRenderer spriteRendererPresentation;
 
@@ -23,7 +31,8 @@ public class PresentationWithHelpers : NetworkBehaviour
     private int _maxDiapositive = 0;
 
     [SyncVar(hook = nameof(SyncVideo))]
-    public bool isPlaying;
+    public bool isPlaying = false;
+
     [SyncVar(hook = nameof(SyncTime))]
     public double currentTime;
 
@@ -54,12 +63,18 @@ public class PresentationWithHelpers : NetworkBehaviour
     {
         if (currentDiapositive == _maxDiapositive - 1)
         {
-            if (playPause != null) playPause.SetActive(true);
+
+            if (playPause != null)
+                playPause.SetActive(true);
+
             EnableVideoPlayer();
         }
         else
         {
-            if (playPause != null) playPause.SetActive(false);
+
+            if (playPause != null)
+                playPause.SetActive(false);
+
             DesableVideoPlayer();
         }
        

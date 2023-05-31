@@ -35,7 +35,7 @@ async function joinChannelWithUserAccount_WGL(
   client_manager.setOptions(token_str, channelId_str);
   await client_manager.joinAgoraChannel(userAccount_str);
   wrapper.initStats();
-  cacheDevices();
+  await cacheDevices();
 }
 
 async function joinChannelWithUserAccount_engine_WGL(
@@ -110,6 +110,11 @@ function getUserInfoByUid_WGL(uid) {
   }
 }
 
+function SendNotImplementedError(api) {
+  event_manager.raiseHandleUserError("9001", "The API：" +  api + " is not supported."); 
+  console.warn("The API：" +  api + " is not supported.");
+}
+
 // Stops/Resumes sending the local video stream.
 async function enableLocalVideo(enabled) {
   client_manager.enableLocalVideo(enabled);
@@ -127,7 +132,7 @@ function stopPreview() {
 
 // Gets a new token when the current token expires after a period of time.
 async function renewToken(token) {
-  client_manager.renewToken();
+  client_manager.renewToken(token);
 }
 
 //enables the audio volume indicator so now we are geting event of volume indications
@@ -287,7 +292,8 @@ async function setLocalAudioTrackMicrophone(deviceId) {
 
 async function setLocalTrackCamera(deviceId) {
   if (localTracks.videoTrack) {
-    localTracks.videoTrack.setDevice(deviceId);
+    await localTracks.videoTrack.setDevice(deviceId);
+    localTracks.videoTrack.play("local-player");
   }
 }
 
@@ -298,7 +304,7 @@ async function setVideoDeviceCollectionDeviceWGL(deviceId) {
   } else {
     currentVideoDevice = deviceId;
     event_manager.raiseGetCurrentVideoDevice(currentVideoDevice);
-    setLocalTrackCamera(currentVideoDevice);
+    await setLocalTrackCamera(currentVideoDevice);
   }
 }
 
@@ -329,14 +335,18 @@ async function startScreenCaptureForWeb(enableAudio) {
   client_manager.startScreenCapture(enableAudio);
 }
 
-function startNewScreenCaptureForWeb(uid, enableAudio) {
+function startNewScreenCaptureForWeb(uid, enableAudio, token) {
   console.log("agora engine startNewScreenCaptureForWeb");
-  client_manager.startNewScreenCaptureForWeb(uid, enableAudio);
+  client_manager.startNewScreenCaptureForWeb(uid, enableAudio, token);
 }
 
 function stopNewScreenCaptureForWeb(){
   console.log("agora engine stopNewScreenCaptureForWeb");
   client_manager.stopNewScreenCaptureForWeb();
+}
+
+function setRemoteUserSpatialAudioParams(uid, azimuth, elevation, distance, orientation, attenuation, blur, airAbsorb){
+  client_manager.setRemoteUserSpatialAudioParams(uid, azimuth, elevation, distance, orientation, attenuation, blur, airAbsorb);
 }
 
 async function startScreenCaptureByDisplayId(
@@ -898,4 +908,28 @@ function setWebParametersString(key, value) {
 
 function getRemoteVideoStats() {
   client_manager.getRemoteVideoStats();
+}
+
+function initVirtualBackground(enabled, backgroundSourceType, color, source, blurDegree, mute, loop){
+  client_manager.enableVirtualBackground(enabled, backgroundSourceType, color, source, blurDegree, mute, loop);
+}
+
+function setVirtualBackgroundBlur(blurDegree){
+  client_manager.setVirtualBackgroundBlur(blurDegree);
+}
+
+function setVirtualBackgroundColor(hexColor){
+  client_manager.setVirtualBackgroundColor(hexColor);
+}
+
+function setVirtualBackgroundImage(imgFile){
+  client_manager.setVirtualBackgroundImage(imgFile);
+}
+
+function setVirtualBackgroundVideo(videoFile){
+  client_manager.setVirtualBackgroundVideo(videoFile);
+}
+
+function enableSpatialAudio(enabled){
+  client_manager.enableSpatialAudio(enabled);
 }

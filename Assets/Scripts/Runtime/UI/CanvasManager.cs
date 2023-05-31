@@ -16,7 +16,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject tutorial;
     [SerializeField] private GameObject bug;
 
-    private TestHome _testHome;
+    // private TestHome _testHome;
     private bool _currentStateAudio = false;
     
     
@@ -44,7 +44,7 @@ public class CanvasManager : MonoBehaviour
     
     void Start()
     {
-        _testHome = FindObjectOfType<TestHome>();
+        // _testHome = FindObjectOfType<TestHome>();
         _chatManager = FindObjectOfType<ChatManager>();
     }
 
@@ -116,7 +116,7 @@ public class CanvasManager : MonoBehaviour
         // Mic
         if (!Input.GetKey(KeyCode.V) || !(Time.time > _timeMuted)) return;
         micImage.sprite = _currentStateAudio ? onStateMic : offStateMic;
-        _testHome.MuteAudio(_currentStateAudio);
+        // _testHome.MuteAudio(_currentStateAudio);
         _currentStateAudio = !_currentStateAudio;
         _timeMuted = Time.time + 0.5f;
         // --

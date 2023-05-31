@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Proyecto26;
-using RSG;
+using Nuruk;
 using TMPro;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using PlayFab;
-using PlayFab.ClientModels;
+using Proyecto26;
+using UnityEngine;
 using CustomEvents;
+using UnityEngine.UI;
+using PlayFab.ClientModels;
 using Michsky.UI.ModernUIPack;
+using System.Collections.Generic;
 
 public class LoginNuruk : MonoBehaviour
 {
@@ -68,6 +66,8 @@ public class LoginNuruk : MonoBehaviour
          PlayFabClientAPI.GetUserData(new GetUserDataRequest() {
             Keys = null
             }, result => {
+
+
                if (result.Data == null || !result.Data.ContainsKey("Username"))
                {
                   modalUsername.OpenWindow();
@@ -78,6 +78,8 @@ public class LoginNuruk : MonoBehaviour
                }
                else
                {
+                  GameObject agoraVoiceChat = new GameObject();
+                  agoraVoiceChat.AddComponent<AgoraVoiceChat>();
                   Events.ChangeScene.Invoke("City");
                }
             }, (error) => {
@@ -90,7 +92,7 @@ public class LoginNuruk : MonoBehaviour
             responseErrAuth = JsonUtility.FromJson<DetailError>(error.Response);
             ErrorMessage.enabled = true;
             ErrorMessage.text = responseErrAuth.detail;
-             flag = true;
+            flag = true;
          });
       
    }
@@ -113,19 +115,21 @@ public class LoginNuruk : MonoBehaviour
          }
       }, result =>
       {
+         GameObject agoraVoiceChat = new GameObject();
+         agoraVoiceChat.AddComponent<AgoraVoiceChat>();
          Events.ChangeScene?.Invoke("City");
       }, error => { });
    }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Return) && flag)
-        {
-            if ((email.text != "") && (password.text != ""))
-            {
-                Log_in();
-                flag = false;
-            }
-        }
-    }
+   private void Update()
+   {
+      if (Input.GetKey(KeyCode.Return) && flag)
+      {
+         if ((email.text != "") && (password.text != ""))
+         {
+               Log_in();
+               flag = false;
+         }
+      }
+   }
 }

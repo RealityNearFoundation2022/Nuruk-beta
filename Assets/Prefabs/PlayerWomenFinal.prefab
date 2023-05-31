@@ -288,10 +288,10 @@ GameObject:
   - component: {fileID: 8631962466648840974}
   - component: {fileID: 6654982659905805480}
   - component: {fileID: 8377567553344524352}
-  - component: {fileID: 2929724381494953590}
   - component: {fileID: -1369012920132319137}
   - component: {fileID: -4371513230838952712}
   - component: {fileID: -9110156580474932902}
+  - component: {fileID: 3878180120922425590}
   m_Layer: 8
   m_Name: PlayerWomenFinal
   m_TagString: Player
@@ -700,18 +700,6 @@ MonoBehaviour:
   - {fileID: 1791406113920669124}
   playerUsername: 
   userTitle: {fileID: 7032085468480637867}
---- !u!114 &2929724381494953590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6178453984244087862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93223adcee8e70546b5d5867093660f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-1369012920132319137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,6 +750,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.4624096, z: 1}
   m_Center: {x: 0, y: 0.9, z: 0.28}
+--- !u!114 &3878180120922425590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6178453984244087862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6cdecf9d89aef4469810393f1826016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  channelUID: 0
 --- !u!1 &6750978910032738318
 GameObject:
   m_ObjectHideFlags: 0
