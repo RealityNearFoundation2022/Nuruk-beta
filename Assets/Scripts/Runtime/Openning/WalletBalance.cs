@@ -24,7 +24,6 @@ public class WalletBalance : MonoBehaviour
 
   [SerializeField] GameObject banner;
   string saldo;
-  private bool flag = false;
 
   void Start() {
     banner.SetActive(false);
